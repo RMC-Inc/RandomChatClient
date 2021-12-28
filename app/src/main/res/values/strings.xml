@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Random Chat</string>
+    <string name="welcometext">Benvenuto</string>
+    <string name="user_message">Inserisci il tuo nome utente</string>
+    <string name="name_user">Nikname</string>
+    <string name="logo_icon">logo-icon</string>
+    <string name="logo_hello">logo-hello</string>
+    <string name="check_box_text_nikname">Usa lo stesso nickname in futuro</string>
+    <string name="start_chatting">Inizia a Chattare</string>
+</resources>

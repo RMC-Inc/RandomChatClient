@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema scuro  -->
+    <style name="Theme.RandomChat" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
+        <!-- Colori Primari -->
+        <item name="colorPrimary">@color/cyan_6D0</item>
+        <item name="colorPrimaryVariant">@color/cyan_6D0</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Colori Secondari -->
+        <item name="colorSecondary">@color/cyan_6A5</item>
+        <item name="colorSecondaryVariant">@color/cyan_8ff</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Colore barra di stato -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Stili personalizzati -->
+        <item name="editTextStyle">@style/EditTextStyle_dark</item>
+    </style>
+</resources>
