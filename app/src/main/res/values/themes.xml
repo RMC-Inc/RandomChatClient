@@ -12,7 +12,8 @@
         <item name="colorSecondaryVariant">@color/cyan_8ff</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Colore barra di stato -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <!-- Stili personalizzati -->
         <item name="editTextStyle">@style/EditTextStyle</item>
     </style>

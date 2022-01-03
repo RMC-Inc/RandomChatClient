@@ -2,4 +2,5 @@
 <resources>
     <color name="colorButton">#8e8e8e</color>
     <color name="cardview">#424242</color>
+    <color name="cyan_6A5">#FFFFFF</color>
 </resources>
