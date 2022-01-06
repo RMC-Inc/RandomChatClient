@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RandomChat">
+        android:theme="@style/Theme.RandomChat.NoActionBar">
         <activity
             android:name=".Splashscreen"
             android:exported="true">
@@ -22,9 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ActivityRoom"/>
     </application>
-
 </manifest>

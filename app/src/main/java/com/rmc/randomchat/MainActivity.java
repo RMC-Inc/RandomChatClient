@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import entity.User;
+import com.rmc.randomchat.entity.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_main);
 
         NiknameUser = (EditText) findViewById(R.id.name_user);
@@ -39,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v) {
                 user.setNickname(NiknameUser.getText().toString());
-                EditTextisEmpty(NiknameUser);
+                if(!EditTextisEmpty(NiknameUser)){
+                    Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
+                    startActivity(roomRecyclerView);
+                }
             }
         });
 
@@ -79,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
     // Controlla se la EditText è vuota
 
-    private void EditTextisEmpty(EditText niknameuser) {
-        if(TextUtils.isEmpty(user.getNickname()))
+    private boolean EditTextisEmpty(EditText niknameuser) {
+        if (TextUtils.isEmpty(user.getNickname())) {
             niknameuser.setError("Nikname non inserito!");
-        else
-            Toast.makeText(MainActivity.this, "Non so ancora che madonna fare \uD83D\uDE05 " + user.getNickname(),Toast.LENGTH_LONG).show();
+            return true;
+        } else {
+            return false;
+            }
     }
 
     @Override

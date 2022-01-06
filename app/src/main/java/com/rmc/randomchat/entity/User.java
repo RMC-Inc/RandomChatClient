@@ -1,4 +1,4 @@
-package entity;
+package com.rmc.randomchat.entity;
 
 public class User {
     private String nickname;

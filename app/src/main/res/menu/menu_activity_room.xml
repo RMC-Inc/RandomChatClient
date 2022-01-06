@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/changenikname"
+        android:title="Cambia Nikname"/>
+
+    <item android:id="@+id/changeroomid"
+        android:title="Entra in una stanza"/>
+
+
+    <item android:id="@+id/exit"
+        android:title="Esci"/>
+
+</menu>
