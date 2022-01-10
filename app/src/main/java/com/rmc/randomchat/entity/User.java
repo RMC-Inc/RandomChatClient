@@ -2,7 +2,10 @@ package com.rmc.randomchat.entity;
 
 public class User {
     private String nickname;
-    private int socketfd;
+
+    public User(String nickname) {
+        this.nickname = nickname;
+    }
 
     public String getNickname() {
         return nickname;
@@ -10,13 +13,5 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public int getSocketfd() {
-        return socketfd;
-    }
-
-    public void setSocketfd(int socketfd) {
-        this.socketfd = socketfd;
     }
 }

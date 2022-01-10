@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import java.util.Locale;
 
 import com.rmc.randomchat.entity.Room;
 
@@ -32,12 +33,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         Room room = rooms.get(position);
 
         holder.roomName.setText(room.getName());
-        holder.roomid.setText(room.getId());
-        holder.time.setText(room.getTime());
-        holder.onlineuser.setText(room.getOnlieuser());
+        holder.roomid.setText(String.format(Locale.ENGLISH, "%d", room.getId()));
+        holder.time.setText(String.valueOf(room.getTime()));
+        holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlieuser()));
 
-        if(position==0)
+        if(position==0) {
             holder.cardView.setCardBackgroundColor(0xff2ecc71);
+        }
         else if(position==1)
             holder.cardView.setCardBackgroundColor(0xffF03b3b);
         else if(position==2)
