@@ -14,6 +14,7 @@ public interface ServerComm {
 
     void sendMessage (String message);
     User nextUser();
+    String waitMessage();
 
     void sendExit();
 }

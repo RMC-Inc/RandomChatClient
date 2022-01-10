@@ -102,9 +102,9 @@ public class ServerCommImpl implements ServerComm {
             out.write(msg.getBytes(StandardCharsets.US_ASCII));
             out.flush();
 
-            if (in.hasNextLine()){
-                return new User(stringInside(in.nextLine(), "[", "]"));
-            }
+            msg = waitMessage();
+            if (msg == null || msg.charAt(0) == Commands.EXIT) return null;
+            else return  new User(stringInside(msg, "[", "]"));
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -113,15 +113,23 @@ public class ServerCommImpl implements ServerComm {
     }
 
     @Override
+    public String waitMessage(){
+        if (in.hasNextLine()) return in.nextLine();
+        return null;
+    }
+
+
+    @Override
     public synchronized User nextUser() {
         String msg = String.format(Locale.ENGLISH, "%c", Commands.NEXT_USER);
         try {
             out.write(msg.getBytes(StandardCharsets.US_ASCII));
             out.flush();
 
-            if (in.hasNextLine()){
-                return new User(stringInside(in.nextLine(), "[", "]"));
-            }
+
+            msg = waitMessage();
+            if (msg == null || msg.charAt(0) == Commands.EXIT) return null;
+            else return  new User(stringInside(msg, "[", "]"));
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -161,7 +169,7 @@ public class ServerCommImpl implements ServerComm {
     }
 
     @Override
-    public synchronized void sendExit() {
+    public void sendExit() {
         String msg = String.format(Locale.ENGLISH, "%c", Commands.EXIT);
         try {
             out.write(msg.getBytes(StandardCharsets.US_ASCII));

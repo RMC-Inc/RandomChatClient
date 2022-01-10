@@ -1,5 +1,6 @@
 package com.rmc.randomchat;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,18 +38,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.time.setText(String.valueOf(room.getTime()));
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlieuser()));
 
-        if(position==0) {
-            holder.cardView.setCardBackgroundColor(0xff2ecc71);
-        }
-        else if(position==1)
-            holder.cardView.setCardBackgroundColor(0xffF03b3b);
-        else if(position==2)
-            holder.cardView.setCardBackgroundColor(0xff983bF0);
-        else if(position==3)
-            holder.cardView.setCardBackgroundColor(0xfff09e3b);
-        else if(position==4)
-            holder.cardView.setCardBackgroundColor(0xff546E7A);
-
+        holder.cardView.setCardBackgroundColor(Color.rgb(room.roomRGB[0], room.roomRGB[1], room.roomRGB[2]));
     }
 
 

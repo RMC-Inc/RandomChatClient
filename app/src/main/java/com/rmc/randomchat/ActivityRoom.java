@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telecom.Call;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -53,7 +54,7 @@ public class ActivityRoom extends AppCompatActivity {
     private void initData() {
         //rooms = ServerCommImpl.getInstance().getRooms(10, "");
 
-        CallbackComm.getRooms(20, "", (r) -> {
+        CallbackComm.getRooms(20, "", r -> {
             rooms.addAll(r);
             adapter.notifyDataSetChanged();
         });
