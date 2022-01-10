@@ -3,4 +3,11 @@
     <color name="colorButton">#8e8e8e</color>
     <color name="cardview">#424242</color>
     <color name="cyan_6A5">#FFFFFF</color>
+    <color name="backgroundmessage">#424242</color>
+    <color name="toolbarchat">#424242</color>
+    <color name="messagechat">#FFFFFF</color>
+    <color name="backgroundchat">#212121</color>
+    <color name="backgroundmessagesender">#000000</color>
+    <color name="backgroundmessagereciver">#424242</color>
+    <color name="textmessagereciver">#FFFFFF</color>
 </resources>

@@ -9,14 +9,24 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonNewRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_add_icon_room"
+        app:backgroundTint="@color/cardview"
+        app:tint="#FFFFFF" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRoom"
         android:layout_width="match_parent"
-        android:layout_marginTop="56dp"
         android:layout_height="match_parent"
- />
-
+        android:layout_marginTop="56dp" />
 
 </RelativeLayout>

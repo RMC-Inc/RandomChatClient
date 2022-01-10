@@ -89,7 +89,7 @@ public class CallbackComm {
         });
     }
 
-    public static void enterRoom (int idroom, Consumer<User> callback){
+    public static void enterRoom (long idroom, Consumer<User> callback){
         executor.execute(() -> {
             callback.accept(ServerCommImpl.getInstance().enterRoom(idroom));
         });

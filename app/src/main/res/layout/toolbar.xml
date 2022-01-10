@@ -8,7 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:menu="@menu/menu_activity_room"
-
     >
 
     <TextView
@@ -21,5 +20,12 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:id="@+id/toolbar_title" />
+
+    <android.widget.SearchView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:icon="@drawable/ic_baseline_search"
+        android:title="Cerca Stanza"
+        app:showAsAction="ifRoom|withText" />
 
 </androidx.appcompat.widget.Toolbar>

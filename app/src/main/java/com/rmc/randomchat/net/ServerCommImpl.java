@@ -23,8 +23,8 @@ public class ServerCommImpl implements ServerComm {
 
     private Socket soc;
     private static ServerCommImpl instance = null;
-    private final String HostName = "192.168.1.24";
-    private final int port = 8080;
+    private final String HostName = "2.237.250.35";
+    private final int port = 8125;
 
     private Scanner in;
     private OutputStream out;
@@ -96,7 +96,7 @@ public class ServerCommImpl implements ServerComm {
     }
 
     @Override
-    public synchronized User enterRoom (int idroom) {
+    public synchronized User enterRoom (long idroom) {
         String msg = String.format(Locale.ENGLISH, "%c %d", Commands.ENTER_IN_ROOM, idroom);
         try {
             out.write(msg.getBytes(StandardCharsets.US_ASCII));

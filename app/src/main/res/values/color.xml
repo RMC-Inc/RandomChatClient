@@ -4,10 +4,18 @@
     <color name="cyan_6A5">#0086a5</color>
     <color name="cyan_8ff">#62e8ff</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="cyan_E7A">#546E7A</color>
     <color name="gray">#8e8e8e</color>
     <color name="colorButton">#29434e</color>
     <color name="cardview">#546E7A</color>
     <color name="purple123">#983BF0</color>
+    <color name="backgroundmessage">#FFFFFF</color>
+    <color name="toolbarchat">#546E7A</color>
+    <color name="messagechat">#A8A7A7</color>
+    <color name="backgroundmessagesender">#546E7A</color>
+    <color name="backgroundmessagereciver">#FFFFFFFF</color>
+    <color name="backgroundchat">#ECE5DD</color>
+    <color name="textmessagereciver">#000000</color>
+
 </resources>

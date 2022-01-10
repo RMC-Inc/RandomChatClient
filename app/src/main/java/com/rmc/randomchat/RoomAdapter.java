@@ -16,9 +16,11 @@ import com.rmc.randomchat.entity.Room;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private List<Room> rooms;
+    private OnRoomListner nOnRoomListner;
 
-    public  RoomAdapter(List<Room>rooms) {
+    public  RoomAdapter(List<Room>rooms,OnRoomListner nOnRoomListner) {
         this.rooms = rooms;
+        this.nOnRoomListner = nOnRoomListner;
     }
 
     @NonNull
@@ -26,7 +28,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_recycler_view_room, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, nOnRoomListner);
     }
 
     @Override
@@ -37,7 +39,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.roomid.setText(String.format(Locale.ENGLISH, "%d", room.getId()));
         holder.time.setText(String.valueOf(room.getTime()));
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlieuser()));
-
         holder.cardView.setCardBackgroundColor(Color.rgb(room.roomRGB[0], room.roomRGB[1], room.roomRGB[2]));
     }
 
@@ -47,19 +48,31 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         return rooms.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView roomName, roomid,time,onlineuser;
-        CardView cardView;
+        private TextView roomName, roomid,time,onlineuser;
+        private CardView cardView;
+        private OnRoomListner onRoomListner;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnRoomListner onRoomListner) {
             super(itemView);
             cardView = itemView.findViewById(R.id.CardViewRecycler);
             roomName = itemView.findViewById(R.id.roomName);
             roomid = itemView.findViewById(R.id.roomid);
             time = itemView.findViewById(R.id.time);
             onlineuser = itemView.findViewById(R.id.onlineuser);
+            this.onRoomListner = onRoomListner;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onRoomListner.OnRoomClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnRoomListner {
+        void OnRoomClick (int position );
     }
 
 }

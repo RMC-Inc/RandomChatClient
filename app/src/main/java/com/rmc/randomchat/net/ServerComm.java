@@ -9,7 +9,7 @@ public interface ServerComm {
     List<Room> getRooms (int numRooms, String roomSearch);
     void setNickname(String nick);
 
-    User enterRoom (int idroom);
+    User enterRoom (long idroom);
     long createRoom (Room room);
 
     void sendMessage (String message);
