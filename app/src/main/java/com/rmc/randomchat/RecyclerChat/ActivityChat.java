@@ -1,7 +1,6 @@
 package com.rmc.randomchat.RecyclerChat;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,13 +12,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rmc.randomchat.LoadingDialog;
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,50 +39,33 @@ public class ActivityChat extends AppCompatActivity {
     private Room selectedRoom;
     private User other;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
         if(getIntent().getExtras() != null){
             selectedRoom = (Room) getIntent().getSerializableExtra("room");
                 //TODO attesa utente creare qualcosa di visivo
 
+            LoadingDialog loadingDialog = new LoadingDialog(ActivityChat.this);
+            loadingDialog.startLoadingDialog();
 
             CallbackComm.setOnNewMsg(msg -> {
-                Date date = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-                Calendar calendar = new GregorianCalendar();
-                dateFormat.setTimeZone(calendar.getTimeZone());
-
-
-                String currenttime = dateFormat.format(calendar.getTime());
-                Messages messages = new Messages(msg, false, currenttime);
+                Messages messages = new Messages(msg, false, SetTime());
                 messagesArrayList.add(messages);
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             });
 
             CallbackComm.setOnNext(() -> {
-                Date date = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-                Calendar calendar = new GregorianCalendar();
-                dateFormat.setTimeZone(calendar.getTimeZone());
-
-
-                String currenttime = dateFormat.format(calendar.getTime());
-                Messages messages = new Messages("L'utente ha terminato la conversazione", false, currenttime);
+                Messages messages = new Messages("L'utente ha terminato la conversazione", false, SetTime());
                 messagesArrayList.add(messages);
             });
 
             CallbackComm.setOnExit(() -> {
-                Date date = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-                Calendar calendar = new GregorianCalendar();
-                dateFormat.setTimeZone(calendar.getTimeZone());
-
-
-                String currenttime = dateFormat.format(calendar.getTime());
-                Messages messages = new Messages("L'utente è uscito dalla stanza...", false, currenttime);
+                Messages messages = new Messages("L'utente è uscito dalla stanza...", false, SetTime());
                 messagesArrayList.add(messages);
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             });
@@ -95,6 +76,7 @@ public class ActivityChat extends AppCompatActivity {
 
 
                 // TODO levare il messaggio di attesa
+                loadingDialog.CloseLoadingDialog();
             });
         }
 
@@ -119,8 +101,6 @@ public class ActivityChat extends AppCompatActivity {
         messagesAdapter=new MessagesRecyclerAdapter(ActivityChat.this,messagesArrayList);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
-        //altra roba
-
         backbuttonofspecificchatroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,15 +119,7 @@ public class ActivityChat extends AppCompatActivity {
 
                 } else {
                     CallbackComm.sendMessage(enteredmessage, () -> {});
-
-                    Date date = new Date();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-                    Calendar calendar = new GregorianCalendar();
-                    dateFormat.setTimeZone(calendar.getTimeZone());
-
-
-                    String currenttime = dateFormat.format(calendar.getTime());
-                    Messages messages = new Messages(enteredmessage, true, currenttime);
+                    Messages messages = new Messages(enteredmessage, true, SetTime());
                     messagesArrayList.add(messages);
                     runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
                 }
@@ -169,6 +141,15 @@ public class ActivityChat extends AppCompatActivity {
         {
             messagesAdapter.notifyDataSetChanged();
         }
+    }
+
+    public String SetTime(){
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Calendar calendar = new GregorianCalendar();
+        dateFormat.setTimeZone(calendar.getTimeZone());
+        String currenttime = dateFormat.format(calendar.getTime());
+        return currenttime;
     }
 
 }
