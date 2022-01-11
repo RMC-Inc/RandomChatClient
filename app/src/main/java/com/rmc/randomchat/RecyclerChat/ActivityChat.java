@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rmc.randomchat.LoadingDialog;
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
@@ -50,6 +50,8 @@ public class ActivityChat extends AppCompatActivity {
             selectedRoom = (Room) getIntent().getSerializableExtra("room");
                 //TODO attesa utente creare qualcosa di visivo
 
+            LoadingDialog loadingDialog = new LoadingDialog(ActivityChat.this);
+            loadingDialog.startLoadingDialog();
 
             CallbackComm.setOnNewMsg(msg -> {
                 Messages messages = new Messages(msg, false);
@@ -77,9 +79,11 @@ public class ActivityChat extends AppCompatActivity {
                     messagesArrayList.add(messages);
                     runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
                     CallbackComm.startChatting();
+                    loadingDialog.CloseLoadingDialog();
                 }
 
                 // TODO levare il messaggio di attesa
+
             });
         }
 
@@ -118,15 +122,7 @@ public class ActivityChat extends AppCompatActivity {
 
             } else {
                 CallbackComm.sendMessage(enteredmessage, () -> {});
-
-                Date date = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-                Calendar calendar = new GregorianCalendar();
-                dateFormat.setTimeZone(calendar.getTimeZone());
-
-
-                String currenttime = dateFormat.format(calendar.getTime());
-                Messages messages = new Messages(enteredmessage, true, currenttime);
+                Messages messages = new Messages(enteredmessage, true);
                 messagesArrayList.add(messages);
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             }
@@ -143,8 +139,8 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        //CallbackComm.sendExit(() -> {});
-        if(messagesAdapter!=null) {
+        if(messagesAdapter!=null)
+        {
             messagesAdapter.notifyDataSetChanged();
         }
     }
