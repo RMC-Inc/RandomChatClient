@@ -1,20 +1,16 @@
 package com.rmc.randomchat.net;
 
-import android.os.AsyncTask;
-import android.telecom.Call;
-
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class CallbackComm {
-    static ExecutorService executor = Executors.newSingleThreadExecutor();
+    public static ExecutorService executor = Executors.newSingleThreadExecutor();
+    public static ExecutorService exitExecutor = Executors.newSingleThreadExecutor();
 
     private static boolean chatting = false;
     private static Consumer<String> onNewMsg = (s) -> {};
@@ -39,7 +35,9 @@ public class CallbackComm {
                 }
 
                 if (msg.charAt(0) == Commands.SEND_MSG){
-                    onNewMsg.accept(msg);
+                    if (msg.length() >= 3 && !msg.substring(2, msg.length()-1).isEmpty()){
+                        onNewMsg.accept(msg.substring(2, msg.length()-1));
+                    }
                 } else if(msg.charAt(0) == Commands.NEXT_USER){
                     chatting = false;
                     onNext.run();
@@ -116,7 +114,7 @@ public class CallbackComm {
     }
 
     public static void sendExit(Runnable callback){
-        executor.execute(() -> {
+        exitExecutor.execute(() -> {
             chatting = false;
             ServerCommImpl.getInstance().sendExit();
             callback.run();

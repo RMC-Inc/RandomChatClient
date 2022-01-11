@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telecom.Call;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
      private EditText NiknameUser;
      private Button button_start_chat;
-     User user = new User("");
+     User user = new User("Guest");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,16 @@ public class MainActivity extends AppCompatActivity {
 
             if(!EditTextisEmpty(NiknameUser)){
                 user.setNickname(NiknameUser.getText().toString());
+                ServerCommImpl.user.setNickname(user.getNickname());
 
-                CallbackComm.setNickname(user.getNickname(), () -> runOnUiThread(() -> {
-                    Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
-                    startActivity(roomRecyclerView);
-                }));
+                if(!ServerCommImpl.isClosed()){
+                    CallbackComm.setNickname(user.getNickname(), () -> {});
+                }
+
+                //CallbackComm.setNickname(user.getNickname(), () -> runOnUiThread(() -> {
+                Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
+                startActivity(roomRecyclerView);
+                //}));
             }
         });
 

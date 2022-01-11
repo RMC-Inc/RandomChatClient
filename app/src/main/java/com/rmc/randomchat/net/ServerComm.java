@@ -6,6 +6,7 @@ import com.rmc.randomchat.entity.User;
 
 // *** Raw lvl blocking functions ***
 public interface ServerComm {
+
     List<Room> getRooms (int numRooms, String roomSearch);
     void setNickname(String nick);
 

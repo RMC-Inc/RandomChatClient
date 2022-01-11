@@ -1,10 +1,26 @@
 package com.rmc.randomchat.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class Messages {
 
     private String message;
     private String currenttime;
     private boolean isSend;
+
+    public Messages(String message, boolean isSend){
+        this.message = message;
+        this.isSend = isSend;
+
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        Calendar calendar = new GregorianCalendar();
+        dateFormat.setTimeZone(calendar.getTimeZone());
+        this.currenttime = dateFormat.format(calendar.getTime());
+    }
 
     public Messages(String message, boolean isSend, String currenttime) {
         this.message = message;

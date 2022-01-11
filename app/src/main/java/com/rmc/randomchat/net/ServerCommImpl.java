@@ -23,15 +23,19 @@ public class ServerCommImpl implements ServerComm {
 
     private Socket soc;
     private static ServerCommImpl instance = null;
-    private final String HostName = "2.237.250.35";
+//    private final String HostName = "2.237.250.35";
+    private final String HostName = "192.168.1.24";
+
     private final int port = 8125;
+
+    public static User user = new User("Guest");
 
     private Scanner in;
     private OutputStream out;
 
     private ServerCommImpl() {
         try {
-            soc = new Socket(HostName,port);
+            soc = new Socket(HostName, port);
             in = new Scanner(soc.getInputStream());
             out = soc.getOutputStream();
         } catch (IOException e) {
@@ -42,12 +46,19 @@ public class ServerCommImpl implements ServerComm {
     public synchronized static ServerCommImpl getInstance(){
         if (instance == null || instance.soc.isClosed()){
             instance = new ServerCommImpl();
+            instance.setNickname(user.getNickname());
             return instance;
         } else return instance;
     }
 
     private static String stringInside(String s, String left, String right){
-        return s.split(Pattern.quote(left))[1].split(Pattern.quote(right))[0];
+        Log.println(Log.DEBUG, "ROOM", "Stringa da dividere: " + s);
+        if (s == null || s.length() < 3 || !s.contains(left) || !s.contains(right)) return "???";
+        else return s.split(Pattern.quote(left))[1].split(Pattern.quote(right))[0];
+    }
+
+    public static boolean isClosed() {
+         return instance == null || instance.soc.isClosed();
     }
 
     @Override
