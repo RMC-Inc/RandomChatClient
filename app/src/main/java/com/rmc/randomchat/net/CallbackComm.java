@@ -26,25 +26,26 @@ public class CallbackComm {
         ExecutorService chatExecutor = Executors.newSingleThreadExecutor();
         chatExecutor.execute(() -> {
             while (chatting){
-                String msg = ServerCommImpl.getInstance().waitMessage();
-
-                if(msg == null || msg.length() == 0){
+                List<String> msgs = ServerCommImpl.getInstance().waitMessage();
+                if(msgs == null || msgs.size() == 0){
                     chatting = false;
-                    onExit.run();
+                    onExit.run(); // TODO mhhh...
                     return;
                 }
 
-                if (msg.charAt(0) == Commands.SEND_MSG){
-                    if (msg.length() >= 3 && !msg.substring(2, msg.length()-1).isEmpty()){
-                        onNewMsg.accept(msg.substring(2, msg.length()-1));
+                msgs.forEach(msg -> {
+                    if (msg.charAt(0) == Commands.SEND_MSG){
+                        if (msg.length() >= 3 && !msg.substring(2).isEmpty()){
+                            onNewMsg.accept(msg.substring(2));
+                        }
+                    } else if(msg.charAt(0) == Commands.NEXT_USER){
+                        chatting = false;
+                        onNext.run();
+                    } else if(msg.charAt(0) == Commands.EXIT){
+                        chatting = false;
+                        onExit.run();
                     }
-                } else if(msg.charAt(0) == Commands.NEXT_USER){
-                    chatting = false;
-                    onNext.run();
-                } else if(msg.charAt(0) == Commands.EXIT){
-                    chatting = false;
-                    onExit.run();
-                }
+                });
             }
         });
     }

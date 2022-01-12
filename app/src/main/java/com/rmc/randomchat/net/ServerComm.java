@@ -15,7 +15,8 @@ public interface ServerComm {
 
     void sendMessage (String message);
     User nextUser();
-    String waitMessage();
+    List<String> waitMessage();
+    List<String> waitMessage(int timeout);
 
     void sendExit();
 }
