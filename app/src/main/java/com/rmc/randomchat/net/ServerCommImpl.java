@@ -2,16 +2,10 @@ package com.rmc.randomchat.net;
 
 import android.util.Log;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
@@ -35,14 +28,12 @@ public class ServerCommImpl implements ServerComm {
 
     public static User user = new User("Guest");
 
-    private Scanner in;
     private OutputStream out;
     private byte[] buff = new byte[500];
 
     private ServerCommImpl() {
         try {
             soc = new Socket(HostName, port);
-            in = new Scanner(soc.getInputStream());
             out = soc.getOutputStream();
             Log.println(Log.DEBUG, "SERVER", "Connected");
         } catch (IOException e) {
