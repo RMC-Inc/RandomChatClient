@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_chatting">Inizia a Chattare</string>
+    <string name="confirm">seleziona</string>
+    <string name="cancel">cancella</string>
 </resources>

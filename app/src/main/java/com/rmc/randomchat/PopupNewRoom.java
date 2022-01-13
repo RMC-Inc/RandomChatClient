@@ -1,6 +1,6 @@
 package com.rmc.randomchat;
 
-import android.graphics.Color;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
-import top.defaults.colorpicker.ColorPickerPopup;
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
 public class PopupNewRoom  {
 
@@ -37,30 +38,26 @@ public class PopupNewRoom  {
         createnewroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("TEST!!!!!");
             }
         });
+        //Clicca in una zona qualsiasi per chiudere il popup
 
         buttoncolor = popupView.findViewById(R.id.buttoncolor);
-        buttoncolor.setOnClickListener(view1 -> new ColorPickerPopup.Builder(view1.getContext())
-                .initialColor(Color.RED)
-                .enableBrightness(true)
-                .enableAlpha(true)
-                .okTitle("Scegli")
-                .cancelTitle("Cancella")
-                .showIndicator(true)
-                .showValue(true)
-                .build()
-                .show(new ColorPickerPopup.ColorPickerObserver() {
-                    @Override
-                    public void onColorPicked(int color) {
-                        String c = colorHex(color);
-                        System.out.println(c);  //Debug, stampa correttamente il valore come stringa del tipo r.g.b (con r, g, b interi compresi tra 0 e 255)
+        buttoncolor.setOnClickListener(view1 -> new ColorPickerDialog.Builder(view1.getContext())
+                .setTitle("Seleziona un colore")
+                .setPositiveButton(getString(R.string.confirm),
+                        (ColorEnvelopeListener) (envelope, fromUser) -> {
+                            setLayoutColor(envelope);
+                            envelope.getColor(); // restituisce un colore in formato intero
 
-                    }
-                }));
+                        })
+                .setNegativeButton(getString(R.string.cancel),
+                        (dialogInterface, i) -> dialogInterface.dismiss())
+                .attachAlphaSlideBar(true)
+                .attachBrightnessSlideBar(true)
+                .setBottomSpace(12)
+                .show());
 
-        //Clicca in una zona qualsiasi per chiudere il popup
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -74,11 +71,13 @@ public class PopupNewRoom  {
 
     }
 
-    private String colorHex(int color) {
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-        return r + "." + g + "." + b;
+    private void setLayoutColor(ColorEnvelope envelope) {
+    }
+
+    private int cancel;
+    private int getString(int cancel) {
+        this.cancel = cancel;
+        return cancel;
     }
 
 }

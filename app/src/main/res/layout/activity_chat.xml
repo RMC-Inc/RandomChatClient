@@ -58,6 +58,7 @@
         android:layout_below="@id/toolbarofspecificchatroom"
         android:padding="5dp">
 
+
     </androidx.recyclerview.widget.RecyclerView>
 
     <EditText

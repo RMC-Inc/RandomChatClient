@@ -2,12 +2,15 @@ package com.rmc.randomchat.RecyclerChat;
 
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,7 +46,6 @@ public class ActivityChat extends AppCompatActivity {
 
         if(getIntent().getExtras() != null){
             selectedRoom = (Room) getIntent().getSerializableExtra("room");
-                //TODO attesa utente creare qualcosa di visivo
 
             LoadingDialog loadingDialog = new LoadingDialog(ActivityChat.this);
             loadingDialog.startLoadingDialog();
@@ -55,14 +57,13 @@ public class ActivityChat extends AppCompatActivity {
             });
 
             CallbackComm.setOnNext(() -> {
-                Messages messages = new Messages("L'utente ha terminato la conversazione", false);
-                messagesArrayList.add(messages);
+                ShowMessage("L'utente ha terminato la conversazione");
+
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             });
 
             CallbackComm.setOnExit(() -> {
-                Messages messages = new Messages("L'utente è uscito dalla stanza...", false);
-                messagesArrayList.add(messages);
+                ShowMessage("L'utente è uscito dalla stanza");
                 mgetmessage.setText("");
 
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
@@ -71,15 +72,12 @@ public class ActivityChat extends AppCompatActivity {
             CallbackComm.enterRoom(selectedRoom.getId(), user -> {
                 if(user != null){
                     other = user;
-
-                    Messages messages = new Messages("Stai chattando con: " + user.getNickname(), false);
-                    messagesArrayList.add(messages);
+                    ShowMessage("Stai chattando con: " + user.getNickname());
                     runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
                     CallbackComm.startChatting();
                     loadingDialog.CloseLoadingDialog();
                 }
 
-                // TODO levare il messaggio di attesa
 
             });
         }
@@ -105,8 +103,6 @@ public class ActivityChat extends AppCompatActivity {
         messagesAdapter=new MessagesRecyclerAdapter(ActivityChat.this,messagesArrayList);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
-        //altra roba
-
         backbuttonofspecificchatroom.setOnClickListener(view -> {
             finish();
         });
@@ -126,6 +122,20 @@ public class ActivityChat extends AppCompatActivity {
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             }
         });
+
+    }
+
+    public void ShowMessage (String Message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(ActivityChat.this).create();
+        alertDialog.setTitle("Attenzione");
+        alertDialog.setMessage(Message);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
 
     }
 

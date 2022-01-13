@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/newroomtitle"
-                android:layout_gravity="left"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crea una nuova stanza"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
                 android:ems="10"
-                android:gravity="left"
+                android:gravity="center"
                 android:hint="Nome della stanza"
                 android:padding="10dp"
                 android:textColor="@color/white"
