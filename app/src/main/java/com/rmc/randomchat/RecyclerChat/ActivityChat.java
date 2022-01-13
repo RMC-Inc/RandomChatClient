@@ -1,7 +1,7 @@
 package com.rmc.randomchat.RecyclerChat;
 
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,19 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.rmc.randomchat.LoadingDialog;
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 public class ActivityChat extends AppCompatActivity {
 
@@ -68,6 +63,8 @@ public class ActivityChat extends AppCompatActivity {
             CallbackComm.setOnExit(() -> {
                 Messages messages = new Messages("L'utente è uscito dalla stanza...", false);
                 messagesArrayList.add(messages);
+                mgetmessage.setText("");
+
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             });
 

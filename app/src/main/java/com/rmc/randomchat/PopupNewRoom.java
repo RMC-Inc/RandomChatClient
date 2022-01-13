@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class PopupNewRoom  {
@@ -55,6 +56,7 @@ public class PopupNewRoom  {
                     public void onColorPicked(int color) {
                         String c = colorHex(color);
                         System.out.println(c);  //Debug, stampa correttamente il valore come stringa del tipo r.g.b (con r, g, b interi compresi tra 0 e 255)
+
                     }
                 }));
 

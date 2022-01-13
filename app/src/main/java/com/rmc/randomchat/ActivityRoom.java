@@ -3,24 +3,18 @@ package com.rmc.randomchat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.Log;
 import android.view.Menu;
-import android.widget.Button;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.net.CallbackComm;
-import com.rmc.randomchat.net.ServerCommImpl;
+
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
 
@@ -30,6 +24,9 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private ArrayList<Room> rooms = new ArrayList<>();
     private RoomAdapter adapter;
     private FloatingActionButton buttonnewroom;
+    private TextView emptyView1;
+    private TextView emptyView2;
+    private ImageView emptyView3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +42,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         buttonnewroom.setOnClickListener(v -> {
             PopupNewRoom popUpClass = new PopupNewRoom();
             popUpClass.showPopupWindow(v);
+
         });
 
     }
@@ -56,6 +54,10 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     }
 
     private void initRecyclerView() {
+
+        emptyView1 = (TextView) findViewById(R.id.empty_view1);
+        emptyView2 = (TextView) findViewById(R.id.empty_view2);
+        emptyView3 = (ImageView) findViewById(R.id.ArrowIcon);
         rvRoom = findViewById(R.id.rvRoom);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -63,6 +65,19 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         adapter = new RoomAdapter(rooms, this);
         rvRoom.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        if(rooms.isEmpty()) {
+            rvRoom.setVisibility(View.GONE);
+            emptyView1.setVisibility(View.VISIBLE);
+            emptyView2.setVisibility(View.VISIBLE);
+            emptyView3.setVisibility(View.VISIBLE);
+
+        } else {
+            rvRoom.setVisibility(View.VISIBLE);
+            emptyView1.setVisibility(View.GONE);
+            emptyView2.setVisibility(View.GONE);
+            emptyView3.setVisibility(View.GONE);
+        }
     }
 
     private void initData() {

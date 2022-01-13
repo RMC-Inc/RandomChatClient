@@ -13,6 +13,10 @@ public class Room implements Serializable {
     public int[] iconRGB;
     public int[] roomRGB;
 
+    public Room() {
+
+    }
+
     @Override
     public String toString() {
         return "Room{" +

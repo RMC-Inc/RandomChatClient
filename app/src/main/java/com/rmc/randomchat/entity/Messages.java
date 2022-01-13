@@ -22,12 +22,6 @@ public class Messages {
         this.currenttime = dateFormat.format(calendar.getTime());
     }
 
-    public Messages(String message, boolean isSend, String currenttime) {
-        this.message = message;
-        this.isSend = isSend;
-        this.currenttime = currenttime;
-    }
-
     public boolean isSend() {
         return isSend;
     }
