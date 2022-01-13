@@ -36,33 +36,27 @@ public class PopupNewRoom  {
         createnewroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("TEST!!!!!");
             }
         });
 
         buttoncolor = popupView.findViewById(R.id.buttoncolor);
-//        buttoncolor.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new ColorPickerPopup.Builder(this)
-//                        .initialColor(Color.RED)
-//                        .enableBrightness(true)
-//                        .enableAlpha(true)
-//                        .okTitle("Scegli")
-//                        .cancelTitle("Cancella")
-//                        .showIndicator(true)
-//                        .showIndicator(true)
-//                        .showValue(true)
-//                        .build()
-//                        .show(view, new ColorPickerPopup.ColorPickerObserver() {
-//                            @Override
-//                            public void onColorPicked(int color) {
-//
-//                                // cattura il colore selezionato dall'utente e comunicalo al server
-//
-//                            }
-//                        });
-//            }
-//        });
+        buttoncolor.setOnClickListener(view1 -> new ColorPickerPopup.Builder(view1.getContext())
+                .initialColor(Color.RED)
+                .enableBrightness(true)
+                .enableAlpha(true)
+                .okTitle("Scegli")
+                .cancelTitle("Cancella")
+                .showIndicator(true)
+                .showValue(true)
+                .build()
+                .show(new ColorPickerPopup.ColorPickerObserver() {
+                    @Override
+                    public void onColorPicked(int color) {
+                        String c = colorHex(color);
+                        System.out.println(c);  //Debug, stampa correttamente il valore come stringa del tipo r.g.b (con r, g, b interi compresi tra 0 e 255)
+                    }
+                }));
 
         //Clicca in una zona qualsiasi per chiudere il popup
 
@@ -76,6 +70,13 @@ public class PopupNewRoom  {
             }
         });
 
+    }
+
+    private String colorHex(int color) {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        return r + "." + g + "." + b;
     }
 
 }

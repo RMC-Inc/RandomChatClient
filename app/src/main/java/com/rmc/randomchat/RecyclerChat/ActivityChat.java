@@ -124,6 +124,8 @@ public class ActivityChat extends AppCompatActivity {
                 CallbackComm.sendMessage(enteredmessage, () -> {});
                 Messages messages = new Messages(enteredmessage, true);
                 messagesArrayList.add(messages);
+                mgetmessage.setText("");
+                scrollToBottom(mmessagerecyclerview);
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             }
         });
@@ -149,5 +151,21 @@ public class ActivityChat extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         CallbackComm.sendExit(() -> {});
+    }
+
+    private void scrollToBottom(RecyclerView r){
+        final LinearLayoutManager lm = (LinearLayoutManager) r.getLayoutManager();
+        final RecyclerView.Adapter adapter = r.getAdapter();
+        final int lastItemPosition = adapter.getItemCount() - 1;
+
+        lm.scrollToPositionWithOffset(lastItemPosition, 0);
+
+        r.post(() -> {
+            View target = lm.findViewByPosition(lastItemPosition);
+            if(target != null){
+                int offset = r.getMeasuredHeight() - target.getMeasuredHeight();
+                lm.scrollToPositionWithOffset(lastItemPosition, offset);
+            }
+        });
     }
 }
