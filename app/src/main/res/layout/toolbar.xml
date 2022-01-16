@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:text="Toolbar Title"
+        android:text="Random Chat"
         android:textSize="22dp"
         android:fontFamily="sans-serif"
         android:textStyle="bold"
@@ -22,10 +22,14 @@
         android:id="@+id/toolbar_title" />
 
     <android.widget.SearchView
+        android:textSize="22dp"
+        android:layout_gravity="left"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:icon="@drawable/ic_baseline_search"
         android:title="Cerca Stanza"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="always" />
 
 </androidx.appcompat.widget.Toolbar>

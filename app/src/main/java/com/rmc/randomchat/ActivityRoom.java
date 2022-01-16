@@ -1,42 +1,56 @@
 package com.rmc.randomchat;
 
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
 import com.rmc.randomchat.entity.Room;
+import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
 
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
 
+    private static final String TAG = "";
     private RecyclerView rvRoom;
     private LinearLayoutManager layoutManager;
     private TextView titletoolbar;
     private ArrayList<Room> rooms = new ArrayList<>();
     private RoomAdapter adapter;
     private FloatingActionButton buttonnewroom;
+    // private SwipeRefreshLayout swipeRefreshLayout;
     private TextView emptyView1;
     private TextView emptyView2;
     private ImageView emptyView3;
+    private View emptyView;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText nikname;
+    private Button buttonapply;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
-        setSupportActionBar(findViewById(R.id.toolbar_c));
-        titletoolbar =  (TextView)findViewById(R.id.toolbar_title);
-        titletoolbar.setText("Random Chat");
+        setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         initRecyclerView();
         initData();
-
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
         buttonnewroom.setOnClickListener(v -> {
@@ -53,8 +67,29 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         return true;
     }
 
-    private void initRecyclerView() {
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected()");
+
+        switch (item.getItemId()) {
+            case R.id.changenikname:
+                changenikname();
+
+            case R.id.changeroomid:
+                return true;
+
+            case R.id.exit:
+                finish();
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void initRecyclerView() {
+        // swipeRefreshLayout = findViewById(R.id.swiperefresh);
         emptyView1 = (TextView) findViewById(R.id.empty_view1);
         emptyView2 = (TextView) findViewById(R.id.empty_view2);
         emptyView3 = (ImageView) findViewById(R.id.ArrowIcon);
@@ -64,21 +99,59 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         rvRoom.setLayoutManager(layoutManager);
         adapter = new RoomAdapter(rooms, this);
         rvRoom.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
-        if(rooms.isEmpty()) {
-            rvRoom.setVisibility(View.GONE);
-            emptyView1.setVisibility(View.VISIBLE);
-            emptyView2.setVisibility(View.VISIBLE);
-            emptyView3.setVisibility(View.VISIBLE);
+//
+//        if(rooms.isEmpty()) {
+//            emptyView1.setVisibility(View.VISIBLE);
+//            emptyView2.setVisibility(View.VISIBLE);
+//            emptyView3.setVisibility(View.VISIBLE);
+//            rvRoom.setVisibility(View.GONE);
+//
+//        } else {
+//            emptyView1.setVisibility(View.GONE);
+//            emptyView2.setVisibility(View.GONE);
+//            emptyView3.setVisibility(View.GONE);
+//            rvRoom.setVisibility(View.VISIBLE);
+//        }
 
-        } else {
-            rvRoom.setVisibility(View.VISIBLE);
-            emptyView1.setVisibility(View.GONE);
-            emptyView2.setVisibility(View.GONE);
-            emptyView3.setVisibility(View.GONE);
-        }
+
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                initData();
+//
+//                adapter.notifyDataSetChanged();
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//
+//
+//        });
+
     }
+
+    public void changenikname() {
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View niknamechange = getLayoutInflater().inflate(R.layout.changenikname, null);
+        nikname = (EditText) niknamechange.findViewById(R.id.newnikname);
+        buttonapply = (Button) niknamechange.findViewById(R.id.apply);
+
+        dialogBuilder.setView(niknamechange);
+        dialog = dialogBuilder.create();
+        dialog.show();
+        User user = new User("");
+
+        buttonapply.setOnClickListener(view -> {
+            MainActivity main = new MainActivity();
+            if(!main.EditTextisEmpty(nikname)) {
+                user.setNickname(nikname.getText().toString());
+            } else {
+
+                dialog.dismiss();
+            }
+        });
+
+    }
+
 
     private void initData() {
 
@@ -95,4 +168,5 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         intent.putExtra("room", rooms.get(position));
         startActivity(intent);
     }
+
 }

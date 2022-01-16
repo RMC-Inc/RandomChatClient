@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Controlla se la EditText è vuota
 
-    private boolean EditTextisEmpty(EditText niknameuser) {
+    public boolean EditTextisEmpty(EditText niknameuser) {
         if (TextUtils.isEmpty(niknameuser.getText())) {
             niknameuser.setError("Nikname non inserito!");
             return true;

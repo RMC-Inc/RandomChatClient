@@ -26,6 +26,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_recycler_view_room, parent, false);
         return new ViewHolder(view, nOnRoomListner);
@@ -63,6 +64,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             onlineuser = itemView.findViewById(R.id.onlineuser);
             this.onRoomListner = onRoomListner;
             itemView.setOnClickListener(this);
+
         }
 
         @Override

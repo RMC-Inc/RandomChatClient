@@ -2,20 +2,20 @@ package com.rmc.randomchat.RecyclerChat;
 
 
 
-import android.content.DialogInterface;
+
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.rmc.randomchat.LoadingDialog;
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
@@ -38,6 +38,8 @@ public class ActivityChat extends AppCompatActivity {
     private MessagesRecyclerAdapter messagesAdapter;
     private Room selectedRoom;
     private User other;
+    private AlertDialog dialog;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,7 @@ public class ActivityChat extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             selectedRoom = (Room) getIntent().getSerializableExtra("room");
 
-            LoadingDialog loadingDialog = new LoadingDialog(ActivityChat.this);
-            loadingDialog.startLoadingDialog();
+            loadinDialog();
 
             CallbackComm.setOnNewMsg(msg -> {
                 Messages messages = new Messages(msg, false);
@@ -57,13 +58,16 @@ public class ActivityChat extends AppCompatActivity {
             });
 
             CallbackComm.setOnNext(() -> {
-                ShowMessage("L'utente ha terminato la conversazione");
+                Messages messages = new Messages("L'utente ha terminato la conversazione", false);
+                messagesArrayList.add(messages);
 
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             });
 
             CallbackComm.setOnExit(() -> {
-                ShowMessage("L'utente è uscito dalla stanza");
+                Messages messages = new Messages("L'utente è uscito dalla stanza...", false);
+                messagesArrayList.add(messages);
+
                 mgetmessage.setText("");
 
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
@@ -72,10 +76,11 @@ public class ActivityChat extends AppCompatActivity {
             CallbackComm.enterRoom(selectedRoom.getId(), user -> {
                 if(user != null){
                     other = user;
-                    ShowMessage("Stai chattando con: " + user.getNickname());
+                    Messages messages = new Messages("Stai chattando con: " + user.getNickname(), false);
+                    messagesArrayList.add(messages);
                     runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
                     CallbackComm.startChatting();
-                    loadingDialog.CloseLoadingDialog();
+                    dialog.dismiss();
                 }
 
 
@@ -125,20 +130,6 @@ public class ActivityChat extends AppCompatActivity {
 
     }
 
-    public void ShowMessage (String Message) {
-        AlertDialog alertDialog = new AlertDialog.Builder(ActivityChat.this).create();
-        alertDialog.setTitle("Attenzione");
-        alertDialog.setMessage(Message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -175,4 +166,24 @@ public class ActivityChat extends AppCompatActivity {
             }
         });
     }
+
+    private void loadinDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflaters = this.getLayoutInflater();
+        builder.setView(inflaters.inflate(R.layout.layout_loading, null));
+        builder.setCancelable(false);
+
+        builder.setPositiveButton(
+                "Esci",
+                (dialog, id) -> {
+                    finish();
+                    dialog.cancel();
+                });
+
+        dialog = builder.create();
+        dialog.show();
+
+    }
+
 }

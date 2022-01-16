@@ -23,21 +23,8 @@
         android:text="Stiamo cercando un utente"
         android:textSize="18dp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/button_back_loading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-    <Button
-        android:id="@+id/button_back_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorButton"
-        android:text="Torna alle stanze"
-        app:cornerRadius="8dp"
-        app:icon="@drawable/ic_baseline_arrow_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
