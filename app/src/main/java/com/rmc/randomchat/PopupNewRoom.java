@@ -38,7 +38,7 @@ public class PopupNewRoom  {
         createnewroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO INVIA COMANDO AL SERVER PER CREARE LA STANZA
             }
         });
         //Clicca in una zona qualsiasi per chiudere il popup

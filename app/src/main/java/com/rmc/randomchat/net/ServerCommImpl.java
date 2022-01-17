@@ -134,12 +134,12 @@ public class ServerCommImpl implements ServerComm {
     }
 
     @Override
-    public List<String> waitMessage(){
+    public List<String> waitMessage() throws IOException {
         return waitMessage(0);
     }
 
     @Override
-    public List<String> waitMessage(int timeout){
+    public List<String> waitMessage(int timeout) throws IOException {
         int prevTimeout = 0;
         try {
             prevTimeout = soc.getSoTimeout();

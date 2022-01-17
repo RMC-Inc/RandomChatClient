@@ -6,7 +6,6 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:id="@+id/popup"
-    android:background="@color/cardview"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -15,46 +14,45 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:padding="10dp"
+            android:id="@+id/capocchia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/cardview"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/newnik"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
                 android:text="Cambia Nikname"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:padding="10dp"/>
-
+                android:textStyle="bold" />
 
 
             <EditText
-                android:layout_gravity="center"
-                android:id="@+id/newnikname"
+                android:id="@+id/newnickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:autofillHints="no"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Nuovo Nikname"
                 android:padding="10dp"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white" />
 
             <Button
-                android:layout_gravity="center"
                 android:id="@+id/apply"
-                android:backgroundTint="@color/colorButton"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorButton"
                 android:text="Applica" />
 
         </LinearLayout>

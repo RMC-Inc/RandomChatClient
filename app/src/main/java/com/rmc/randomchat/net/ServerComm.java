@@ -1,5 +1,6 @@
 package com.rmc.randomchat.net;
 
+import java.io.IOException;
 import java.util.List;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
@@ -15,8 +16,8 @@ public interface ServerComm {
 
     void sendMessage (String message);
     User nextUser();
-    List<String> waitMessage();
-    List<String> waitMessage(int timeout);
+    List<String> waitMessage() throws IOException;
+    List<String> waitMessage(int timeout) throws IOException;
 
     void sendExit();
 }

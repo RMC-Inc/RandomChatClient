@@ -3,6 +3,7 @@ package com.rmc.randomchat.net;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.entity.User;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,7 +27,12 @@ public class CallbackComm {
         ExecutorService chatExecutor = Executors.newSingleThreadExecutor();
         chatExecutor.execute(() -> {
             while (chatting){
-                List<String> msgs = ServerCommImpl.getInstance().waitMessage();
+                List<String> msgs = null;
+                try {
+                    msgs = ServerCommImpl.getInstance().waitMessage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if(msgs == null || msgs.size() == 0){
                     chatting = false;
                     onExit.run(); // TODO mhhh...

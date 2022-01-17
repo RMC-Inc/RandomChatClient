@@ -22,14 +22,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_gravity="center"
+                android:id="@+id/titlePopup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
                 android:text="Entra in una stanza"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:padding="10dp"/>
+                android:textStyle="bold" />
 
 
 

@@ -1,27 +1,29 @@
 package com.rmc.randomchat;
 
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
 import com.rmc.randomchat.entity.Room;
-import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
@@ -33,15 +35,14 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private ArrayList<Room> rooms = new ArrayList<>();
     private RoomAdapter adapter;
     private FloatingActionButton buttonnewroom;
-    // private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private TextView emptyView1;
     private TextView emptyView2;
     private ImageView emptyView3;
     private View emptyView;
-    private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
-    private EditText nikname;
-    private Button buttonapply;
+    private Builder dialogBuilder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,14 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         setContentView(R.layout.activity_room);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        initRecyclerView();
         initData();
+        try {
+            TimeUnit.MILLISECONDS.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        initRecyclerView();
+
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
         buttonnewroom.setOnClickListener(v -> {
@@ -71,16 +78,23 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected()");
+        LayoutInflater inflater = (LayoutInflater) ActivityRoom.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view1 = inflater.inflate(R.layout.changenikname, (ViewGroup)findViewById(R.id.changenikname));
 
         switch (item.getItemId()) {
             case R.id.changenikname:
-                changenikname();
+                PopupChangeNickname p_change = new PopupChangeNickname();
+                p_change.showPopupWindow(view1);
+                return true;
 
             case R.id.changeroomid:
+                PopupEnterInRoom p_enter_room = new PopupEnterInRoom();
+                p_enter_room.showPopupWindow(view1);
                 return true;
 
             case R.id.exit:
                 finish();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -89,7 +103,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     }
 
     private void initRecyclerView() {
-        // swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
         emptyView1 = (TextView) findViewById(R.id.empty_view1);
         emptyView2 = (TextView) findViewById(R.id.empty_view2);
         emptyView3 = (ImageView) findViewById(R.id.ArrowIcon);
@@ -100,54 +114,27 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         adapter = new RoomAdapter(rooms, this);
         rvRoom.setAdapter(adapter);
 
-//
-//        if(rooms.isEmpty()) {
-//            emptyView1.setVisibility(View.VISIBLE);
-//            emptyView2.setVisibility(View.VISIBLE);
-//            emptyView3.setVisibility(View.VISIBLE);
-//            rvRoom.setVisibility(View.GONE);
-//
-//        } else {
-//            emptyView1.setVisibility(View.GONE);
-//            emptyView2.setVisibility(View.GONE);
-//            emptyView3.setVisibility(View.GONE);
-//            rvRoom.setVisibility(View.VISIBLE);
-//        }
+
+        if(rooms.isEmpty()) {
+            emptyView1.setVisibility(View.VISIBLE);
+            emptyView2.setVisibility(View.VISIBLE);
+            emptyView3.setVisibility(View.VISIBLE);
+            rvRoom.setVisibility(View.GONE);
+
+        } else {
+            emptyView1.setVisibility(View.GONE);
+            emptyView2.setVisibility(View.GONE);
+            emptyView3.setVisibility(View.GONE);
+            rvRoom.setVisibility(View.VISIBLE);
+        }
 
 
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                initData();
-//
-//                adapter.notifyDataSetChanged();
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//
-//
-//        });
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            rooms.clear();
+            initData();
 
-    }
-
-    public void changenikname() {
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View niknamechange = getLayoutInflater().inflate(R.layout.changenikname, null);
-        nikname = (EditText) niknamechange.findViewById(R.id.newnikname);
-        buttonapply = (Button) niknamechange.findViewById(R.id.apply);
-
-        dialogBuilder.setView(niknamechange);
-        dialog = dialogBuilder.create();
-        dialog.show();
-        User user = new User("");
-
-        buttonapply.setOnClickListener(view -> {
-            MainActivity main = new MainActivity();
-            if(!main.EditTextisEmpty(nikname)) {
-                user.setNickname(nikname.getText().toString());
-            } else {
-
-                dialog.dismiss();
-            }
+            adapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
         });
 
     }
