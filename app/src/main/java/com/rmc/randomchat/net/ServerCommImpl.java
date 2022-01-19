@@ -22,7 +22,7 @@ public class ServerCommImpl implements ServerComm {
     private Socket soc;
     private static ServerCommImpl instance = null;
     private final String HostName = "2.237.250.35";
-//   private final String HostName = "192.168.1.24";
+    //private final String HostName = "130.25.2.130";       //todo rimuovere in versione finale. Indirizzo IP pubblico di Matteo
 
     private final int port = 8125;
 
