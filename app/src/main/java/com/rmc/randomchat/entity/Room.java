@@ -8,10 +8,7 @@ public class Room implements Serializable {
     private long id;
     private int time;
     private long onlieuser;
-
-    private int icon;
-    public int[] iconRGB;
-    public int[] roomRGB;
+    private int roomColor;
 
     public Room() {
 
@@ -24,28 +21,16 @@ public class Room implements Serializable {
                 ", id=" + id +
                 ", time=" + time +
                 ", onlieuser=" + onlieuser +
-                ", icon=" + icon +
-                ", iconRGB=" + Arrays.toString(iconRGB) +
-                ", roomRGB=" + Arrays.toString(roomRGB) +
+                ", roomColor=" + roomColor +
                 '}';
     }
 
-    public Room(String name, long id, int time, long onlieuser, int icon, int[] iconRGB, int[] roomRGB) {
+    public Room(String name, long id, int time, long onlieuser,int roomColor) {
         this.name = name;
         this.id = id;
         this.time = time;
         this.onlieuser = onlieuser;
-        this.icon = icon;
-        this.iconRGB = iconRGB;
-        this.roomRGB = roomRGB;
-    }
-
-    public Room(String name, int[] roomRGB, int icon, int[] iconRGB, int time) {
-        this.name = name;
-        this.time = time;
-        this.icon = icon;
-        this.iconRGB = iconRGB;
-        this.roomRGB = roomRGB;
+        this.roomColor = roomColor;
     }
 
     public String getName() {
@@ -80,11 +65,11 @@ public class Room implements Serializable {
         this.onlieuser = onlieuser;
     }
 
-    public int getIcon() {
-        return icon;
+    public int getRoomColor() {
+        return roomColor;
     }
 
-    public void setIcon(int icon) {
-        this.icon = icon;
+    public void setRoomColor(int roomColor) {
+        this.roomColor = roomColor;
     }
 }
