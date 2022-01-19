@@ -2,22 +2,16 @@ package com.rmc.randomchat;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.telecom.Call;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.executor.TaskExecutor;
-
 import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
 import com.rmc.randomchat.net.ServerCommImpl;
@@ -36,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         NiknameUser = (EditText) findViewById(R.id.name_user);
         button_start_chat = (Button) findViewById(R.id.button_start_chat);
-
         button_start_chat.setOnClickListener(v -> {
 
             if(!EditTextisEmpty(NiknameUser)){
@@ -53,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 //}));
             }
         });
-
     }
 
     //  Controlla lo stato della connessione

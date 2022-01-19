@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
+import com.rmc.randomchat.entity.Room;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
@@ -43,13 +45,14 @@ public class PopupNewRoom  {
         });
         //Clicca in una zona qualsiasi per chiudere il popup
 
+        Room room = new Room();
         buttoncolor = popupView.findViewById(R.id.buttoncolor);
         buttoncolor.setOnClickListener(view1 -> new ColorPickerDialog.Builder(view1.getContext())
                 .setTitle("Seleziona un colore")
                 .setPositiveButton(getString(R.string.confirm),
                         (ColorEnvelopeListener) (envelope, fromUser) -> {
                             setLayoutColor(envelope);
-                            envelope.getColor(); // restituisce un colore in formato intero
+                            room.setRoomColor(envelope.getColor());
 
                         })
                 .setNegativeButton(getString(R.string.cancel),

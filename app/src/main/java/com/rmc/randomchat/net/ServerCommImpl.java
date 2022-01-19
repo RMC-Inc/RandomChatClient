@@ -83,13 +83,11 @@ public class ServerCommImpl implements ServerComm {
 
                 long id = roomScanner.nextLong();
                 long usersCount = roomScanner.nextLong();
-                int[] roomRGB = Arrays.stream(roomScanner.next().split(Pattern.quote("."))).mapToInt(Integer::parseInt).toArray();
-                int icon = roomScanner.nextInt();
-                int[] iconRGB = Arrays.stream(roomScanner.next().split(Pattern.quote("."))).mapToInt(Integer::parseInt).toArray();
+                int  roomColor = roomScanner.nextInt();
                 int time = roomScanner.nextInt();
                 String name = stringInside(roomString, "[", "]");
 
-                Room r = new Room(name, id, time, usersCount, icon, iconRGB, roomRGB);
+                Room r = new Room(name, id, time, usersCount, roomColor);
                 list.add(r);
                 Log.println(Log.DEBUG, "SERVER", "Room Added: " + r.toString());
             });
@@ -189,10 +187,9 @@ public class ServerCommImpl implements ServerComm {
 
     @Override
     public synchronized long createRoom(Room room) {
-        String msg = String.format(Locale.ENGLISH, "%c %d.%d.%d %d %d.%d.%d %d\n", Commands.NEW_ROOM,
-                room.roomRGB[0], room.roomRGB[1], room.roomRGB[2],
-                room.getIcon(),
-                room.iconRGB[0], room.iconRGB[1], room.iconRGB[2],
+        String msg = String.format(Locale.ENGLISH, "%c %d %d\n",
+                Commands.NEW_ROOM,
+                room.getRoomColor(),
                 room.getTime());
         Log.println(Log.DEBUG, "SERVER", "Sending: " + msg);
 
