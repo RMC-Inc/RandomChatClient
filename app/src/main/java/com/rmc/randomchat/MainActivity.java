@@ -2,29 +2,20 @@ package com.rmc.randomchat;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.telecom.Call;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioGroup;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.executor.TaskExecutor;
-
 import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
 import com.rmc.randomchat.net.ServerCommImpl;
@@ -41,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        isConnected();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -95,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(roomRecyclerView);
             }
         });
+
+
 
     }
 
