@@ -8,14 +8,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
+
 import com.rmc.randomchat.entity.User;
-import com.rmc.randomchat.net.CallbackComm;
 import com.rmc.randomchat.net.ServerFunctions;
 
 import java.io.IOException;

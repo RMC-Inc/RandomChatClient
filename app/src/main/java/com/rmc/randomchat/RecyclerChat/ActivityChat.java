@@ -1,8 +1,6 @@
 package com.rmc.randomchat.RecyclerChat;
 
 
-
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +47,7 @@ public class ActivityChat extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             selectedRoom = (Room) getIntent().getSerializableExtra("room");
 
-            loadinDialog();
+            loadingDialog();
 
             CallbackComm.setOnNewMsg(msg -> {
                 Messages messages = new Messages(msg, false);
@@ -167,7 +165,7 @@ public class ActivityChat extends AppCompatActivity {
         });
     }
 
-    private void loadinDialog() {
+    private void loadingDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflaters = this.getLayoutInflater();

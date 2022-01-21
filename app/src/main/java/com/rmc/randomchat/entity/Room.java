@@ -1,7 +1,6 @@
 package com.rmc.randomchat.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Room implements Serializable {
     private String name;

@@ -12,7 +12,6 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,7 +27,6 @@ import com.rmc.randomchat.net.ServerFunctions;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NicknameUser = (EditText) findViewById(R.id.name_user);
-        checkBox = (CheckBox) findViewById(R.id.checkBox_nickname);
+        NicknameUser = findViewById(R.id.name_user);
+        checkBox = findViewById(R.id.checkBox_nickname);
 
         if(f.exists() && NicknameUser.getText().toString().isEmpty()){
             SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(this);
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_start_chat = (Button) findViewById(R.id.button_start_chat);
+        button_start_chat = findViewById(R.id.button_start_chat);
 
         button_start_chat.setOnClickListener(v -> {
 

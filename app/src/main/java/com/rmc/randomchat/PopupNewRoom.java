@@ -37,11 +37,8 @@ public class PopupNewRoom  {
         //Inizializzare tutti gli elementi da visualizzare nel popup
 
         createnewroom = popupView.findViewById(R.id.createnewroom);
-        createnewroom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO INVIA COMANDO AL SERVER PER CREARE LA STANZA
-            }
+        createnewroom.setOnClickListener(v -> {
+            //TODO INVIA COMANDO AL SERVER PER CREARE LA STANZA
         });
         //Clicca in una zona qualsiasi per chiudere il popup
 
