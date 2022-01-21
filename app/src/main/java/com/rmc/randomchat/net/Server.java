@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class Server {
 
     public List<String> read(int timeout) throws IOException {
         synchronized (in){
-            int prevTimeout = 0;
+            int prevTimeout;
             prevTimeout = soc.getSoTimeout();
             soc.setSoTimeout(timeout);
 
@@ -69,7 +68,8 @@ public class Server {
             if (len <= 0) return null;
 
             String msg = new String(buff).substring(0, len);
-            return Arrays.asList(msg.split("\n"));
+
+            return new ArrayList<>(Arrays.asList(msg.split("\n"))); //Arrays.asList() restituisce una struttura immutabile, costruendo un ArrayList la si rende mutabile. Mi serve per getRooms
         }
     }
 }
