@@ -1,20 +1,18 @@
 package com.rmc.randomchat;
 
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.LinkedList;
+import com.rmc.randomchat.entity.Room;
+
 import java.util.List;
 import java.util.Locale;
-
-import com.rmc.randomchat.entity.Room;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
@@ -26,6 +24,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         this.nOnRoomListner = nOnRoomListner;
     }
 
+    public List<Room> getData(){
+        return this.rooms;
+    }
 
     @NonNull
     @Override
@@ -40,12 +41,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Room room = rooms.get(position);
         System.out.println(room.toString());
-        holder.roomName.setText("DIOCANEPORCODIOMERDA");
         holder.roomName.setText(room.getName());
         holder.roomid.setText(String.format(Locale.ENGLISH, "#%d", room.getId()));
         holder.time.setText(String.valueOf(room.getTime()));
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlieuser()));
-        holder.cardView.setCardBackgroundColor(Color.rgb(255, 0, 0)/*room.getRoomColor() + 0xff000000*/);
+        holder.cardView.setCardBackgroundColor(room.getRoomColor() + 0xff000000);
     }
 
 
