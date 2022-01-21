@@ -76,7 +76,7 @@
              />
 
         <CheckBox
-            android:id="@+id/checkBox_nikname"
+            android:id="@+id/checkBox_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
