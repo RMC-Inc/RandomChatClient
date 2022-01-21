@@ -6,10 +6,8 @@ import com.rmc.randomchat.entity.Room;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -28,9 +26,8 @@ public class ServerFunctions {
 
             List<String> rooms;
             try {
-                //while ((rooms = Server.getInstance().read(2 * 1000)) != null){
-                while (true){
-                    rooms = Server.getInstance().read(0);
+                while ((rooms = Server.getInstance().read(2 * 1000)) != null){
+                    rooms.addAll(Server.getInstance().read(2 * 1000));
                     rooms.forEach(roomString -> {
                         Log.println(Log.DEBUG, "SERVER", "RoomString: " + roomString);
                         Scanner roomScanner = new Scanner(roomString.substring(1));
