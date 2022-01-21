@@ -3,6 +3,7 @@ package com.rmc.randomchat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +22,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
 import com.rmc.randomchat.entity.Room;
-import com.rmc.randomchat.net.CallbackComm;
+import com.rmc.randomchat.net.ServerFunctions;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,7 +37,6 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private RecyclerView rvRoom;
     private LinearLayoutManager layoutManager;
     private TextView titletoolbar;
-    private ArrayList<Room> rooms = new ArrayList<>();
     private RoomAdapter adapter;
     private FloatingActionButton buttonnewroom;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -50,13 +54,16 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         setContentView(R.layout.activity_room);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        initData();
-        try {
-            TimeUnit.MILLISECONDS.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+
         initRecyclerView();
+
+        //initData();
+        //try {
+        //    TimeUnit.MILLISECONDS.sleep(2000);
+        //} catch (InterruptedException e) {
+        //    e.printStackTrace();
+        //}
 
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
@@ -111,11 +118,13 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvRoom.setLayoutManager(layoutManager);
-        adapter = new RoomAdapter(rooms, this);
+        List<Room> lllllll = new LinkedList<>();
+        lllllll.add(new Room("Diocane", 0, 0, 10, 0));
+        adapter = new RoomAdapter(lllllll, this);
         rvRoom.setAdapter(adapter);
 
 
-        if(rooms.isEmpty()) {
+        if(adapter.getItemCount() == 0) {
             emptyView1.setVisibility(View.VISIBLE);
             emptyView2.setVisibility(View.VISIBLE);
             emptyView3.setVisibility(View.VISIBLE);
@@ -129,30 +138,36 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         }
 
 
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            rooms.clear();
-            initData();
+        //swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
+        //swipeRefreshLayout.setOnRefreshListener(this::initData);
 
-            adapter.notifyDataSetChanged();
-            swipeRefreshLayout.setRefreshing(false);
-        });
+        swipeRefreshLayout.setVisibility(View.GONE);
+        swipeRefreshLayout.setVisibility(View.INVISIBLE);
 
     }
 
 
+
     private void initData() {
-
-        CallbackComm.getRooms(20, "", r -> {
-            rooms.addAll(r);
-            runOnUiThread(() -> adapter.notifyDataSetChanged());
+        AsyncTask.execute(() -> {
+            try {
+                List<Room> r = ServerFunctions.getRooms(0, 30, "");
+                System.out.println("Strunz la size della lista e': " + r.size());
+                //adapter.setData(r);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            runOnUiThread(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.notifyDataSetChanged();
+            });
         });
-
     }
 
     @Override
     public void OnRoomClick(int position) {
         Intent intent = new Intent(this, ActivityChat.class);
-        intent.putExtra("room", rooms.get(position));
+        //intent.putExtra("room", adapter.getData().get(position));
         startActivity(intent);
     }
 

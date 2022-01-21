@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -16,15 +17,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rmc.randomchat.entity.User;
-import com.rmc.randomchat.net.CallbackComm;
-import com.rmc.randomchat.net.ServerCommImpl;
+import com.rmc.randomchat.net.Server;
+import com.rmc.randomchat.net.ServerFunctions;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,15 +79,11 @@ public class MainActivity extends AppCompatActivity {
         checkBox.setOnClickListener(v -> {
             if(checkBox.isChecked()){
                 if (f.exists()){
-                    Log.d("TAG", "SharedPreferences username : exist");
                     SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(v.getContext());
 
                     SharedPreferences.Editor editor = username.edit();
                     editor.putString("Nick", NicknameUser.getText().toString());
                     editor.apply();
-                }
-                else{
-                    Log.d("TAG", "Preference file does not exist. Attempting to create default one.");
                 }
             }
         });
@@ -102,19 +102,19 @@ public class MainActivity extends AppCompatActivity {
 
             if(!EditTextisEmpty(NicknameUser)){
                 user.setNickname(NicknameUser.getText().toString());
-                ServerCommImpl.user.setNickname(user.getNickname());
 
-                if(!ServerCommImpl.isClosed()){
-                    CallbackComm.setNickname(user.getNickname(), () -> {});
-                }
-
-                Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
-                startActivity(roomRecyclerView);
+                AsyncTask.execute(() -> {
+                    try {
+                        ServerFunctions.setNickname(user.getNickname());
+                        Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
+                        startActivity(roomRecyclerView);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Errore di comunicazione", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-
-
-
     }
 
     //  Controlla lo stato della connessione
@@ -123,24 +123,31 @@ public class MainActivity extends AppCompatActivity {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if(networkInfo!=null) {
-            if(networkInfo.isConnected()) {
+        if(networkInfo.isConnected()) {
+            if (!Server.getInstance().isOpen()) {
+                AsyncTask.execute(() -> {
+                    try {
+                        Server.getInstance().openConnection();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        runOnUiThread(() -> showNetworkError("Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi."));
+                    }
+                });
             }
-            else
-                showNetworkError();
-
-        } else
-            showNetworkError();
-
+        } else showNetworkError("Internet non disponibile, Controlla la tua connessione e riprova");
     }
 
     //    Mostra un errore in caso di connessione assente
 
-    private void showNetworkError() {
+    private void showNetworkError(String msgError) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-        builder1.setMessage("Internet non disponibile, Controlla la tua connessione e riprova");
+        builder1.setMessage(msgError);
         builder1.setCancelable(true);
-        builder1.setPositiveButton("Connetti", (dialog, id) -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
+        if(msgError.equals("Internet non disponibile, Controlla la tua connessione e riprova"))
+            builder1.setPositiveButton("Connetti", (dialog, id) -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
+        else
+            builder1.setPositiveButton("Ok", (dialog, id) -> finish());
+
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
@@ -162,11 +169,6 @@ public class MainActivity extends AppCompatActivity {
         isConnected();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        isConnected();
-    }
 
     @Override
     protected void onResume() {

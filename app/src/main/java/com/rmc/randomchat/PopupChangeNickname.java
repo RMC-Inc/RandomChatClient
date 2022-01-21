@@ -16,6 +16,9 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 import com.rmc.randomchat.entity.User;
 import com.rmc.randomchat.net.CallbackComm;
+import com.rmc.randomchat.net.ServerFunctions;
+
+import java.io.IOException;
 
 public class PopupChangeNickname {
     private Button confirmChange;
@@ -52,9 +55,14 @@ public class PopupChangeNickname {
             String newNick = stringNick.getText().toString();
 
             if(!newNick.isEmpty()){
-                user.setNickname(newNick);
-                CallbackComm.setNickname(user.getNickname(), () -> {});
-                Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show();
+                try {
+                    ServerFunctions.setNickname(newNick);
+                    user.setNickname(newNick);
+                    Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(v.getContext(),"Errore nel cambio di nickname",Toast.LENGTH_SHORT).show();
+                }
                 popupWindow.dismiss();
             }else{
                 Toast.makeText(v.getContext(),"Errore! Inserisci un nickname valido.",Toast.LENGTH_SHORT).show();

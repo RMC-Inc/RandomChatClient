@@ -80,19 +80,7 @@ public class CallbackComm {
         CallbackComm.onNext = onNext;
     }
 
-    public static void getRooms (int numRooms, String roomSearch, Consumer<List<Room>> callback){
-        executor.execute(() -> {
-            callback.accept(ServerCommImpl.getInstance().getRooms(numRooms, roomSearch));
-        });
-        ExecutorService e = Executors.newSingleThreadExecutor();
-    }
 
-    public static void setNickname(String nick, Runnable callback){
-        executor.execute(() -> {
-            ServerCommImpl.getInstance().setNickname(nick);
-            callback.run();
-        });
-    }
 
     public static void enterRoom (long idroom, Consumer<User> callback){
         executor.execute(() -> {
