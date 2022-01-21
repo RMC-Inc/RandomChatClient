@@ -10,15 +10,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
 import com.rmc.randomchat.entity.Room;
@@ -26,7 +27,6 @@ import com.rmc.randomchat.net.ServerFunctions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -46,6 +46,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private View emptyView;
     private AlertDialog dialog;
     private Builder dialogBuilder;
+    private List<Room> rooms = new ArrayList<>();
 
 
     @Override
@@ -57,13 +58,6 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
 
 
         initRecyclerView();
-
-        //initData();
-        //try {
-        //    TimeUnit.MILLISECONDS.sleep(2000);
-        //} catch (InterruptedException e) {
-        //    e.printStackTrace();
-        //}
 
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
@@ -86,7 +80,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected()");
         LayoutInflater inflater = (LayoutInflater) ActivityRoom.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view1 = inflater.inflate(R.layout.changenikname, (ViewGroup)findViewById(R.id.changenikname));
+        View view1 = inflater.inflate(R.layout.changenikname, findViewById(R.id.changenikname));
 
         switch (item.getItemId()) {
             case R.id.changenikname:
@@ -111,16 +105,20 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
 
     private void initRecyclerView() {
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
-        emptyView1 = (TextView) findViewById(R.id.empty_view1);
-        emptyView2 = (TextView) findViewById(R.id.empty_view2);
-        emptyView3 = (ImageView) findViewById(R.id.ArrowIcon);
+        emptyView1 = findViewById(R.id.empty_view1);
+        emptyView2 = findViewById(R.id.empty_view2);
+        emptyView3 = findViewById(R.id.ArrowIcon);
         rvRoom = findViewById(R.id.rvRoom);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvRoom.setLayoutManager(layoutManager);
-        List<Room> lllllll = new LinkedList<>();
-        lllllll.add(new Room("Diocane", 0, 0, 10, 0));
-        adapter = new RoomAdapter(lllllll, this);
+        initData();
+        try {
+            TimeUnit.MILLISECONDS.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        adapter = new RoomAdapter(this.rooms, this);
         rvRoom.setAdapter(adapter);
 
 
@@ -137,37 +135,33 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             rvRoom.setVisibility(View.VISIBLE);
         }
 
-
-        //swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
-        //swipeRefreshLayout.setOnRefreshListener(this::initData);
-
-        swipeRefreshLayout.setVisibility(View.GONE);
-        swipeRefreshLayout.setVisibility(View.INVISIBLE);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            this.rooms.clear();
+            initData();
+        });
 
     }
 
 
 
     private void initData() {
+
         AsyncTask.execute(() -> {
             try {
-                List<Room> r = ServerFunctions.getRooms(0, 30, "");
-                System.out.println("Strunz la size della lista e': " + r.size());
-                //adapter.setData(r);
+                this.rooms.addAll(ServerFunctions.getRooms(0, 20, ""));
+                System.out.println("Strunz la size della lista e': " + this.rooms.size());
+                runOnUiThread(() -> adapter.notifyDataSetChanged());
+                swipeRefreshLayout.setRefreshing(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            runOnUiThread(() -> {
-                swipeRefreshLayout.setRefreshing(false);
-                adapter.notifyDataSetChanged();
-            });
         });
     }
 
     @Override
     public void OnRoomClick(int position) {
         Intent intent = new Intent(this, ActivityChat.class);
-        //intent.putExtra("room", adapter.getData().get(position));
+        intent.putExtra("room", adapter.getData().get(position));
         startActivity(intent);
     }
 
