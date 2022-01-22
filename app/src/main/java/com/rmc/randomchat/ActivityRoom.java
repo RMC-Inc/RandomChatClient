@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -36,7 +38,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private static final String TAG = "";
     private RecyclerView rvRoom;
     private LinearLayoutManager layoutManager;
-    private TextView titletoolbar;
+    private TextView titleToolbar;
     private RoomAdapter adapter;
     private FloatingActionButton buttonnewroom;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -49,6 +51,8 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private List<Room> rooms = new ArrayList<>();
     private TextView curr_nick;
     public static String nick = "";
+    SearchView search;
+    LinearLayout linearLayout;
 
 
     @Override
@@ -59,7 +63,24 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         curr_nick = findViewById(R.id.username);
+        linearLayout = findViewById(R.id.title_and_nick);
+        titleToolbar = findViewById(R.id.toolbar_title);
+
         curr_nick.setText(nick);
+
+        search = findViewById(R.id.search_view);
+        search.setOnSearchClickListener(v -> {
+            linearLayout.setVisibility(View.GONE);
+            curr_nick.setVisibility(View.GONE);
+            titleToolbar.setVisibility(View.GONE);
+        });
+
+        search.setOnCloseListener(() -> {
+            linearLayout.setVisibility(View.VISIBLE);
+            curr_nick.setVisibility(View.VISIBLE);
+            titleToolbar.setVisibility(View.VISIBLE);
+            return false;
+        });
 
         initRecyclerView();
 

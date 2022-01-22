@@ -11,17 +11,19 @@
     >
 
     <android.widget.SearchView
-        android:textSize="22dp"
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
         android:icon="@drawable/ic_baseline_search"
+        android:textSize="22dp"
+        android:textStyle="bold"
         android:title="Cerca Stanza"
-        app:showAsAction="always" />
+        app:showAsAction="always"/>
 
     <LinearLayout
+        android:id="@+id/title_and_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -43,8 +45,8 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_below="@id/toolbar_title"
+            android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:text="Guest"
             android:textColor="@color/white"
