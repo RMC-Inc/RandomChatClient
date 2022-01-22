@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(!EditTextisEmpty(NicknameUser)){
                 user.setNickname(NicknameUser.getText().toString());
+                ActivityRoom.nick = user.getNickname();
 
                 AsyncTask.execute(() -> {
                     try {

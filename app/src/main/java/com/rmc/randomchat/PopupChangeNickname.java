@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rmc.randomchat.entity.User;
@@ -24,7 +25,7 @@ public class PopupChangeNickname {
     private EditText stringNick;
 
     @SuppressLint("ClickableViewAccessibility")
-    public void showPopupWindow(final View view) {
+    public void showPopupWindow(final View view, TextView curr_nick) {
 
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -48,24 +49,27 @@ public class PopupChangeNickname {
         stringNick = popupView.findViewById(R.id.newnickname);
         stringNick.setText("");
 
+        User user = new User("");
+
         confirmChange = popupView.findViewById(R.id.apply);
         confirmChange.setOnClickListener(v -> {
-            User user = new User("");
+
             String newNick = stringNick.getText().toString();
 
             if(!newNick.isEmpty()){
+                curr_nick.setText(newNick);
                 try {
                     ServerFunctions.setNickname(newNick);
-                    user.setNickname(newNick);
-                    Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(v.getContext(),"Errore nel cambio di nickname",Toast.LENGTH_SHORT).show();
                 }
+                user.setNickname(newNick);
+
+                Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
+
             }else{
                 Toast.makeText(v.getContext(),"Errore! Inserisci un nickname valido.",Toast.LENGTH_SHORT).show();
-                popupWindow.dismiss();
             }
         });
 

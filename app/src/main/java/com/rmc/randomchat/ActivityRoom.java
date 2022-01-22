@@ -47,6 +47,8 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private AlertDialog dialog;
     private Builder dialogBuilder;
     private List<Room> rooms = new ArrayList<>();
+    private TextView curr_nick;
+    public static String nick = "";
 
 
     @Override
@@ -56,6 +58,8 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        curr_nick = findViewById(R.id.username);
+        curr_nick.setText(nick);
 
         initRecyclerView();
 
@@ -85,7 +89,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         switch (item.getItemId()) {
             case R.id.changenikname:
                 PopupChangeNickname p_change = new PopupChangeNickname();
-                p_change.showPopupWindow(view1);
+                p_change.showPopupWindow(view1, curr_nick);
                 return true;
 
             case R.id.changeroomid:
