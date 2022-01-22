@@ -110,7 +110,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         switch (item.getItemId()) {
             case R.id.changenikname:
                 PopupChangeNickname p_change = new PopupChangeNickname();
-                p_change.showPopupWindow(view1, curr_nick);
+                p_change.showPopupWindow(view1, curr_nick, this);
                 return true;
 
             case R.id.changeroomid:
@@ -137,22 +137,18 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvRoom.setLayoutManager(layoutManager);
-        initData();
-        try {
-            TimeUnit.MILLISECONDS.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         adapter = new RoomAdapter(this.rooms, this);
         rvRoom.setAdapter(adapter);
+        swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
+        initData();
 
 
         if(adapter.getItemCount() == 0) {
             emptyView1.setVisibility(View.VISIBLE);
             emptyView2.setVisibility(View.VISIBLE);
             emptyView3.setVisibility(View.VISIBLE);
-            rvRoom.setVisibility(View.GONE);
-
+            //rvRoom.setVisibility(View.GONE);
         } else {
             emptyView1.setVisibility(View.GONE);
             emptyView2.setVisibility(View.GONE);
@@ -160,23 +156,21 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             rvRoom.setVisibility(View.VISIBLE);
         }
 
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            this.rooms.clear();
-            initData();
-        });
+        swipeRefreshLayout.setOnRefreshListener(this::initData);
 
     }
 
 
 
     private void initData() {
-
+        rooms.clear();
         AsyncTask.execute(() -> {
             try {
                 this.rooms.addAll(ServerFunctions.getRooms(0, 20, ""));
-                System.out.println("Strunz la size della lista e': " + this.rooms.size());
-                runOnUiThread(() -> adapter.notifyDataSetChanged());
-                swipeRefreshLayout.setRefreshing(false);
+                runOnUiThread(() -> {
+                    swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false));
+                    adapter.notifyDataSetChanged();
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }

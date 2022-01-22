@@ -2,10 +2,13 @@ package com.rmc.randomchat.net;
 
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +18,12 @@ public class Server {
     private static Server instance;
 
     private Socket soc;
-    private InputStream in;
+    private BufferedReader in;
     private OutputStream out;
 
     private final String HostName = "2.237.250.35";
+    //private final String HostName = "192.168.1.26";
     private final int port = 8125;
-
-    private byte[] buff = new byte[500];
 
 
 
@@ -34,7 +36,7 @@ public class Server {
 
     public void openConnection() throws IOException {
         soc = new Socket(HostName, port);
-        in = soc.getInputStream();
+        in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
         out = soc.getOutputStream();
     }
 
@@ -55,21 +57,23 @@ public class Server {
         }
     }
 
-    public List<String> read(int timeout) throws IOException {
+    public String read(int timeout, Runnable onTimeout) throws IOException {
         synchronized (in){
-            int prevTimeout;
-            prevTimeout = soc.getSoTimeout();
-            soc.setSoTimeout(timeout);
+            int prevTimeout = soc.getSoTimeout();
+            try {
+                soc.setSoTimeout(timeout);
+                String msg = in.readLine();
+                soc.setSoTimeout(prevTimeout);
 
-            int len = in.read(buff);
-            Log.println(Log.DEBUG, "SERVER", "Strlen: " + len);
-            soc.setSoTimeout(prevTimeout);
+                return msg;
 
-            if (len <= 0) return null;
-
-            String msg = new String(buff).substring(0, len);
-
-            return new ArrayList<>(Arrays.asList(msg.split("\n"))); //Arrays.asList() restituisce una struttura immutabile, costruendo un ArrayList la si rende mutabile. Mi serve per getRooms
+            } catch (SocketTimeoutException e){
+                if (onTimeout != null) onTimeout.run();
+                else e.printStackTrace();
+            } finally {
+                soc.setSoTimeout(prevTimeout);
+            }
         }
+        return null;
     }
 }

@@ -1,10 +1,12 @@
 package com.rmc.randomchat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +27,7 @@ public class PopupChangeNickname {
     private EditText stringNick;
 
     @SuppressLint("ClickableViewAccessibility")
-    public void showPopupWindow(final View view, TextView curr_nick) {
+    public void showPopupWindow(final View view, TextView curr_nick, Activity activity) {
 
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,16 +60,17 @@ public class PopupChangeNickname {
 
             if(!newNick.isEmpty()){
                 curr_nick.setText(newNick);
-                try {
-                    ServerFunctions.setNickname(newNick);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                user.setNickname(newNick);
-
-                Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show();
+                AsyncTask.execute(() -> {
+                    try {
+                        ServerFunctions.setNickname(newNick);
+                        user.setNickname(newNick);
+                        activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Errore di comunicazione",Toast.LENGTH_SHORT).show());
+                    }
+                });
                 popupWindow.dismiss();
-
             }else{
                 Toast.makeText(v.getContext(),"Errore! Inserisci un nickname valido.",Toast.LENGTH_SHORT).show();
             }

@@ -119,20 +119,21 @@ public class MainActivity extends AppCompatActivity {
     //  Controlla lo stato della connessione
 
     private void isConnected() {
-
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if(networkInfo.isConnected()) {
-            if (!Server.getInstance().isOpen()) {
-                AsyncTask.execute(() -> {
-                    try {
-                        Server.getInstance().openConnection();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        runOnUiThread(() -> showNetworkError("Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi."));
-                    }
-                });
-            }
+        if (networkInfo != null){
+            if(networkInfo.isConnected()) {
+                if (!Server.getInstance().isOpen()) {
+                    AsyncTask.execute(() -> {
+                        try {
+                            Server.getInstance().openConnection();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            runOnUiThread(() -> showNetworkError("Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi."));
+                        }
+                    });
+                }
+            } else showNetworkError("Internet non disponibile, Controlla la tua connessione e riprova");
         } else showNetworkError("Internet non disponibile, Controlla la tua connessione e riprova");
     }
 
