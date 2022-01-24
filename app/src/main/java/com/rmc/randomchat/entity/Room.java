@@ -9,9 +9,7 @@ public class Room implements Serializable {
     private long onlieuser;
     private int roomColor;
 
-    public Room() {
-
-    }
+    public Room() {}
 
     @Override
     public String toString() {

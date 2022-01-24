@@ -1,6 +1,7 @@
 package com.rmc.randomchat.RecyclerChat;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +16,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.rmc.randomchat.R;
+import com.rmc.randomchat.depinjection.MyApplication;
 import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
-import com.rmc.randomchat.entity.User;
-import com.rmc.randomchat.net.CallbackComm;
+import com.rmc.randomchat.net.ChatListener;
+import com.rmc.randomchat.net.RandomChatRepository;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class ActivityChat extends AppCompatActivity {
+public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     private EditText mgetmessage;
     private String enteredmessage;
@@ -35,57 +39,34 @@ public class ActivityChat extends AppCompatActivity {
     private RecyclerView mmessagerecyclerview;
     private MessagesRecyclerAdapter messagesAdapter;
     private Room selectedRoom;
-    private User other;
     private AlertDialog dialog;
     private Button button;
+
+    private RandomChatRepository randomChatRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        if(getIntent().getExtras() != null){
-            selectedRoom = (Room) getIntent().getSerializableExtra("room");
-
-            loadingDialog();
-
-            CallbackComm.setOnNewMsg(msg -> {
-                Messages messages = new Messages(msg, false);
-                messagesArrayList.add(messages);
-                runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
-            });
-
-            CallbackComm.setOnNext(() -> {
-                Messages messages = new Messages("L'utente ha terminato la conversazione", false);
-                messagesArrayList.add(messages);
-
-                runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
-            });
-
-            CallbackComm.setOnExit(() -> {
-                Messages messages = new Messages("L'utente è uscito dalla stanza...", false);
-                messagesArrayList.add(messages);
-
-                mgetmessage.setText("");
-
-                runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
-            });
-
-            CallbackComm.enterRoom(selectedRoom.getId(), user -> {
-                if(user != null){
-                    other = user;
-                    Messages messages = new Messages("Stai chattando con: " + user.getNickname(), false);
-                    messagesArrayList.add(messages);
-                    runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
-                    CallbackComm.startChatting();
-                    dialog.dismiss();
-                }
-
-
-            });
-        }
-
+        randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
+        selectedRoom = (Room) getIntent().getSerializableExtra("room");
         initRecyclerView();
+        loadingDialog();
+
+        AsyncTask.execute(() -> {
+            try {
+                String otherUsername = randomChatRepository.enterRoom(selectedRoom, this);
+                if(otherUsername == null){
+                    // TODO Errore stanza non esiste
+                    Toast.makeText(getApplicationContext(), "Stanza non esiste", Toast.LENGTH_LONG).show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                // TODO Errore di connessione
+                Toast.makeText(getApplicationContext(), "Errore di connessione", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -117,7 +98,15 @@ public class ActivityChat extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Inserisci un messaggio!",Toast.LENGTH_SHORT).show();
 
             } else {
-                CallbackComm.sendMessage(enteredmessage, () -> {});
+                //7CallbackComm.sendMessage(enteredmessage, () -> {});
+                AsyncTask.execute(() -> {
+                    try {
+                        randomChatRepository.sendMessage(enteredmessage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        // TODO errore di connessione
+                    }
+                });
                 Messages messages = new Messages(enteredmessage, true);
                 messagesArrayList.add(messages);
                 mgetmessage.setText("");
@@ -137,8 +126,7 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if(messagesAdapter!=null)
-        {
+        if(messagesAdapter!=null) {
             messagesAdapter.notifyDataSetChanged();
         }
     }
@@ -146,7 +134,14 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CallbackComm.sendExit(() -> {});
+        AsyncTask.execute(() -> {
+            try {
+                randomChatRepository.exitRoom();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Todo Errore di connessione
+            }
+        });
     }
 
     private void scrollToBottom(RecyclerView r){
@@ -184,4 +179,56 @@ public class ActivityChat extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onUserFound(String otherUsername) {
+        Messages msg = new Messages("Stai chattando con: " + otherUsername, false);
+        messagesArrayList.add(msg);
+        runOnUiThread(() -> {
+            messagesAdapter.notifyDataSetChanged();
+            dialog.dismiss();
+        });
+    }
+
+    @Override
+    public void onMessage(String msg) {
+        Messages messages = new Messages(msg, false);
+        messagesArrayList.add(messages);
+        runOnUiThread(() -> {
+            messagesAdapter.notifyDataSetChanged();
+            scrollToBottom(mmessagerecyclerview);
+        });
+    }
+
+    @Override
+    public void onNextUser() {
+        Messages messages = new Messages("L'utente ha terminato la conversazione.", false);
+        messagesArrayList.add(messages);
+
+        runOnUiThread(() -> {
+            messagesAdapter.notifyDataSetChanged();
+            scrollToBottom(mmessagerecyclerview);
+        });
+    }
+
+    @Override
+    public void onTimeExpired() {
+        Messages messages = new Messages("Il tempo per la conversazione è scaduto, sei stato disconesso dall'utente.", false);
+        messagesArrayList.add(messages);
+
+        runOnUiThread(() -> {
+            messagesAdapter.notifyDataSetChanged();
+            scrollToBottom(mmessagerecyclerview);
+        });
+    }
+
+    @Override
+    public void onExit() {
+        Messages messages = new Messages("L'utente è uscito dalla stanza.", false);
+        messagesArrayList.add(messages);
+
+        runOnUiThread(() -> {
+            messagesAdapter.notifyDataSetChanged();
+            scrollToBottom(mmessagerecyclerview);
+        });
+    }
 }

@@ -4,33 +4,30 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class Server {
+public class RandomChatClient {
 
-    private static Server instance;
+    private static RandomChatClient instance;
 
     private Socket soc;
     private BufferedReader in;
     private OutputStream out;
 
     private final String HostName = "2.237.250.35";
-    //private final String HostName = "192.168.1.26";
+    //private final String HostName = "192.168.1.33";
     private final int port = 8125;
+    //private final int port = 8124;
 
 
 
-    private Server(){}
+    private RandomChatClient(){}
 
-    public static Server getInstance(){
-        if (instance == null) instance = new Server();
+    public static RandomChatClient getInstance(){
+        if (instance == null) instance = new RandomChatClient();
         return instance;
     }
 
@@ -57,7 +54,7 @@ public class Server {
         }
     }
 
-    public String read(int timeout, Runnable onTimeout) throws IOException {
+    public String readLine(int timeout, Runnable onTimeout) throws IOException {
         synchronized (in){
             int prevTimeout = soc.getSoTimeout();
             try {

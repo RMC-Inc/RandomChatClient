@@ -24,13 +24,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rmc.randomchat.RecyclerChat.ActivityChat;
+import com.rmc.randomchat.depinjection.MyApplication;
 import com.rmc.randomchat.entity.Room;
-import com.rmc.randomchat.net.ServerFunctions;
+import com.rmc.randomchat.net.RandomChatRepository;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
@@ -50,9 +51,11 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private Builder dialogBuilder;
     private List<Room> rooms = new ArrayList<>();
     private TextView curr_nick;
-    public static String nick = "";
     SearchView search;
     LinearLayout linearLayout;
+
+    private String nickname;
+    private RandomChatRepository randomChatRepository;
 
 
     @Override
@@ -62,11 +65,14 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        nickname = (String) getIntent().getSerializableExtra("nickname");
+        randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
+
         curr_nick = findViewById(R.id.username);
         linearLayout = findViewById(R.id.title_and_nick);
         titleToolbar = findViewById(R.id.toolbar_title);
 
-        curr_nick.setText(nick);
+        curr_nick.setText(nickname);
 
         search = findViewById(R.id.search_view);
         search.setOnSearchClickListener(v -> {
@@ -83,7 +89,6 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         });
 
         initRecyclerView();
-
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
         buttonnewroom.setOnClickListener(v -> {
@@ -110,7 +115,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         switch (item.getItemId()) {
             case R.id.changenikname:
                 PopupChangeNickname p_change = new PopupChangeNickname();
-                p_change.showPopupWindow(view1, curr_nick, this);
+                p_change.showPopupWindow(view1, curr_nick, this, randomChatRepository);
                 return true;
 
             case R.id.changeroomid:
@@ -142,8 +147,13 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         rvRoom.setAdapter(adapter);
         swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
         initData();
+        checkRecyclerviewEmpty();
+        swipeRefreshLayout.setOnRefreshListener(this::initData);
+
+    }
 
 
+    void checkRecyclerviewEmpty(){
         if(adapter.getItemCount() == 0) {
             emptyView1.setVisibility(View.VISIBLE);
             emptyView2.setVisibility(View.VISIBLE);
@@ -153,22 +163,18 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             emptyView1.setVisibility(View.GONE);
             emptyView2.setVisibility(View.GONE);
             emptyView3.setVisibility(View.GONE);
-            rvRoom.setVisibility(View.VISIBLE);
+            //rvRoom.setVisibility(View.VISIBLE);
         }
-
-        swipeRefreshLayout.setOnRefreshListener(this::initData);
-
     }
-
-
 
     private void initData() {
         rooms.clear();
         AsyncTask.execute(() -> {
             try {
-                this.rooms.addAll(ServerFunctions.getRooms(0, 20, ""));
+                this.rooms.addAll(randomChatRepository.getRooms(0, 20));
                 runOnUiThread(() -> {
                     swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false));
+                    checkRecyclerviewEmpty();
                     adapter.notifyDataSetChanged();
                 });
             } catch (IOException e) {
@@ -184,4 +190,14 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         startActivity(intent);
     }
 
+}
+
+class ActivityRoomArgs implements Serializable {
+    public String nickname;
+    public RandomChatRepository randomChatRepository;
+
+    public ActivityRoomArgs(String nickname, RandomChatRepository randomChatRepository) {
+        this.nickname = nickname;
+        this.randomChatRepository = randomChatRepository;
+    }
 }

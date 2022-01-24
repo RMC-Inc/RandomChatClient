@@ -21,9 +21,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.rmc.randomchat.entity.User;
-import com.rmc.randomchat.net.Server;
-import com.rmc.randomchat.net.ServerFunctions;
+import com.rmc.randomchat.depinjection.MyApplication;
+import com.rmc.randomchat.net.RandomChatRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
      private EditText NicknameUser;
      private Button button_start_chat;
      CheckBox checkBox;
-     User user = new User("Guest");
      File f = new File("/data/data/com.rmc.randomchat/shared_prefs/com.rmc.randomchat_preferences.xml");
+     RandomChatRepository randomChatRepository = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,13 +98,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(!EditTextisEmpty(NicknameUser)){
-                user.setNickname(NicknameUser.getText().toString());
-                ActivityRoom.nick = user.getNickname();
+                String nickname = NicknameUser.getText().toString();
 
                 AsyncTask.execute(() -> {
                     try {
-                        ServerFunctions.setNickname(user.getNickname());
+                        randomChatRepository.setNickname(nickname);
+
                         Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
+                        roomRecyclerView.putExtra("nickname", nickname);
+
                         startActivity(roomRecyclerView);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -123,12 +124,14 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null){
             if(networkInfo.isConnected()) {
-                if (!Server.getInstance().isOpen()) {
+                if (randomChatRepository == null) {
+                    randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
                     AsyncTask.execute(() -> {
                         try {
-                            Server.getInstance().openConnection();
+                            randomChatRepository.connect();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            randomChatRepository = null;
                             runOnUiThread(() -> showNetworkError("Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi."));
                         }
                     });

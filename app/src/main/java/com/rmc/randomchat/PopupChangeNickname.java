@@ -17,8 +17,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rmc.randomchat.entity.User;
-import com.rmc.randomchat.net.ServerFunctions;
+
+import com.rmc.randomchat.net.RandomChatRepository;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class PopupChangeNickname {
     private EditText stringNick;
 
     @SuppressLint("ClickableViewAccessibility")
-    public void showPopupWindow(final View view, TextView curr_nick, Activity activity) {
+    public void showPopupWindow(final View view, TextView curr_nick, Activity activity, RandomChatRepository randomChatRepository) {
 
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,7 +51,6 @@ public class PopupChangeNickname {
         stringNick = popupView.findViewById(R.id.newnickname);
         stringNick.setText("");
 
-        User user = new User("");
 
         confirmChange = popupView.findViewById(R.id.apply);
         confirmChange.setOnClickListener(v -> {
@@ -62,9 +61,8 @@ public class PopupChangeNickname {
                 curr_nick.setText(newNick);
                 AsyncTask.execute(() -> {
                     try {
-                        ServerFunctions.setNickname(newNick);
-                        user.setNickname(newNick);
-                        activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Nickname cambiato in " + user.getNickname() + "!",Toast.LENGTH_SHORT).show());
+                        randomChatRepository.setNickname(newNick);
+                        activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Nickname cambiato in " + newNick + "!",Toast.LENGTH_SHORT).show());
                     } catch (IOException e) {
                         e.printStackTrace();
                         activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Errore di comunicazione",Toast.LENGTH_SHORT).show());
