@@ -96,7 +96,6 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             popUpClass.showPopupWindow(v);
 
         });
-
     }
 
     @Override

@@ -21,9 +21,11 @@ import com.rmc.randomchat.entity.Messages;
 import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.net.ChatListener;
 import com.rmc.randomchat.net.RandomChatRepository;
+import com.rmc.randomchat.net.RoomNotExistsException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 
 public class ActivityChat extends AppCompatActivity implements ChatListener {
@@ -56,15 +58,14 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
         AsyncTask.execute(() -> {
             try {
-                String otherUsername = randomChatRepository.enterRoom(selectedRoom, this);
-                if(otherUsername == null){
-                    // TODO Errore stanza non esiste
-                    Toast.makeText(getApplicationContext(), "Stanza non esiste", Toast.LENGTH_LONG).show();
-                }
+                randomChatRepository.enterRoom(selectedRoom, this);
             } catch (IOException e) {
                 e.printStackTrace();
                 // TODO Errore di connessione
                 Toast.makeText(getApplicationContext(), "Errore di connessione", Toast.LENGTH_LONG).show();
+            } catch (RoomNotExistsException e){
+                e.printStackTrace();
+                // TODO Errore Stanza non esiste
             }
         });
     }
@@ -98,7 +99,6 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 Toast.makeText(getApplicationContext(),"Inserisci un messaggio!",Toast.LENGTH_SHORT).show();
 
             } else {
-                //7CallbackComm.sendMessage(enteredmessage, () -> {});
                 AsyncTask.execute(() -> {
                     try {
                         randomChatRepository.sendMessage(enteredmessage);
@@ -129,19 +129,6 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
         if(messagesAdapter!=null) {
             messagesAdapter.notifyDataSetChanged();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        AsyncTask.execute(() -> {
-            try {
-                randomChatRepository.exitRoom();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Todo Errore di connessione
-            }
-        });
     }
 
     private void scrollToBottom(RecyclerView r){
@@ -177,6 +164,19 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
         dialog = builder.create();
         dialog.show();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                randomChatRepository.exitRoom();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Todo Errore di connessione
+            }
+        });
     }
 
     @Override

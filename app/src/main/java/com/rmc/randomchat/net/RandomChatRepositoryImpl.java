@@ -21,12 +21,12 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
     private final Consumer<ChatListener> chatThreadFun = (chatListener) -> {
         String msg = " ";
         try {
-            while (chatting || msg.charAt(0) != 'e'){
+            while (chatting || msg.charAt(0) != 'x'){
                 msg = client.readLine(0, null);
 
                 switch (msg.charAt(0)){
                     case 'r':
-                        chatListener.onUserFound(msg.substring(2));
+                        chatListener.onUserFound(stringInside(msg, "[", "]"));
                         break;
                     case 'm':
                         chatListener.onMessage(msg.substring(2));
@@ -38,9 +38,10 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
                         chatListener.onTimeExpired();
                         break;
                     case 'e':
-                        //if (!chatting) return;
                         chatListener.onExit();
                         break;
+                    case 'x':
+                        return;
                     default:
                         throw new IllegalStateException("Unexpected value: " + msg.charAt(0));
                 }
@@ -50,7 +51,7 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
         }
     };
 
-    Thread chatThread;
+    Thread chatThread = null;
 
     @Override
     public void connect() throws IOException{
@@ -112,12 +113,13 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
     }
 
     @Override
-    public String enterRoom(Room room, ChatListener chatListener) throws IOException{
+    public String enterRoom(Room room, ChatListener chatListener) throws IOException, RoomNotExistsException {
         client.write(Commands.ENTER_IN_ROOM, room.getId() + "");
         String msg = client.readLine(0, null);
-        if (msg.charAt(0) == 'e') return null;
+        if (msg.charAt(0) == 'e') throw new RoomNotExistsException();
+        if(msg.charAt(0) == 'x') return null;
         else {
-            chatListener.onUserFound(msg.substring(2));
+            chatListener.onUserFound(stringInside(msg, "[", "]"));
             chatThread = new Thread(() -> chatThreadFun.accept(chatListener));
             chatThread.start();
 
@@ -127,7 +129,7 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
 
     @Override
     public void sendMessage(String msg) throws IOException {
-        client.write(Commands.SEND_MSG, msg);
+        client.write(Commands.SEND_MSG, msg.replace("\n", " "));
     }
 
     @Override
@@ -137,15 +139,21 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
 
     @Override
     public void exitRoom() throws IOException {
-        chatting = false;
-        exit();
-        try {
-            System.out.println("JOIN chatThread");
-            chatThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(!chatting){
+            System.out.println("Sending Exit");
+            exit();
+        } else {
+            chatting = false;
+            exit();
+            try {
+                System.out.println("JOIN chatThread");
+                chatThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("ChatThread Terminated");
         }
-        System.out.println("ChatThread Terminated");
+        System.out.println("Exit From Room.");
     }
 
      @Override

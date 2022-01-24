@@ -16,7 +16,7 @@ public interface RandomChatRepository{
     List<Room> getRoomsByName(String name) throws IOException;
     Room addRoom(Room room) throws IOException ;
 
-    String enterRoom(Room room, ChatListener chatListener) throws IOException;
+    String enterRoom(Room room, ChatListener chatListener) throws IOException, RoomNotExistsException;
 
     void sendMessage(String msg) throws IOException;
     void nextUser() throws IOException;
