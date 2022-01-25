@@ -58,7 +58,7 @@ public class Room implements Serializable {
         this.time = time;
     }
 
-    public long getOnlieuser() {
+    public long getOnlineUsers() {
         return onlieuser;
     }
 

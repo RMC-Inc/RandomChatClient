@@ -44,7 +44,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.roomName.setText(room.getName());
         holder.roomid.setText(String.format(Locale.ENGLISH, "#%d", room.getId()));
         holder.time.setText(String.valueOf(room.getTime()));
-        holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlieuser()));
+        holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlineUsers()));
         holder.cardView.setCardBackgroundColor(room.getRoomColor() + 0xff000000);
     }
 

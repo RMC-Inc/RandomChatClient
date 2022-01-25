@@ -81,11 +81,14 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
         backbuttonofspecificchatroom=findViewById(R.id.backbuttonbackroom);
         mmessagerecyclerview=findViewById(R.id.recyclerviewochat);
 
+        toolbarofspecificchatroom.setBackgroundColor(selectedRoom.getRoomColor() + 0xff000000);
+        getWindow().setStatusBarColor(selectedRoom.getRoomColor() + 0xff000000);
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         mmessagerecyclerview.setLayoutManager(linearLayoutManager);
 
-        messagesAdapter=new MessagesRecyclerAdapter(ActivityChat.this,messagesArrayList);
+        messagesAdapter = new MessagesRecyclerAdapter(ActivityChat.this, messagesArrayList);
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
         backbuttonofspecificchatroom.setOnClickListener(view -> {
@@ -107,7 +110,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                         // TODO errore di connessione
                     }
                 });
-                Messages messages = new Messages(enteredmessage, true);
+                Messages messages = new Messages(enteredmessage, selectedRoom.getRoomColor(), true);
                 messagesArrayList.add(messages);
                 mgetmessage.setText("");
                 scrollToBottom(mmessagerecyclerview);
@@ -181,7 +184,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onUserFound(String otherUsername) {
-        Messages msg = new Messages("Stai chattando con: " + otherUsername, false);
+        Messages msg = new Messages("Stai chattando con: " + otherUsername, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(msg);
         runOnUiThread(() -> {
             messagesAdapter.notifyDataSetChanged();
@@ -191,7 +194,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onMessage(String msg) {
-        Messages messages = new Messages(msg, false);
+        Messages messages = new Messages(msg, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(messages);
         runOnUiThread(() -> {
             messagesAdapter.notifyDataSetChanged();
@@ -201,7 +204,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onNextUser() {
-        Messages messages = new Messages("L'utente ha terminato la conversazione.", false);
+        Messages messages = new Messages("L'utente ha terminato la conversazione.", selectedRoom.getRoomColor(), false);
         messagesArrayList.add(messages);
 
         runOnUiThread(() -> {
@@ -212,7 +215,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onTimeExpired() {
-        Messages messages = new Messages("Il tempo per la conversazione è scaduto, sei stato disconesso dall'utente.", false);
+        Messages messages = new Messages("Il tempo per la conversazione è scaduto, sei stato disconesso dall'utente.", selectedRoom.getRoomColor(), false);
         messagesArrayList.add(messages);
 
         runOnUiThread(() -> {
@@ -223,7 +226,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onExit() {
-        Messages messages = new Messages("L'utente è uscito dalla stanza.", false);
+        Messages messages = new Messages("L'utente è uscito dalla stanza.", selectedRoom.getRoomColor(), false);
         messagesArrayList.add(messages);
 
         runOnUiThread(() -> {

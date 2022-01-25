@@ -10,10 +10,14 @@ public class Messages {
     private String message;
     private String currenttime;
     private boolean isSend;
+    private int color;
 
-    public Messages(String message, boolean isSend){
+    public Messages(String message, int color, boolean isSend){
         this.message = message;
         this.isSend = isSend;
+
+        if (isSend) this.color = color + 0xff000000;
+        else this.color = color + 0x7f000000;
 
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
@@ -44,6 +48,14 @@ public class Messages {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
 }

@@ -40,4 +40,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.maltaisn:icondialog:3.3.0'
     implementation 'com.maltaisn:iconpack-default:1.1.0'
+    implementation 'mobi.upod:time-duration-picker:1.1.3'
 }

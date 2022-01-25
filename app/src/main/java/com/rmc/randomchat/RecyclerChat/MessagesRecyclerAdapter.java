@@ -1,9 +1,15 @@
 package com.rmc.randomchat.RecyclerChat;
 
 import android.content.Context;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,18 +49,19 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         Messages messages=messagesArrayList.get(position);
-        if(holder.getClass()==SenderViewHolder.class)
-        {
-            SenderViewHolder viewHolder=(SenderViewHolder)holder;
+        if(holder.getClass() == SenderViewHolder.class) {
+            SenderViewHolder viewHolder = (SenderViewHolder) holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
             viewHolder.timeofmessage.setText(messages.getCurrenttime());
 
+            viewHolder.relativeLayout.getBackground().setColorFilter(messages.getColor(), PorterDuff.Mode.SRC);
         }
-        else
-        {
-            RecieverViewHolder viewHolder=(RecieverViewHolder)holder;
+        else {
+            RecieverViewHolder viewHolder = (RecieverViewHolder) holder;
             viewHolder.textViewmessaage.setText(messages.getMessage());
             viewHolder.timeofmessage.setText(messages.getCurrenttime());
+
+            viewHolder.relativeLayout.getBackground().setColorFilter(messages.getColor(), PorterDuff.Mode.SRC);
         }
 
     }
@@ -62,11 +69,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Messages messages = messagesArrayList.get(position);
-        if(messages.isSend()) {
-            return  MessageSend; //messaggio inviato
-        } else {
-            return MessageRecieve; //messaggio ricevuto
-        }
+        return (messages.isSend())? MessageSend: MessageRecieve;
     }
 
     @Override
@@ -78,26 +81,29 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter {
 
         private TextView textViewmessaage;
         private TextView timeofmessage;
+        private RelativeLayout relativeLayout;
 
 
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewmessaage=itemView.findViewById(R.id.sendermessage);
-            timeofmessage=itemView.findViewById(R.id.timeofmessage);
+            textViewmessaage = itemView.findViewById(R.id.sendermessage);
+            timeofmessage = itemView.findViewById(R.id.timeofmessage);
+            relativeLayout = itemView.findViewById(R.id.layoutformessage);
         }
     }
 
-    class RecieverViewHolder extends RecyclerView.ViewHolder
-    {
+    class RecieverViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewmessaage;
         private TextView timeofmessage;
+        private RelativeLayout relativeLayout;
 
 
         public RecieverViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewmessaage=itemView.findViewById(R.id.sendermessage);
             timeofmessage=itemView.findViewById(R.id.timeofmessage);
+            relativeLayout = itemView.findViewById(R.id.layoutformessage);
         }
     }
 }

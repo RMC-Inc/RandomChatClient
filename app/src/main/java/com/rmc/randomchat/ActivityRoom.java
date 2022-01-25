@@ -92,8 +92,29 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         buttonnewroom = findViewById(R.id.buttonNewRoom);
         buttonnewroom.setOnClickListener(v -> {
             PopupNewRoom popUpClass = new PopupNewRoom();
-            popUpClass.showPopupWindow(v);
-
+            popUpClass.showPopupWindow(v, r -> {
+                runOnUiThread(() -> swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true)));
+                AsyncTask.execute(() -> {
+                    try {
+                        Room newRoom = randomChatRepository.addRoom(r);
+                        if (newRoom != null){
+                            rooms.add(0, newRoom);
+                            runOnUiThread(() -> {
+                                swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false));
+                                checkRecyclerviewEmpty();
+                                adapter.notifyDataSetChanged();
+                            });
+                        } else {
+                            // TODO errore timeout
+                            System.out.println("NEWROOM TIMEOUT");
+                            runOnUiThread(() -> swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false)));
+                        }
+                    } catch (IOException e) {
+                        // TODO errore di connessione
+                        System.out.println("NEWROOM IOEX");
+                    }
+                });
+            });
         });
     }
 

@@ -1,6 +1,7 @@
 package com.rmc.randomchat;
 
 
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,7 +18,8 @@ import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 
-import mobi.upod.timedurationpicker.TimeDurationPicker;
+import java.util.function.Consumer;
+
 
 public class PopupNewRoom  {
 
@@ -29,7 +31,7 @@ public class PopupNewRoom  {
     private int color = 0;
     private int time = 0;
 
-    public void showPopupWindow(final View view) {
+    public void showPopupWindow(final View view, Consumer<Room> onCreateRoom) {
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popupnewroom, null);
@@ -47,6 +49,7 @@ public class PopupNewRoom  {
         buttontime = popupView.findViewById(R.id.newroomtime);
         buttontime.setOnClickListener(v -> {
             time = (int) (Math.random() * 50);
+            buttontime.setText(time + "");
         });
 
         /*buttontime.setOnClickListener(v -> {
@@ -68,24 +71,24 @@ public class PopupNewRoom  {
                 else if((room_name.getText().toString()).getBytes().length >30)
                     room_name.setError("Il nome non deve superare i 30 caratteri.");
                 else{
-                    Room r = new Room(room_name.getText().toString(), time, color);
-                    //todo invia r al server
+                    popupWindow.dismiss();
+                    onCreateRoom.accept(new Room(room_name.getText().toString(), time, color));
                 }
         });
 
-        //Room room = new Room();
         buttoncolor = popupView.findViewById(R.id.buttoncolor);
         buttoncolor.setOnClickListener(view1 -> new ColorPickerDialog.Builder(view1.getContext())
                 .setTitle("Seleziona un colore")
                 .setPositiveButton(getString(R.string.confirm),
                         (ColorEnvelopeListener) (envelope, fromUser) -> {
                             setLayoutColor(envelope);
-                            color = envelope.getColor();
+                            color = envelope.getColor() & 0x00ffffff;
+                            buttoncolor.setBackgroundColor(color + 0xff000000);
                         })
                 .setNegativeButton(getString(R.string.cancel),
                         (dialogInterface, i) -> dialogInterface.dismiss())
-                .attachAlphaSlideBar(true)
-                .attachBrightnessSlideBar(true)
+                .attachAlphaSlideBar(false)
+                .attachBrightnessSlideBar(false)
                 .setBottomSpace(12)
                 .show());
 

@@ -108,8 +108,13 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
     }
 
     @Override
-    public Room addRoom(Room room) {
-        return null;
+    public Room addRoom(Room room) throws IOException{
+        String msg = room.getRoomColor() + " " + room.getTime() + " [" + room.getName() + "]";
+        client.write(Commands.NEW_ROOM, msg);
+
+        String roomStr = client.readLine(10 * 1000, null);
+        if (roomStr == null) return null;
+        else return new Room(room.getName(), Long.parseLong(roomStr.substring(2).trim()), room.getTime(), 0, room.getRoomColor());
     }
 
     @Override
