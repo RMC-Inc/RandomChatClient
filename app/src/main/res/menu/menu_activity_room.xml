@@ -5,7 +5,7 @@
     <item android:id="@+id/changenikname"
         android:title="Cambia Nikname"/>
 
-    <item android:id="@+id/changeroomid"
+    <item android:id="@+id/enter_in_room"
         android:title="Entra in una stanza"/>
 
 

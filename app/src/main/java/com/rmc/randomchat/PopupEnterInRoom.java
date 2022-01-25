@@ -1,7 +1,9 @@
 package com.rmc.randomchat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,12 +16,18 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.rmc.randomchat.RecyclerChat.ActivityChat;
+import com.rmc.randomchat.entity.Room;
+
+import java.util.List;
+
 public class PopupEnterInRoom {
     private Button confirmEnter;
     private EditText stringRoomID;
+    private int id;
 
     @SuppressLint("ClickableViewAccessibility")
-    public void showPopupWindow(final View view) {
+    public void showPopupWindow(final View view, ActivityRoom activity) {
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.enterinroom, null);
@@ -48,12 +56,26 @@ public class PopupEnterInRoom {
             String roomID = stringRoomID.getText().toString();
 
             if(!roomID.isEmpty()){
-                Toast.makeText(v.getContext(),"DEBUG - Il codice della stanza è: " + roomID, Toast.LENGTH_SHORT).show();
-                //TODO INVIARE CODICE STANZA AL SERVER
-                popupWindow.dismiss();
+                try{
+                    id = Integer.parseInt(roomID);
+                }catch(NumberFormatException e){
+                    stringRoomID.setError("Formato errato.");
+                    return;
+                }
+
+                Room room = findRoomById(id, activity.getListRooms());
+
+                if(room == null){
+                    Toast.makeText(v.getContext(),"La stanza #" + id + " non esiste.",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(activity, ActivityChat.class);
+                    intent.putExtra("room", room);
+                    activity.startActivity(intent);
+                    popupWindow.dismiss();
+                }
+
             }else{
-                Toast.makeText(v.getContext(),"Errore! Inserisci un codice valido.",Toast.LENGTH_SHORT).show();
-                popupWindow.dismiss();
+                stringRoomID.setError("Inserisci un numero.");
             }
         });
 
@@ -62,5 +84,14 @@ public class PopupEnterInRoom {
             return true;
         });
 
+    }
+
+    Room findRoomById(int id, List<Room> rooms){
+        for (Room r:rooms) {
+            if(r.getId() == id)
+                return r;
+        }
+
+        return null;
     }
 }

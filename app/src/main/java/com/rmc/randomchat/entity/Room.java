@@ -9,7 +9,11 @@ public class Room implements Serializable {
     private long onlieuser;
     private int roomColor;
 
-    public Room() {}
+    public Room(String name, int time, int roomColor){
+        this.name = name;
+        this.time = time;
+        this.roomColor = roomColor;
+    }
 
     @Override
     public String toString() {
@@ -22,11 +26,11 @@ public class Room implements Serializable {
                 '}';
     }
 
-    public Room(String name, long id, int time, long onlieuser,int roomColor) {
+    public Room(String name, long id, int time, long onLineUser,int roomColor) {
         this.name = name;
         this.id = id;
         this.time = time;
-        this.onlieuser = onlieuser;
+        this.onlieuser = onLineUser;
         this.roomColor = roomColor;
     }
 

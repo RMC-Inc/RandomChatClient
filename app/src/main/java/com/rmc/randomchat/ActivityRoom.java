@@ -29,7 +29,6 @@ import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.net.RandomChatRepository;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,9 +116,9 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
                 p_change.showPopupWindow(view1, curr_nick, this, randomChatRepository);
                 return true;
 
-            case R.id.changeroomid:
+            case R.id.enter_in_room:
                 PopupEnterInRoom p_enter_room = new PopupEnterInRoom();
-                p_enter_room.showPopupWindow(view1);
+                p_enter_room.showPopupWindow(view1, this);
                 return true;
 
             case R.id.exit:
@@ -145,9 +144,9 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         adapter = new RoomAdapter(this.rooms, this);
         rvRoom.setAdapter(adapter);
         swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
-        initData();
+        refreshData();
         checkRecyclerviewEmpty();
-        swipeRefreshLayout.setOnRefreshListener(this::initData);
+        swipeRefreshLayout.setOnRefreshListener(this::refreshData);
 
     }
 
@@ -157,17 +156,18 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             emptyView1.setVisibility(View.VISIBLE);
             emptyView2.setVisibility(View.VISIBLE);
             emptyView3.setVisibility(View.VISIBLE);
-            //rvRoom.setVisibility(View.GONE);
+            rvRoom.setVisibility(View.GONE);
         } else {
             emptyView1.setVisibility(View.GONE);
             emptyView2.setVisibility(View.GONE);
             emptyView3.setVisibility(View.GONE);
-            //rvRoom.setVisibility(View.VISIBLE);
+            rvRoom.setVisibility(View.VISIBLE);
         }
     }
 
-    private void initData() {
+    private void refreshData() {
         rooms.clear();
+
         AsyncTask.execute(() -> {
             try {
                 this.rooms.addAll(randomChatRepository.getRooms(0, 20));
@@ -189,14 +189,8 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         startActivity(intent);
     }
 
-}
-
-class ActivityRoomArgs implements Serializable {
-    public String nickname;
-    public RandomChatRepository randomChatRepository;
-
-    public ActivityRoomArgs(String nickname, RandomChatRepository randomChatRepository) {
-        this.nickname = nickname;
-        this.randomChatRepository = randomChatRepository;
+    public List<Room> getListRooms(){
+        return this.rooms;
     }
+
 }
