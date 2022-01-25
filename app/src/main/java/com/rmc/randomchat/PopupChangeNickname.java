@@ -70,7 +70,7 @@ public class PopupChangeNickname {
                 });
                 popupWindow.dismiss();
             }else{
-                Toast.makeText(v.getContext(),"Errore! Inserisci un nickname valido.",Toast.LENGTH_SHORT).show();
+                curr_nick.setError("Inserisci un nickname valido.");
             }
         });
 
