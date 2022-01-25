@@ -191,7 +191,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
 
         AsyncTask.execute(() -> {
             try {
-                this.rooms.addAll(randomChatRepository.getRooms(0, 20));
+                this.rooms.addAll(randomChatRepository.getAllRooms());
                 runOnUiThread(() -> {
                     swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false));
                     checkRecyclerviewEmpty();
