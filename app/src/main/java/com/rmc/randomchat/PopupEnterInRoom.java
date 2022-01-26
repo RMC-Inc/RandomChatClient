@@ -66,7 +66,7 @@ public class PopupEnterInRoom {
                 Room room = findRoomById(id, activity.getListRooms());
 
                 if(room == null){
-                    Toast.makeText(v.getContext(),"La stanza #" + id + " non esiste.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(),"La stanza #000" + id + " non esiste.",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(activity, ActivityChat.class);
                     intent.putExtra("room", room);

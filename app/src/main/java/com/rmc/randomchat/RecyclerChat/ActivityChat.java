@@ -3,8 +3,10 @@ package com.rmc.randomchat.RecyclerChat;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.AsyncDifferConfig;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.rmc.randomchat.R;
@@ -44,7 +47,9 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     private MessagesRecyclerAdapter messagesAdapter;
     private Room selectedRoom;
     private AlertDialog dialog;
-    private Button button;
+    private TextView other_username;
+    private TextView time_left;
+    private TextView users_in_room;
 
     private RandomChatRepository randomChatRepository;
 
@@ -119,8 +124,6 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 runOnUiThread(() -> messagesAdapter.notifyDataSetChanged());
             }
         });
-
-
 
         mgetmessage.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
@@ -210,10 +213,22 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onUserFound(String otherUsername) {
-        messagesArrayList.clear();
+        other_username = findViewById(R.id.chatting_with_name);
+        time_left = findViewById(R.id.time_left);
+        users_in_room = findViewById(R.id.users_in_room);
         Messages msg = new Messages("Stai chattando con: " + otherUsername, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(msg);
         runOnUiThread(() -> {
+            if(selectedRoom.getTime() == 0)
+                time_left.setVisibility(View.GONE);
+            else{
+                time_left.setVisibility(View.VISIBLE);
+                time_left.setText(selectedRoom.getTime() / 60 + ":" + selectedRoom.getTime() % 60);
+                countdown(selectedRoom.getTime());
+            }
+            users_in_room.setText(selectedRoom.getOnlineUsers() + "");
+            System.out.println("Debug del cazzo users online: " + selectedRoom.getOnlineUsers());
+            other_username.setText("Chatti con: " + otherUsername);
             messagesAdapter.notifyDataSetChanged();
             dialog.dismiss();
         });
@@ -260,5 +275,22 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             messagesAdapter.notifyDataSetChanged();
             scrollToBottom(mmessagerecyclerview);
         });
+    }
+
+    private void countdown(int limit){
+
+        new CountDownTimer(limit*1000, 1000){
+            String text;
+
+            public void onTick(long millis_limit){
+                text = String.format(" %d:%02d", millis_limit/1000/60, millis_limit/1000 %60);
+                runOnUiThread(() -> {
+                    time_left.setText(text);
+                });
+            }
+
+            public void onFinish(){
+            }
+        }.start();
     }
 }

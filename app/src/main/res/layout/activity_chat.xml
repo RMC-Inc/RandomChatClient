@@ -34,15 +34,59 @@
                 android:id="@+id/Nameofspecificroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/backbuttonbackroom"
-                android:text="Name of Room"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/backbuttonbackroom"
+                android:text="Nome della stanza"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold">
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            </TextView>
+            <TextView
+                android:id="@+id/chatting_with_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toEndOf="@id/backbuttonbackroom"
+                android:text="Chatti con: "
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time_left"
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="265dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="31dp"
+                android:layout_toEndOf="@id/backbuttonbackroom"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/time_room" />
+
+            <TextView
+                android:id="@+id/users_in_room"
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="265dp"
+                android:layout_marginBottom="3dp"
+                android:layout_toEndOf="@id/backbuttonbackroom"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_people" />
 
 
         </RelativeLayout>
@@ -66,14 +110,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="55dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/messagebackground"
-        android:drawableRight="@drawable/ic_autorenew"
+        android:drawableRight="@android:drawable/stat_notify_sync_noanim"
+        android:drawableTint="#AD000000"
         android:hint="Messaggio"
-        android:paddingEnd="10dp"
         android:paddingLeft="20dp"
+        android:paddingEnd="10dp"
         android:textAlignment="textStart"
         android:textColor="@color/textmessagereciver"
         android:textColorHint="@color/messagechat"
