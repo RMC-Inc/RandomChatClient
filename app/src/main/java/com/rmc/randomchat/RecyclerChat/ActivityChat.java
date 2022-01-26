@@ -58,6 +58,10 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
         initRecyclerView();
         loadingDialog();
 
+        // TODO qua si deve fare un thread che richiede randomChatRepository.getUserCount(); ogni tot
+        // ATTENZIONE NON USARE AsyncTask.execute. Sarebbe opportuno utilizzare lo stesso esecutore creato in onDestroy per randomChatRepository.exitRoom()
+        // ATTENZIONE IL THREAD DEVE ASSOLUTAMENTE TERMINARE PRIMA DI USCIRE DALLA STANZA (Prima di usare randomChatRepository.exitRoom();)
+
         AsyncTask.execute(() -> {
             try {
                 randomChatRepository.enterRoom(selectedRoom, this);
@@ -260,5 +264,10 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             messagesAdapter.notifyDataSetChanged();
             scrollToBottom(mmessagerecyclerview);
         });
+    }
+
+    @Override
+    public void onUsersCount(long usersCount) {
+        // TODO qua arriva l'aggiornamento
     }
 }

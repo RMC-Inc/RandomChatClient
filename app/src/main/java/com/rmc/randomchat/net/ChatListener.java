@@ -6,4 +6,5 @@ public interface ChatListener {
     void onNextUser();
     void onTimeExpired();
     void onExit();
+    void onUsersCount(long usersCount);
 }

@@ -21,6 +21,7 @@ public interface RandomChatRepository{
     void sendMessage(String msg) throws IOException;
     void nextUser() throws IOException;
     void exitRoom() throws IOException;
+    void getUserCount() throws IOException;
 
     void exit() throws IOException;
 }

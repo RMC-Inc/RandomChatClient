@@ -25,22 +25,25 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
                 msg = client.readLine(0, null);
 
                 switch (msg.charAt(0)){
-                    case 'r':
+                    case Commands.ENTER_IN_ROOM:
                         chatListener.onUserFound(stringInside(msg, "[", "]"));
                         break;
-                    case 'm':
+                    case Commands.SEND_MSG:
                         chatListener.onMessage(msg.substring(2));
                         break;
-                    case 'n':
+                    case Commands.NEXT_USER:
                         chatListener.onNextUser();
                         break;
-                    case 't':
+                    case Commands.TIME_EXPIRED:
                         chatListener.onTimeExpired();
                         break;
-                    case 'e':
+                    case Commands.EXIT:
                         chatListener.onExit();
                         break;
-                    case 'x':
+                    case Commands.USERS_IN_ROOM:
+                        chatListener.onUsersCount(Long.parseLong(msg.substring(2).trim()));
+                        break;
+                    case Commands.EXIT_FROM_ROOM:
                         return;
                     default:
                         throw new IllegalStateException("Unexpected value: " + msg.charAt(0));
@@ -120,16 +123,22 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
     @Override
     public String enterRoom(Room room, ChatListener chatListener) throws IOException, RoomNotExistsException {
         client.write(Commands.ENTER_IN_ROOM, room.getId() + "");
-        String msg = client.readLine(0, null);
-        if (msg.charAt(0) == 'e') throw new RoomNotExistsException();
-        if(msg.charAt(0) == 'x') return null;
-        else {
-            chatListener.onUserFound(stringInside(msg, "[", "]"));
-            chatThread = new Thread(() -> chatThreadFun.accept(chatListener));
-            chatThread.start();
 
-            return msg.substring(2);
-        }
+        do{
+            String msg = client.readLine(0, null);
+            if (msg.charAt(0) == Commands.EXIT) throw new RoomNotExistsException();
+            if(msg.charAt(0) == Commands.EXIT_FROM_ROOM) return null;
+
+            if(msg.charAt(0) == Commands.USERS_IN_ROOM) chatListener.onUsersCount(Long.parseLong(msg.substring(2).trim()));
+            else {
+                chatListener.onUserFound(stringInside(msg, "[", "]"));
+                chatThread = new Thread(() -> chatThreadFun.accept(chatListener));
+                chatThread.start();
+
+                return msg.substring(2);
+            }
+        } while (true);
+
     }
 
     @Override
@@ -164,6 +173,11 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
      @Override
     public void exit() throws IOException{
         client.write(Commands.EXIT, "");
+    }
+
+    @Override
+    public void getUserCount() throws IOException{
+        client.write(Commands.USERS_IN_ROOM, "");
     }
 
 
