@@ -4,6 +4,7 @@ package com.rmc.randomchat.RecyclerChat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.rmc.randomchat.R;
@@ -118,6 +120,30 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             }
         });
 
+
+
+        mgetmessage.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (mgetmessage.getRight() - mgetmessage.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    loadingDialog();
+
+                    AsyncTask.execute(() -> {
+                        try {
+                            randomChatRepository.nextUser();
+                        } catch (IOException e) {
+                            // TODO errore di connessione
+                            e.printStackTrace();
+                        }
+                    });
+
+                    return true;
+                }
+            }
+            return false;
+        });
+
     }
 
     @Override
@@ -184,6 +210,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onUserFound(String otherUsername) {
+        messagesArrayList.clear();
         Messages msg = new Messages("Stai chattando con: " + otherUsername, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(msg);
         runOnUiThread(() -> {
