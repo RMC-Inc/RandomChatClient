@@ -31,6 +31,7 @@ import com.rmc.randomchat.net.RandomChatRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
@@ -49,9 +50,10 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private AlertDialog dialog;
     private Builder dialogBuilder;
     private List<Room> rooms = new ArrayList<>();
+    private List<Room> searchRooms = new ArrayList<>();
     private TextView curr_nick;
-    SearchView search;
-    LinearLayout linearLayout;
+    private SearchView search;
+    private LinearLayout linearLayout;
 
     private String nickname;
     private RandomChatRepository randomChatRepository;
@@ -78,6 +80,28 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
             linearLayout.setVisibility(View.GONE);
             curr_nick.setVisibility(View.GONE);
             titleToolbar.setVisibility(View.GONE);
+        });
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                searchRooms.clear();
+
+                rooms.forEach(r -> {
+                    if (r.getName().toLowerCase().trim().contains(s.toLowerCase().trim())){
+                        searchRooms.add(r);
+                    }
+                });
+
+                adapter.setData(searchRooms);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
         });
 
         search.setOnCloseListener(() -> {
@@ -188,6 +212,8 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
 
     private void refreshData() {
         rooms.clear();
+
+        adapter.setData(rooms);
 
         AsyncTask.execute(() -> {
             try {

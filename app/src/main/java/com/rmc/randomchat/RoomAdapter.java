@@ -27,6 +27,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     public List<Room> getData(){
         return this.rooms;
     }
+    public void setData(List<Room> rooms){ this.rooms = rooms; }
 
     @NonNull
     @Override
@@ -42,8 +43,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         Room room = rooms.get(position);
         System.out.println(room.toString());
         holder.roomName.setText(room.getName());
-        holder.roomid.setText(String.format(Locale.ENGLISH, "#%d", room.getId()));
-        holder.time.setText(String.valueOf(room.getTime()));
+        holder.roomid.setText(String.format(Locale.ENGLISH, "#%04d", room.getId()));
+
+
+        int minutes = room.getTime() / 60;
+        int seconds = room.getTime() % 60;
+        String time = String.format(" %d:%02d min", minutes, seconds);
+        holder.time.setText(time);
+
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlineUsers()));
         holder.cardView.setCardBackgroundColor(room.getRoomColor() + 0xff000000);
     }
