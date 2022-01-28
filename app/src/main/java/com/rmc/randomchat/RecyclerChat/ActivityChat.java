@@ -1,25 +1,31 @@
 package com.rmc.randomchat.RecyclerChat;
 
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.AsyncDifferConfig;
-
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.depinjection.MyApplication;
 import com.rmc.randomchat.entity.Messages;
@@ -30,11 +36,18 @@ import com.rmc.randomchat.net.RoomNotExistsException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
 
 public class ActivityChat extends AppCompatActivity implements ChatListener {
 
+    private static final int AUDIO_RECORD_REQUEST_CODE = 1;
     private EditText mgetmessage;
     private String enteredmessage;
     private CardView msendmessagecardview;
@@ -50,26 +63,47 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     private TextView other_username;
     private TextView time_left;
     private TextView users_in_room;
-
     private RandomChatRepository randomChatRepository;
+    private ExecutorService executorService;
+    Thread updateUserCount;
+    private boolean chatting = true;
+    private Integer uCount = 0;
+
+    private SpeechRecognizer speechRecognizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        users_in_room = findViewById(R.id.users_in_room);
+
+        executorService = Executors.newSingleThreadExecutor();
         randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
         selectedRoom = (Room) getIntent().getSerializableExtra("room");
         initRecyclerView();
         loadingDialog();
 
-        // TODO qua si deve fare un thread che richiede randomChatRepository.getUserCount(); ogni tot
-        // ATTENZIONE NON USARE AsyncTask.execute. Sarebbe opportuno utilizzare lo stesso esecutore creato in onDestroy per randomChatRepository.exitRoom()
-        // ATTENZIONE IL THREAD DEVE ASSOLUTAMENTE TERMINARE PRIMA DI USCIRE DALLA STANZA (Prima di usare randomChatRepository.exitRoom();)
 
         AsyncTask.execute(() -> {
             try {
                 randomChatRepository.enterRoom(selectedRoom, this);
+
+                updateUserCount = new Thread(() -> {
+                    while(chatting){
+                        try {
+                            randomChatRepository.getUserCount();
+                            synchronized (uCount){
+                                uCount++;
+                                //uCount.notify();
+                            }
+                            Thread.sleep(3000);
+                        } catch (IOException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                updateUserCount.start();
             } catch (IOException e) {
                 e.printStackTrace();
                 // TODO Errore di connessione
@@ -129,8 +163,65 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             }
         });
 
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float v) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] bytes) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int i) {
+
+            }
+
+            @Override
+            public void onResults(Bundle bundle) {
+                ArrayList<String> matches = bundle
+                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+                if (matches != null)
+                    mgetmessage.setText(matches.get(0));
+            }
+
+            @Override
+            public void onPartialResults(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onEvent(int i, Bundle bundle) {
+
+            }
+        });
+
         mgetmessage.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
+            final int DRAWABLE_LEFT = 0;
 
             if(event.getAction() == MotionEvent.ACTION_UP) {
                 if(event.getRawX() >= (mgetmessage.getRight() - mgetmessage.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
@@ -146,7 +237,18 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                     });
 
                     return true;
+                }else if(event.getRawX() <= (mgetmessage.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width() + 20)){
+                    speechRecognizer.stopListening();
+                    mgetmessage.setHint("Messaggio");
                 }
+            }else if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if(event.getRawX() <= (mgetmessage.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width() + 20)){
+                    checkAudioPermission();
+                    speechRecognizer.startListening(mSpeechRecognizerIntent);
+                    mgetmessage.setText("");
+                    mgetmessage.setHint("In ascolto, rilascia al termine");
+                }
+
             }
             return false;
         });
@@ -205,21 +307,29 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Executors.newSingleThreadExecutor().execute(() -> {
+        chatting = false;
+
+        executorService.execute(() -> {
             try {
+                if(updateUserCount != null)
+                    updateUserCount.join();
+                while(uCount != 0)
+                    synchronized (uCount){
+                        wait(uCount);
+                    }
                 randomChatRepository.exitRoom();
-            } catch (IOException e) {
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
-                // Todo Errore di connessione
             }
+
         });
     }
 
     @Override
     public void onUserFound(String otherUsername) {
+        checkForFirstTimeUser();
         other_username = findViewById(R.id.chatting_with_name);
         time_left = findViewById(R.id.time_left);
-        users_in_room = findViewById(R.id.users_in_room);
         Messages msg = new Messages("Stai chattando con: " + otherUsername, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(msg);
         runOnUiThread(() -> {
@@ -283,7 +393,14 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
 
     @Override
     public void onUsersCount(long usersCount) {
-        // TODO qua arriva l'aggiornamento
+
+        synchronized (uCount){
+            uCount--;
+        }
+
+        runOnUiThread(() -> {
+            users_in_room.setText(usersCount + "");
+        });
     }
 
     private void countdown(int limit){
@@ -302,4 +419,51 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             }
         }.start();
     }
+
+    private void checkAudioPermission() {
+        if (!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, AUDIO_RECORD_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case AUDIO_RECORD_REQUEST_CODE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    return;
+                } else {
+                    Toast.makeText(this, "Per usare la digitazione vocale vai nelle impostazioni del sistema e concedi l'autorizzazione al microfono.", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
+
+    private void checkForFirstTimeUser(){
+        final String PREFS_NAME = "PrefFile_chat";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if(settings.getBoolean("my_first_time", true)){
+
+            runOnUiThread(() -> {
+                new MaterialTapTargetPrompt.Builder(this)
+                        .setTarget(R.id.getmessage)
+                        .setCaptureTouchEventOutsidePrompt(true)
+                        .setCaptureTouchEventOnFocal(true)
+                        .setPrimaryText("Scrivi qui il tuo messaggio oppure tieni premuto l'icona del microfono per attivare la dettatura!")
+                        .setSecondaryText("Clicca il pulsante sulla destra per ricercare un nuovo utente.")
+                        .setPromptBackground(new RectanglePromptBackground())
+                        .setPromptFocal(new RectanglePromptFocal())
+                        .show();
+            });
+
+
+            settings.edit().putBoolean("my_first_time", false).apply();
+        }
+    }
+
 }
