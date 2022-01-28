@@ -61,10 +61,12 @@ public class RandomChatClient {
                 Log.println(Log.DEBUG, "READLINE", "Start readline");
                 soc.setSoTimeout(timeout);
                 String msg = in.readLine();
-                soc.setSoTimeout(prevTimeout);
-                Log.println(Log.DEBUG, "READLINE", "RECEIVED: " + msg);
+                if(msg != null){
+                    soc.setSoTimeout(prevTimeout);
+                    Log.println(Log.DEBUG, "READLINE", "RECEIVED: " + msg);
 
-                return msg;
+                    return msg;
+                }
 
             } catch (SocketTimeoutException e){
                 if (onTimeout != null) onTimeout.run();
