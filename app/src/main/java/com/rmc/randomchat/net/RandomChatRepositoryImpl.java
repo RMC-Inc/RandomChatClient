@@ -82,7 +82,14 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
         return getRooms(0, 0, name);
     }
 
-    private List<Room> getRooms(int from, int to, String name) throws IOException{
+    private List<Room> getRooms(int from, int to, String name) throws IOException {
+        if(chatThread != null)
+            try{
+                chatThread.join();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
         String msg = from + " " +  to + " [" +  name + "]";
         List<Room> list = new ArrayList<>();
 
@@ -126,16 +133,19 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
 
         do{
             String msg = client.readLine(0, null);
-            if (msg.charAt(0) == Commands.EXIT) throw new RoomNotExistsException();
-            if(msg.charAt(0) == Commands.EXIT_FROM_ROOM) return null;
+            if(msg != null){
+                if (msg.charAt(0) == Commands.EXIT) throw new RoomNotExistsException();
+                if(msg.charAt(0) == Commands.EXIT_FROM_ROOM) return null;
 
-            if(msg.charAt(0) == Commands.USERS_IN_ROOM) chatListener.onUsersCount(Long.parseLong(msg.substring(2).trim()));
-            else {
-                chatListener.onUserFound(stringInside(msg, "[", "]"));
-                chatThread = new Thread(() -> chatThreadFun.accept(chatListener));
-                chatThread.start();
+                if(msg.charAt(0) == Commands.USERS_IN_ROOM) chatListener.onUsersCount(Long.parseLong(msg.substring(2).trim()));
+                else {
+                    chatListener.onUserFound(stringInside(msg, "[", "]"));
+                    chatThread = new Thread(() -> chatThreadFun.accept(chatListener));
+                    chatting = true;
+                    chatThread.start();
 
-                return msg.substring(2);
+                    return msg.substring(2);
+                }
             }
         } while (true);
 
