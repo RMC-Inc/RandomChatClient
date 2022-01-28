@@ -76,7 +76,6 @@
             android:visibility="visible" />
 
 
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

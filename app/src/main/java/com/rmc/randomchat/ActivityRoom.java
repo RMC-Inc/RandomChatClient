@@ -3,6 +3,7 @@ package com.rmc.randomchat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
@@ -31,7 +33,8 @@ import com.rmc.randomchat.net.RandomChatRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 
 public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
@@ -65,6 +68,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         setContentView(R.layout.activity_room);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         nickname = (String) getIntent().getSerializableExtra("nickname");
         randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
@@ -112,6 +116,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         });
 
         initRecyclerView();
+        checkForFirstTimeUser();
 
         buttonnewroom = findViewById(R.id.buttonNewRoom);
         buttonnewroom.setOnClickListener(v -> {
@@ -231,6 +236,7 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
 
     @Override
     public void OnRoomClick(int position) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         Intent intent = new Intent(this, ActivityChat.class);
         intent.putExtra("room", adapter.getData().get(position));
         startActivity(intent);
@@ -240,4 +246,52 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
         return this.rooms;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void checkForFirstTimeUser(){
+        final String PREFS_NAME = "PrefFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if(settings.getBoolean("my_first_time", true)){
+
+            runOnUiThread(() -> {
+                new MaterialTapTargetPrompt.Builder(this)
+                        .setTarget(R.id.search_view)
+                        .setCaptureTouchEventOutsidePrompt(true)
+                        .setCaptureTouchEventOnFocal(true)
+                        .setPrimaryText("Usa questo tasto per cercare tra le stanze!")
+                        .setSecondaryText("Per chiudere la barra di ricerca basta premere sulla 'x' che appare sulla destra.")
+                        .setIcon(R.drawable.ic_baseline_search)
+                        .setPromptStateChangeListener((prompt1, state1) -> {
+                            if (state1 == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED || state1 == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                new MaterialTapTargetPrompt.Builder(this)
+                                        .setTarget(R.id.buttonNewRoom)
+                                        .setCaptureTouchEventOutsidePrompt(true)
+                                        .setCaptureTouchEventOnFocal(true)
+                                        .setPrimaryText("Clicca su questo pulsante per creare una nuova stanza!")
+                                        .setSecondaryText("Dopodichè assegnale un nome, un colore ed un tempo limite di chat.")
+                                        .setPromptStateChangeListener((prompt, state) -> {
+                                            if (state == MaterialTapTargetPrompt.STATE_NON_FOCAL_PRESSED || state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+
+                                            }
+                                        }).show();
+                            }
+                        }).show();
+            });
+
+
+            settings.edit().putBoolean("my_first_time", false).apply();
+        }
+    }
 }
