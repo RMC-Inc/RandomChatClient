@@ -33,8 +33,6 @@
                 android:textStyle="bold"
                 android:padding="10dp"/>
 
-
-
             <EditText
                 android:layout_gravity="center"
                 android:id="@+id/newroomname"
@@ -48,45 +46,34 @@
                 android:textColor="@color/white"
                 />
 
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/cardview"
-            android:orientation="horizontal">
-
+            <EditText
+                android:id="@+id/newroomtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:inputType="number"
+                android:hint="Timer stanza"
+                android:gravity="center"
+                android:ems="10"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buttoncolor"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/buttoncolor"
                 android:layout_width="wrap_content"
-                android:layout_height="59dp"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/colorButton"
-                android:translationX="10dp"
-                android:text="colore" />
-
-            <Button
-                android:id="@+id/newroomtime"
-                android:layout_width="wrap_content"
-                android:layout_height="59dp"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorButton"
-                android:text="🕑 00:00"
-                android:translationX="25dp" />
-
-            <mobi.upod.timedurationpicker.TimeDurationPicker
-                android:id="@+id/timeDurationInput"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                />
-
-
-        </LinearLayout>
+                android:text="colore"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/newroomtime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:layout_gravity="center"

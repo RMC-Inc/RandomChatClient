@@ -1,32 +1,24 @@
 package com.rmc.randomchat;
 
-
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.rmc.randomchat.entity.Room;
 import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
-
 import java.util.function.Consumer;
-
 
 public class PopupNewRoom  {
 
     private Button createnewroom;
-    private Button buttontime;
+    private EditText buttontime;
     private Button buttoncolor;
-    //private TimeDurationPicker t_duration;
     private EditText room_name;
     private int color = 0;
     private int time = 0;
@@ -44,21 +36,7 @@ public class PopupNewRoom  {
 
         room_name = popupView.findViewById(R.id.newroomname);
 
-        //t_duration = popupView.findViewById(R.id.timeDurationInput);
-
         buttontime = popupView.findViewById(R.id.newroomtime);
-        buttontime.setOnClickListener(v -> {
-            time = (int) (Math.random() * 50);
-            buttontime.setText(time + "");
-        });
-
-        /*buttontime.setOnClickListener(v -> {
-            buttontime.setVisibility(View.GONE);
-            buttoncolor.setVisibility(View.GONE);
-            t_duration.setVisibility(View.VISIBLE);
-            //todo vedere come chiuderlo
-        });*/
-
 
 
         createnewroom = popupView.findViewById(R.id.createnewroom);
@@ -109,5 +87,4 @@ public class PopupNewRoom  {
         this.cancel = cancel;
         return cancel;
     }
-
 }

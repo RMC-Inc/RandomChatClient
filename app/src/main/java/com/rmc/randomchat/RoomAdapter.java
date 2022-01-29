@@ -48,7 +48,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         int minutes = room.getTime() / 60;
         int seconds = room.getTime() % 60;
-        String time = String.format(" %d:%02d min", minutes, seconds);
+        String time = String.format(" %d:%02d ", minutes, seconds);
         holder.time.setText(time);
 
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlineUsers()));

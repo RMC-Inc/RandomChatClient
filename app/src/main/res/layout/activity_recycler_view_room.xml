@@ -20,10 +20,12 @@
         android:padding="16dp">
 
         <TextView
+            app:autoSizeMaxTextSize="22sp"
+            app:autoSizeMinTextSize="18sp"
+            app:autoSizeTextType="uniform"
             android:id="@+id/roomName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
             android:text="Room Name"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -40,7 +42,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/roomName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/roomName" />
 
         <TextView
             android:id="@+id/time"
@@ -50,18 +52,20 @@
             android:text="15:30"
             android:textColor="#333333"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/onlineuser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/onlineuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:text="Online:13"
             android:textColor="#333333"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/time" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
