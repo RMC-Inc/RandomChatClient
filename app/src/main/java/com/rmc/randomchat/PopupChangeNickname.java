@@ -65,7 +65,7 @@ public class PopupChangeNickname {
                         activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Nickname cambiato in " + newNick + "!",Toast.LENGTH_SHORT).show());
                     } catch (IOException e) {
                         e.printStackTrace();
-                        activity.runOnUiThread(() -> Toast.makeText(v.getContext(),"Errore di comunicazione",Toast.LENGTH_SHORT).show());
+                        activity.runOnUiThread(() -> NetworkErrorFactory.newNetworkError(activity, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
                     }
                 });
                 popupWindow.dismiss();

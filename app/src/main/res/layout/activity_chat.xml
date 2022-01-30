@@ -47,31 +47,33 @@
                 android:id="@+id/chatting_with_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="2dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginBottom="2dp"
                 android:layout_toEndOf="@id/backbuttonbackroom"
                 android:text="Chatti con: "
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/time_left"
                 android:layout_width="83dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="265dp"
-                android:layout_marginEnd="4dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="31dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="265dp"
                 android:layout_toEndOf="@id/backbuttonbackroom"
                 android:text="00:00"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:drawableLeftCompat="@drawable/time_room" />
 
             <TextView
@@ -79,13 +81,14 @@
                 android:layout_width="83dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="265dp"
                 android:layout_marginBottom="3dp"
+                android:layout_marginStart="265dp"
                 android:layout_toEndOf="@id/backbuttonbackroom"
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:drawableLeftCompat="@drawable/ic_people" />
 
 

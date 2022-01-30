@@ -46,10 +46,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.roomid.setText(String.format(Locale.ENGLISH, "#%04d", room.getId()));
 
 
-        int minutes = room.getTime() / 60;
-        int seconds = room.getTime() % 60;
-        String time = String.format(" %d:%02d ", minutes, seconds);
-        holder.time.setText(time);
+        if (room.getTime() != 0){
+            int minutes = room.getTime() / 60;
+            int seconds = room.getTime() % 60;
+            String time = String.format(" %d:%02d min", minutes, seconds);
+            holder.time.setText(time);
+            holder.time.setVisibility(View.VISIBLE);
+        } else holder.time.setVisibility(View.INVISIBLE);
 
         holder.onlineuser.setText(String.format(Locale.ENGLISH, "%d", room.getOnlineUsers()));
         holder.cardView.setCardBackgroundColor(room.getRoomColor() + 0xff000000);

@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -26,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rmc.randomchat.NetworkErrorFactory;
 import com.rmc.randomchat.R;
 import com.rmc.randomchat.depinjection.MyApplication;
 import com.rmc.randomchat.entity.Messages;
@@ -63,11 +65,15 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     private TextView other_username;
     private TextView time_left;
     private TextView users_in_room;
+
     private RandomChatRepository randomChatRepository;
     private ExecutorService executorService;
     Thread updateUserCount;
     private boolean chatting = true;
-    private Integer uCount = 0;
+
+    private int uCount = 0;
+    private Object uCountMutex = new Object();
+
 
     private SpeechRecognizer speechRecognizer;
 
@@ -90,12 +96,12 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 randomChatRepository.enterRoom(selectedRoom, this);
 
                 updateUserCount = new Thread(() -> {
+                    users_in_room.setVisibility(View.VISIBLE);
                     while(chatting){
                         try {
                             randomChatRepository.getUserCount();
-                            synchronized (uCount){
+                            synchronized (uCountMutex){
                                 uCount++;
-                                //uCount.notify();
                             }
                             Thread.sleep(3000);
                         } catch (IOException | InterruptedException e) {
@@ -106,11 +112,11 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 updateUserCount.start();
             } catch (IOException e) {
                 e.printStackTrace();
-                // TODO Errore di connessione
-                Toast.makeText(getApplicationContext(), "Errore di connessione", Toast.LENGTH_LONG).show();
+                runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
             } catch (RoomNotExistsException e){
                 e.printStackTrace();
-                // TODO Errore Stanza non esiste
+                runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore la stanza non esiste, prova a ricaricare la lista", NetworkErrorFactory.TYPE.DO_NOTHING).show());
+                finish();
             }
         });
     }
@@ -126,6 +132,10 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
         backbuttonofspecificchatroom=findViewById(R.id.backbuttonbackroom);
         mmessagerecyclerview=findViewById(R.id.recyclerviewochat);
 
+        other_username = findViewById(R.id.chatting_with_name);
+        time_left = findViewById(R.id.time_left);
+        users_in_room = findViewById(R.id.users_in_room);
+
         toolbarofspecificchatroom.setBackgroundColor(selectedRoom.getRoomColor() + 0xff000000);
         getWindow().setStatusBarColor(selectedRoom.getRoomColor() + 0xff000000);
 
@@ -140,6 +150,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             finish();
         });
 
+        msendmessagebutton.getBackground().setColorFilter(selectedRoom.getRoomColor() + 0xff000000, PorterDuff.Mode.SRC);
         msendmessagebutton.setOnClickListener(view -> {
 
             enteredmessage=mgetmessage.getText().toString();
@@ -152,7 +163,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                         randomChatRepository.sendMessage(enteredmessage);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        // TODO errore di connessione
+                        runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
                     }
                 });
                 Messages messages = new Messages(enteredmessage, selectedRoom.getRoomColor(), true);
@@ -231,7 +242,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                         try {
                             randomChatRepository.nextUser();
                         } catch (IOException e) {
-                            // TODO errore di connessione
+                            runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
                             e.printStackTrace();
                         }
                     });
@@ -313,13 +324,13 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
             try {
                 if(updateUserCount != null)
                     updateUserCount.join();
-                while(uCount != 0)
-                    synchronized (uCount){
-                        wait(uCount);
-                    }
+
+                while(uCount != 0) { wait(123); }
+
                 randomChatRepository.exitRoom();
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
+                runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
             }
 
         });
@@ -328,21 +339,21 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     @Override
     public void onUserFound(String otherUsername) {
         checkForFirstTimeUser();
-        other_username = findViewById(R.id.chatting_with_name);
-        time_left = findViewById(R.id.time_left);
+
         Messages msg = new Messages("Stai chattando con: " + otherUsername, selectedRoom.getRoomColor(), false);
         messagesArrayList.add(msg);
         runOnUiThread(() -> {
             if(selectedRoom.getTime() == 0)
-                time_left.setVisibility(View.GONE);
+                time_left.setVisibility(View.INVISIBLE);
             else{
                 time_left.setVisibility(View.VISIBLE);
                 time_left.setText(selectedRoom.getTime() / 60 + ":" + selectedRoom.getTime() % 60);
                 countdown(selectedRoom.getTime());
             }
+
             users_in_room.setText(selectedRoom.getOnlineUsers() + "");
-            System.out.println("Debug del cazzo users online: " + selectedRoom.getOnlineUsers());
             other_username.setText("Chatti con: " + otherUsername);
+            other_username.setVisibility(View.VISIBLE);
             messagesAdapter.notifyDataSetChanged();
             dialog.dismiss();
         });
@@ -394,7 +405,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
     @Override
     public void onUsersCount(long usersCount) {
 
-        synchronized (uCount){
+        synchronized (uCountMutex){
             uCount--;
         }
 

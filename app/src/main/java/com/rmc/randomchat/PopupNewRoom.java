@@ -17,11 +17,10 @@ import java.util.function.Consumer;
 public class PopupNewRoom  {
 
     private Button createnewroom;
-    private EditText buttontime;
+    private EditText timeEditText;
     private Button buttoncolor;
     private EditText room_name;
     private int color = 0;
-    private int time = 0;
 
     public void showPopupWindow(final View view, Consumer<Room> onCreateRoom) {
 
@@ -31,12 +30,11 @@ public class PopupNewRoom  {
         boolean focusable = true;
 
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, focusable);
-
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         room_name = popupView.findViewById(R.id.newroomname);
 
-        buttontime = popupView.findViewById(R.id.newroomtime);
+        timeEditText = popupView.findViewById(R.id.newroomtime);
 
 
         createnewroom = popupView.findViewById(R.id.createnewroom);
@@ -46,11 +44,18 @@ public class PopupNewRoom  {
             else
                 if((room_name.getText().toString()).trim().isEmpty())
                     room_name.setError("Inserisci un nome.");
-                else if((room_name.getText().toString()).getBytes().length >30)
+                else if((room_name.getText().toString()).getBytes().length > 30)
                     room_name.setError("Il nome non deve superare i 30 caratteri.");
                 else{
-                    popupWindow.dismiss();
-                    onCreateRoom.accept(new Room(room_name.getText().toString(), time, color));
+                    int time = 0;
+                    try {
+                        if (!timeEditText.getText().toString().isEmpty())
+                            time = Integer.parseInt(timeEditText.getText().toString());
+                        popupWindow.dismiss();
+                        onCreateRoom.accept(new Room(room_name.getText().toString(), time, color));
+                    } catch (NumberFormatException e){
+                        timeEditText.setError("Formato errato");
+                    }
                 }
         });
 

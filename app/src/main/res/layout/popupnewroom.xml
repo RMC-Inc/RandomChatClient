@@ -53,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:inputType="number"
-                android:hint="Timer stanza"
+                android:hint="Timer stanza (sec)"
                 android:gravity="center"
                 android:ems="10"
                 android:padding="10dp"

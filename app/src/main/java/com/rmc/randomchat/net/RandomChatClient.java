@@ -54,7 +54,11 @@ public class RandomChatClient {
         }
     }
 
-    public String readLine(int timeout, Runnable onTimeout) throws IOException {
+    public String readLine() throws IOException{
+        return readLine(0);
+    }
+
+    public String readLine(int timeout) throws IOException, SocketTimeoutException {
         synchronized (in){
             int prevTimeout = soc.getSoTimeout();
             try {
@@ -69,11 +73,10 @@ public class RandomChatClient {
                 }
 
             } catch (SocketTimeoutException e){
-                if (onTimeout != null) onTimeout.run();
-                else e.printStackTrace();
+                e.printStackTrace();
                 Log.println(Log.DEBUG, "READLINE", "Timeout");
-            } finally {
                 soc.setSoTimeout(prevTimeout);
+                throw e;
             }
         }
         return null;

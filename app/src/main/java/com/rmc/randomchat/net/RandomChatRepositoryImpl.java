@@ -6,6 +6,7 @@ import com.rmc.randomchat.entity.Room;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
         String msg = " ";
         try {
             while (chatting || msg.charAt(0) != 'x'){
-                msg = client.readLine(0, null);
+                msg = client.readLine();
 
                 switch (msg.charAt(0)){
                     case Commands.ENTER_IN_ROOM:
@@ -82,7 +83,7 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
         return getRooms(0, 0, name);
     }
 
-    private List<Room> getRooms(int from, int to, String name) throws IOException {
+    private List<Room> getRooms(int from, int to, String name) throws IOException, SocketTimeoutException {
         if(chatThread != null)
             try{
                 chatThread.join();
@@ -95,11 +96,11 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
 
         client.write(Commands.ROOM_LIST, msg);
 
-        int numRooms = Integer.parseInt(client.readLine(0, null).substring(2).trim());
+        int numRooms = Integer.parseInt(client.readLine(5 * 1000).substring(2).trim());
 
         String room;
         int i = 0;
-        while (i < numRooms && (room = client.readLine(2 * 1000, () -> {})) != null){
+        while (i < numRooms && (room = client.readLine(5 * 1000)) != null){
             Log.println(Log.DEBUG, "SERVER", "RoomString: " + room);
             Scanner roomScanner = new Scanner(room.substring(1));
 
@@ -118,11 +119,11 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
     }
 
     @Override
-    public Room addRoom(Room room) throws IOException{
+    public Room addRoom(Room room) throws IOException, SocketTimeoutException{
         String msg = room.getRoomColor() + " " + room.getTime() + " [" + room.getName() + "]";
         client.write(Commands.NEW_ROOM, msg);
 
-        String roomStr = client.readLine(10 * 1000, null);
+        String roomStr = client.readLine(10 * 1000);
         if (roomStr == null) return null;
         else return new Room(room.getName(), Long.parseLong(roomStr.substring(2).trim()), room.getTime(), 0, room.getRoomColor());
     }
@@ -132,7 +133,7 @@ public class RandomChatRepositoryImpl implements RandomChatRepository, Serializa
         client.write(Commands.ENTER_IN_ROOM, room.getId() + "");
 
         do{
-            String msg = client.readLine(0, null);
+            String msg = client.readLine();
             if(msg != null){
                 if (msg.charAt(0) == Commands.EXIT) throw new RoomNotExistsException();
                 if(msg.charAt(0) == Commands.EXIT_FROM_ROOM) return null;

@@ -31,6 +31,7 @@ import com.rmc.randomchat.entity.Room;
 import com.rmc.randomchat.net.RandomChatRepository;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,13 +135,11 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
                                 adapter.notifyDataSetChanged();
                             });
                         } else {
-                            // TODO errore timeout
-                            System.out.println("NEWROOM TIMEOUT");
                             runOnUiThread(() -> swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(false)));
+                            runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore il server ha impiegato troppo tempo a rispondere. Chiudi l'applicazione e riprova", NetworkErrorFactory.TYPE.TERMINATE).show());
                         }
                     } catch (IOException e) {
-                        // TODO errore di connessione
-                        System.out.println("NEWROOM IOEX");
+                        runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
                     }
                 });
             });
@@ -228,8 +227,11 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
                     checkRecyclerviewEmpty();
                     adapter.notifyDataSetChanged();
                 });
+            } catch (SocketTimeoutException e){
+                runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore il server ha impiegato troppo tempo a rispondere", NetworkErrorFactory.TYPE.DO_NOTHING).show());
             } catch (IOException e) {
                 e.printStackTrace();
+                runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione con il server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
             }
         });
     }

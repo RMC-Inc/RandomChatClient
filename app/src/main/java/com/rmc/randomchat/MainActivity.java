@@ -100,19 +100,23 @@ public class MainActivity extends AppCompatActivity {
             if(!EditTextisEmpty(NicknameUser)){
                 String nickname = NicknameUser.getText().toString();
 
-                AsyncTask.execute(() -> {
-                    try {
-                        randomChatRepository.setNickname(nickname);
+                if(randomChatRepository != null){
+                    AsyncTask.execute(() -> {
+                        try {
+                            randomChatRepository.setNickname(nickname);
 
-                        Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
-                        roomRecyclerView.putExtra("nickname", nickname);
+                            Intent roomRecyclerView = new Intent(MainActivity.this, ActivityRoom.class);
+                            roomRecyclerView.putExtra("nickname", nickname);
 
-                        startActivity(roomRecyclerView);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getApplicationContext(), "Errore di comunicazione", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            startActivity(roomRecyclerView);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Errore di connessione al server, riavvia l'applicazione", NetworkErrorFactory.TYPE.TERMINATE).show());
+                        }
+                    });
+                } else {
+                    isConnected();
+                }
             }
         });
     }
@@ -122,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     private void isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null){
+        if (networkInfo != null && networkInfo.isConnected()){
             if(networkInfo.isConnected()) {
                 if (randomChatRepository == null) {
                     randomChatRepository = ((MyApplication) getApplication()).appContainer.randomChatRepository;
@@ -132,27 +136,14 @@ public class MainActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                             randomChatRepository = null;
-                            runOnUiThread(() -> showNetworkError("Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi."));
+                            runOnUiThread(() -> NetworkErrorFactory.newNetworkError(this, "Impossibile connettersi al server, prova a riavviare l'applicazione o ritenta più tardi.", NetworkErrorFactory.TYPE.TERMINATE).show());
                         }
                     });
                 }
-            } else showNetworkError("Internet non disponibile, Controlla la tua connessione e riprova");
-        } else showNetworkError("Internet non disponibile, Controlla la tua connessione e riprova");
-    }
-
-    //    Mostra un errore in caso di connessione assente
-
-    private void showNetworkError(String msgError) {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-        builder1.setMessage(msgError);
-        builder1.setCancelable(true);
-        if(msgError.equals("Internet non disponibile, Controlla la tua connessione e riprova"))
-            builder1.setPositiveButton("Connetti", (dialog, id) -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
-        else
-            builder1.setPositiveButton("Ok", (dialog, id) -> finish());
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+            }
+        } else {
+            NetworkErrorFactory.newNetworkError(this, "Internet non disponibile, Controlla la tua connessione e riprova", NetworkErrorFactory.TYPE.CONNECT).show();
+        }
     }
 
     // Controlla se la EditText è vuota
