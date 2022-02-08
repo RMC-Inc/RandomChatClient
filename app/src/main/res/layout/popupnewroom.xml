@@ -44,6 +44,7 @@
                 android:hint="Nome della stanza"
                 android:padding="10dp"
                 android:textColor="@color/white"
+                android:maxLength="30"
                 />
 
             <EditText
@@ -61,7 +62,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttoncolor"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:maxLength="4"/>
 
             <Button
                 android:id="@+id/buttoncolor"

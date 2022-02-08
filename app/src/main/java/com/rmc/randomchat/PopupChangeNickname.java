@@ -57,6 +57,11 @@ public class PopupChangeNickname {
 
             String newNick = stringNick.getText().toString();
 
+            if (newNick.getBytes().length > 20){
+                stringNick.setError("Nickname Troppo lungo");
+                return;
+            }
+
             if(!newNick.isEmpty()){
                 curr_nick.setText(newNick);
                 AsyncTask.execute(() -> {

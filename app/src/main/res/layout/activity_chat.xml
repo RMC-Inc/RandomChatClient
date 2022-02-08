@@ -113,19 +113,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="55dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/messagebackground"
         android:drawableLeft="@drawable/microphone"
         android:drawableRight="@drawable/refresh"
         android:hint="Messaggio"
-        android:paddingLeft="20dp"
         android:paddingEnd="10dp"
+        android:paddingLeft="20dp"
         android:textAlignment="textStart"
         android:textColor="@color/textmessagereciver"
         android:textColorHint="@color/messagechat"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:maxLength="450"/>
 
 
     <androidx.cardview.widget.CardView

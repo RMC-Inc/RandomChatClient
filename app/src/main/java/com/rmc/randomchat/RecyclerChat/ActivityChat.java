@@ -215,8 +215,13 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 ArrayList<String> matches = bundle
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
-                if (matches != null)
-                    mgetmessage.setText(matches.get(0));
+                if (matches != null){
+                    String msg = matches.get(0);
+                    if (msg.length() > 450){
+                        msg = msg.substring(0, 449);
+                    }
+                    mgetmessage.setText(msg);
+                }
             }
 
             @Override
@@ -325,7 +330,7 @@ public class ActivityChat extends AppCompatActivity implements ChatListener {
                 if(updateUserCount != null)
                     updateUserCount.join();
 
-                while(uCount != 0) { wait(123); }
+                while(uCount != 0) { Thread.sleep(123); }
 
                 randomChatRepository.exitRoom();
             } catch (InterruptedException | IOException e) {

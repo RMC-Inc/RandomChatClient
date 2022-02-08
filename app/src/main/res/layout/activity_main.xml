@@ -88,7 +88,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/checkBox_nickname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                android:maxLength="20"/>
 
             <CheckBox
                 android:id="@+id/checkBox_nickname"

@@ -45,7 +45,7 @@ public class PopupNewRoom  {
                 if((room_name.getText().toString()).trim().isEmpty())
                     room_name.setError("Inserisci un nome.");
                 else if((room_name.getText().toString()).getBytes().length > 30)
-                    room_name.setError("Il nome non deve superare i 30 caratteri.");
+                    room_name.setError("Nome troppo lungo.");
                 else{
                     int time = 0;
                     try {

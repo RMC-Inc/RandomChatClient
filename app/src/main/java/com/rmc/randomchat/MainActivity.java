@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
      private EditText NicknameUser;
      private Button button_start_chat;
      CheckBox checkBox;
-     File f = new File("/data/data/com.rmc.randomchat/shared_prefs/com.rmc.randomchat_preferences.xml");
      RandomChatRepository randomChatRepository = null;
 
     @Override
@@ -44,22 +43,23 @@ public class MainActivity extends AppCompatActivity {
         NicknameUser = findViewById(R.id.name_user);
         checkBox = findViewById(R.id.checkBox_nickname);
 
-        if(f.exists() && NicknameUser.getText().toString().isEmpty()){
-            SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(this);
-            String name = username.getString("Nick", "");
-            if(!name.equalsIgnoreCase(""))
-                NicknameUser.setText(name);
-            else
-                checkBox.setVisibility(View.GONE);
+
+        SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = username.getString("Nick", "");
+        if(name != null && !name.equals("")) {
+            NicknameUser.setText(name);
+            checkBox.setChecked(true);
         }
+
 
         NicknameUser.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().isEmpty())
-                    checkBox.setVisibility(View.GONE);
-                else
-                    checkBox.setVisibility(View.VISIBLE);
+                if(checkBox.isChecked()) {
+                    SharedPreferences.Editor editor = username.edit();
+                    editor.putString("Nick", NicknameUser.getText().toString());
+                    editor.apply();
+                }
             }
 
             @Override
@@ -74,32 +74,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         checkBox.setOnClickListener(v -> {
-            if(checkBox.isChecked()){
-                if (f.exists()){
-                    SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(v.getContext());
-
-                    SharedPreferences.Editor editor = username.edit();
-                    editor.putString("Nick", NicknameUser.getText().toString());
-                    editor.apply();
-                }
-            }
+            SharedPreferences.Editor editor = username.edit();
+            if(checkBox.isChecked()) editor.putString("Nick", NicknameUser.getText().toString());
+            else editor.remove("Nick");
+            editor.apply();
         });
 
         button_start_chat = findViewById(R.id.button_start_chat);
 
         button_start_chat.setOnClickListener(v -> {
 
-            if(!checkBox.isChecked()){
-                SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(v.getContext());
-
-                SharedPreferences.Editor editor = username.edit();
-                editor.putString("Nick", "");
-                editor.apply();
-            }
-
             if(!EditTextisEmpty(NicknameUser)){
                 String nickname = NicknameUser.getText().toString();
-
+                if (nickname.getBytes().length > 20){
+                    NicknameUser.setError("Nickname Troppo lungo");
+                    return;
+                }
                 if(randomChatRepository != null){
                     AsyncTask.execute(() -> {
                         try {
