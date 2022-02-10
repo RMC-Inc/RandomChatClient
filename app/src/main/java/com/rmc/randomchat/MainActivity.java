@@ -47,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(this);
         String name = username.getString("Nick", "");
         if(name != null && !name.equals("")) {
+            checkBox.setVisibility(View.VISIBLE);
             NicknameUser.setText(name);
-            checkBox.setChecked(true);
+        }else{
+            checkBox.setVisibility(View.INVISIBLE);
         }
 
 
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("Nick", NicknameUser.getText().toString());
                     editor.apply();
                 }
+                if(NicknameUser.getText().toString().isEmpty()){
+                    checkBox.setVisibility(View.INVISIBLE);
+                }else
+                    checkBox.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -75,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         checkBox.setOnClickListener(v -> {
             SharedPreferences.Editor editor = username.edit();
-            if(checkBox.isChecked()) editor.putString("Nick", NicknameUser.getText().toString());
-            else editor.remove("Nick");
+            if(checkBox.isChecked())
+                editor.putString("Nick", NicknameUser.getText().toString());
             editor.apply();
         });
 
@@ -84,7 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
         button_start_chat.setOnClickListener(v -> {
 
+            SharedPreferences.Editor editor = username.edit();
+
             if(!EditTextisEmpty(NicknameUser)){
+                if(!checkBox.isChecked()){
+                    editor.remove("Nick");
+                    editor.apply();
+                }
                 String nickname = NicknameUser.getText().toString();
                 if (nickname.getBytes().length > 20){
                     NicknameUser.setError("Nickname Troppo lungo");

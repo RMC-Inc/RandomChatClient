@@ -51,19 +51,19 @@
                 android:id="@+id/newroomtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
-                android:inputType="number"
-                android:hint="Timer stanza (sec)"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:ems="10"
+                android:gravity="center"
+                android:hint="Timer stanza (s)"
+                android:inputType="number"
+                android:maxLength="4"
                 android:padding="10dp"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttoncolor"
-                app:layout_constraintTop_toTopOf="parent"
-                android:maxLength="4"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/buttoncolor"

@@ -2,13 +2,17 @@ package com.rmc.randomchat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,12 +79,12 @@ public class PopupChangeNickname {
                 });
                 popupWindow.dismiss();
             }else{
-                curr_nick.setError("Inserisci un nickname valido.");
+                stringNick.setError("Inserisci un nickname valido.");
             }
         });
 
         popupView.setOnTouchListener((v, event) -> {
-            popupWindow.dismiss();
+                popupWindow.dismiss();
             return true;
         });
 
