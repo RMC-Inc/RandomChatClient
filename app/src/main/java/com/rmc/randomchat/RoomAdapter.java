@@ -17,11 +17,11 @@ import java.util.Locale;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private List<Room> rooms;
-    private OnRoomListner nOnRoomListner;
+    private OnRoomListener nOnRoomListener;
 
-    public RoomAdapter(List<Room> rooms, OnRoomListner nOnRoomListner) {
+    public RoomAdapter(List<Room> rooms, OnRoomListener nOnRoomListener) {
         this.rooms = rooms;
-        this.nOnRoomListner = nOnRoomListner;
+        this.nOnRoomListener = nOnRoomListener;
     }
 
     public List<Room> getData(){
@@ -35,7 +35,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_recycler_view_room, parent, false);
-        return new ViewHolder(view, nOnRoomListner);
+        return new ViewHolder(view, nOnRoomListener);
     }
 
     @Override
@@ -64,30 +64,30 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView roomName, roomid,time,onlineuser;
+        private TextView roomName, roomid, time, onlineuser;
         private CardView cardView;
-        private OnRoomListner onRoomListner;
+        private OnRoomListener onRoomListener;
 
-        public ViewHolder(@NonNull View itemView, OnRoomListner onRoomListner) {
+        public ViewHolder(@NonNull View itemView, OnRoomListener onRoomListener) {
             super(itemView);
             cardView = itemView.findViewById(R.id.CardViewRecycler);
             roomName = itemView.findViewById(R.id.roomName);
             roomid = itemView.findViewById(R.id.roomid);
             time = itemView.findViewById(R.id.time);
             onlineuser = itemView.findViewById(R.id.onlineuser);
-            this.onRoomListner = onRoomListner;
+            this.onRoomListener = onRoomListener;
             itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
-            onRoomListner.OnRoomClick(getAdapterPosition());
+            onRoomListener.OnRoomClick(getAdapterPosition());
         }
     }
 
-    public interface OnRoomListner {
-        void OnRoomClick (int position );
+    public interface OnRoomListener {
+        void OnRoomClick(int position);
     }
 
 }

@@ -38,7 +38,7 @@ import java.util.List;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 
-public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListner {
+public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoomListener {
 
     private static final String TAG = "";
     private RecyclerView rvRoom;
@@ -58,7 +58,6 @@ public class ActivityRoom extends AppCompatActivity implements RoomAdapter.OnRoo
     private TextView curr_nick;
     private SearchView search;
     private LinearLayout linearLayout;
-
     private String nickname;
     private RandomChatRepository randomChatRepository;
 

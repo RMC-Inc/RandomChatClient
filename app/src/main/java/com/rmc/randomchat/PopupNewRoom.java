@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 import com.rmc.randomchat.entity.Room;
-import com.skydoves.colorpickerview.ColorEnvelope;
 import com.skydoves.colorpickerview.ColorPickerDialog;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import java.util.function.Consumer;
@@ -64,7 +63,7 @@ public class PopupNewRoom  {
                 .setTitle("Seleziona un colore")
                 .setPositiveButton(getString(R.string.confirm),
                         (ColorEnvelopeListener) (envelope, fromUser) -> {
-                            setLayoutColor(envelope);
+                            setLayoutColor();
                             color = envelope.getColor() & 0x00ffffff;
                             buttoncolor.setBackgroundColor(color + 0xff000000);
                         })
@@ -84,7 +83,7 @@ public class PopupNewRoom  {
 
     }
 
-    private void setLayoutColor(ColorEnvelope envelope) {
+    private void setLayoutColor() {
     }
 
     private int cancel;
