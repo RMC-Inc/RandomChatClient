@@ -53,13 +53,12 @@ public class MainActivity extends AppCompatActivity {
         NicknameUser.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                System.out.println(count);
                 if(checkBox.isChecked()) {
                     SharedPreferences.Editor editor = username.edit();
                     editor.putString("Nick", NicknameUser.getText().toString());
                     editor.apply();
                 }
-                if(count == 0){
+                if(NicknameUser.getText().toString().isEmpty()){
                     runOnUiThread(() -> {
                         if(checkBox.isChecked())
                             checkBox.toggle();
