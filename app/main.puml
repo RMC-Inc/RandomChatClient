@@ -1,0 +1,328 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AppContainer{
+final RandomChatRepository randomChatRepository
+}
+
+class MyApplication{
+final AppContainer appContainer
+}
+
+class Messages{
+private String message
+private String currenttime
+private boolean isSent
+private int color
+
+void Messages(String message, int color, boolean isSent)
+boolean isSent()
+void setSend(boolean send)
+String getCurrentTime()
+void setCurrentTime(String currenttime)
+int getColor()
+void setColor(int color)
+void setMessage(String message)
+}
+
+class Room{
+private String name
+private long id
+private int time
+private long onlineusers
+private int roomColor
+
+void Room(String name, int time, int roomColor)
+void Room(String name, long id, int time, long onlineusers, int roomColor)
+String getName()
+void setName(String name)
+long getId()
+void setId(long id)
+int getTime()
+void setTime(int time)
+long getOnlineUsers()
+void setOnLineUser(long onlineusers)
+int getRoomColor()
+void setRoomColor(int color)
+}
+
+interface ChatListener{
+void onUserFound(String msg)
+void onMessage(String msg)
+void onNextUser()
+void onTimeExpired()
+void onExit()
+void onUserCount(long usersCount)
+}
+
+class Commands{
+static final char ENTER_IN_ROOM
+static final char NEW_ROOM
+static final char ROOM_LIST
+static final char CHANGE_NICKNAME
+static final char NEXT_USER
+static final char SEND_MSG
+static final char TIME_EXPIRED
+static final char EXIT
+static final char EXIT_FROM_ROOM
+static final char USER_IN_ROOM
+}
+
+class RandomChatClient{
+private static RandomChatClient instance
+private Socket soc
+private BufferedReader in
+private BufferedReader out
+private final String HostName
+private final int port
+
+static RandomChatClient getInstance()
+void openConnection()
+void closeConnection()
+boolean isOpen()
+void write(char command, string msg)
+String readLine(int timeout)
+String readLine()
+}
+
+interface RandomChatRepository{
+void connect()
+void setNickname(String nickname)
+List<Room> getAllrooms()
+List<Room> getRooms(int from, int to)
+List<Room> getRoomsByName(String name)
+Room addRoom(Room room)
+String enterRoom(Room room, ChatListener chatListener)
+void sendMessage(String msg)
+void nextUser()
+void exitRoom()
+void getUserCount()
+void exit()
+}
+
+class RandomChatRepositoryImpl{
+private RandomChatClient client
+private boolean chatting
+Thread chatThread
+
+private final Consumer<ChatListener> chatThreadFun()
+private List<Room> getRooms(int from, int to, String name)
+private static String stringInside(String s, String left, String right)
+}
+
+class RoomNotExistsException{
+
+}
+
+class ActivityChat{
+private static final int AUDIO_RECORD_REQUEST_CODE
+private EditText mgetmessage
+private String enteredmessage
+private CardView msendmessagecardview
+private ImageButton msendmessagebutton
+private Toolbar toolbarofspecificchatroom
+private TextView Nameofspecifitroom
+private ImageButton backbuttonofspecificchatroom
+private ArrayList<Messages> messagesArrayList
+private RecyclerView mmessagerecyclerview
+private MessagesRecyclerAdapter messagesAdapter
+private Room selectedRoom
+private AlertDialog dialog
+private TextView other_username
+private TextView time_left
+private TextView users_in_room
+private RandomChatRepository randomChatRepository
+private ExecutorService executorService
+Thread updateUserCount
+private boolean chatting
+private int uCount
+private Object uCountMutex
+private SpeechRecognizer speechRecognizer
+
+private view initRecyclerView()
+private void scrollToBottom(RecyclerView r)
+private void loadingDialog()
+private void countdown(int limit)
+private void checkAudioPermission()
+private void checkForFirstTimeUser()
+}
+
+class MessagesRecyclerAdapter{
+Context context
+ArrayList<Messages> messagesArrayList
+private int messageSend
+private int messageReceived
+
+void MessagesRecyclerAdapter(Context context, ArrayList<Messages> messagesArrayList)
+}
+
+class RecyclerViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void ReceiverViewHolder(View itemView)
+}
+
+class SenderViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void SenderViewHolder(View itemView)
+}
+
+class ActivityRoom{
+private static final String TAG
+private RecyclerView rvRoom
+private LinearLayoutManager layoutManager
+private TextView titleToolbar
+private RoomAdapter adapter
+private FloatingActionButton buttonnewroom
+private SwipeRefreshLayout swipeRefreshLayout
+private TextView emptyView1
+private TextView emptyView2
+private ImageView emptyView3
+private View emptyView
+private AlertDialog dialog
+private Builder dialogBuilder
+private List<Room> rooms
+private List<Room> searchRoom
+private TextView curr_nick
+private SearchView search
+private LinearLayout linearLayout
+private String nickname
+private RandomChatRepository randomChatRepository
+
+private void initRecyclerView()
+void checkRecyclerviewEmpty()
+private void refreshData()
+List<Room> getListRooms()
+private void checkForFirstTimeUser()
+}
+
+class MainActivity{
+private EditText NicknameUser
+private Button button_start_chat
+CheckBox checkBox
+RandomChatRepository randomChatRepository
+
+private void isConnected()
+public boolean EditTextisEmpty(EditText niknameuser)
+}
+
+class NetworkErrorFactory{
+static AlertDialog newNetworkError(Activity activity, String msg, TYPE type)
+}
+
+enum TYPE{
+TERMINATE
+CONNECT
+DO_NOTHING
+}
+
+class PopupChangeNickname{
+private Button confirmChange
+private EditText stringNick
+
+void showPopupWindow(final View view, TextView curr_nick, Activity activity, RandomChatRepository randomChatRepository)
+}
+
+class PopupEnterInRoom{
+private Button confirmEnter
+private EditText stringRoomID
+private int id
+
+public void showPopupWindow(final View view, ActivityRoom activity)
+Room findRoomById(int id, List<Room> rooms)
+}
+
+class PopupNewRoom{
+private Button createnewroom
+private EditText timeEditText
+private Button buttoncolor
+private EditText room_name
+private int color
+
+public void showPopupWindow(final View view, Consumer<Room> onCreateRoom)
+private void setLayoutColor()
+}
+
+class RoomAdapter{
+private List<Room> rooms
+private OnRoomListener nOnRoomListener
+
+RoomAdapter(List<Room> rooms, OnRoomListener nOnRoomListener)
+List<Room> getData()
+void setData(List<Room> rooms)
+}
+
+interface OnRoomListener{
+void OnRoomClick(int position)
+}
+
+class ViewHolder{
+private TextView roomName
+private TextView roomid
+private TextView time
+private TextView onlineuser
+private CardView cardView
+private OnRoomListener onRoomListener
+
+ViewHolder(View itemView, OnRoomListener onRoomListener)
+}
+
+class Splashscreen{
+
+}
+
+OnRoomListener <|-- RoomAdapter
+RoomAdapter +-- ViewHolder
+OnRoomListener <|-- ActivityRoom
+ChatListener <|-- ActivityChat
+ChatListener <|-- RandomChatRepositoryImpl
+randomChatRepository <|-- AppContainer
+randomChatRepository <|-- ActivityChat
+randomChatRepository <|-- ActivityRoom
+randomChatRepository <|-- PopupChangeNickname
+randomChatRepository <|-- RandomChatRepositoryImpl
+randomChatRepository <|-- MainActivity
+appContainer <|-- MyApplication
+MyApplication <|-- ActivityChat
+MyApplication <|-- ActivityRoom
+MyApplication <|-- MainActivity
+Messages <|-- ActivityChat
+Messages <|-- MessagesRecyclerAdapter
+Room <|-- ActivityChat
+Room <|-- PopupEnterInRoom
+Room <|-- ActivityRoom
+Room <|-- PopupNewRoom
+Room <|-- RoomAdapter
+Room <|-- RandomChatRepositoryImpl
+RandomChatClient <|-- RandomChatClient
+RandomChatClient <|-- RandomChatRepositoryImpl
+RandomChatRepository <|-- AppContainer
+RoomNotExistsException <|-- ActivityChat
+RoomNotExistsException <|-- RandomChatRepositoryImpl
+ActivityChat <|-- ActivityChat
+ActivityChat <|-- PopupEnterInRoom
+ActivityChat <|-- ActivityRoom
+MessagesRecyclerAdapter +-- SenderViewHolder
+MessagesRecyclerAdapter +-- RecyclerViewHolder
+MessagesRecyclerAdapter <|-- ActivityChat
+ActivityRoom <|-- ActivityRoom
+ActivityRoom <|-- MainActivity
+ActivityRoom <|-- PopupEnterInRoom
+MainActivity <|-- MainActivity
+MainActivity <|-- Splashscreen
+NetworkErrorFactory <|-- ActivityChat
+NetworkErrorFactory <|-- ActivityRoom
+NetworkErrorFactory <|-- MainActivity
+NetworkErrorFactory <|-- PopupChangeNickname
+PopupChangeNickname <|-- ActivityRoom
+PopupEnterInRoom <|-- ActivityRoom
+PopupNewRoom <|-- ActivityRoom
+RoomAdapter <|-- RoomAdapter
+RoomAdapter <|-- ActivityRoom
+Splashscreen <|-- Splashscreen
+@enduml
