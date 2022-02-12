@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,15 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.rmc.randomchat.depinjection.MyApplication;
 import com.rmc.randomchat.net.RandomChatRepository;
-
-import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,30 +35,43 @@ public class MainActivity extends AppCompatActivity {
 
         NicknameUser = findViewById(R.id.name_user);
         checkBox = findViewById(R.id.checkBox_nickname);
+        checkBox.setVisibility(View.VISIBLE);
 
 
         SharedPreferences username = PreferenceManager.getDefaultSharedPreferences(this);
         String name = username.getString("Nick", "");
         if(name != null && !name.equals("")) {
-            checkBox.setVisibility(View.VISIBLE);
+            checkBox.setEnabled(true);
+            checkBox.setAlpha(1.0f);
             NicknameUser.setText(name);
         }else{
-            checkBox.setVisibility(View.INVISIBLE);
+            checkBox.setEnabled(false);
+            checkBox.setAlpha(0.4f);
         }
 
 
         NicknameUser.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println(count);
                 if(checkBox.isChecked()) {
                     SharedPreferences.Editor editor = username.edit();
                     editor.putString("Nick", NicknameUser.getText().toString());
                     editor.apply();
                 }
-                if(NicknameUser.getText().toString().isEmpty()){
-                    checkBox.setVisibility(View.INVISIBLE);
+                if(count == 0){
+                    runOnUiThread(() -> {
+                        if(checkBox.isChecked())
+                            checkBox.toggle();
+                        checkBox.setEnabled(false);
+                        checkBox.setAlpha(0.4f);
+                    });
+
                 }else
-                    checkBox.setVisibility(View.VISIBLE);
+                    runOnUiThread(() -> {
+                        checkBox.setEnabled(true);
+                        checkBox.setAlpha(1.0f);
+                    });
             }
 
             @Override
@@ -123,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //  Controlla lo stato della connessione
 
     private void isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -148,11 +153,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Controlla se la EditText è vuota
 
-    public boolean EditTextisEmpty(EditText niknameuser) {
-        if (TextUtils.isEmpty(niknameuser.getText())) {
-            niknameuser.setError("Nickname non inserito!");
+    public boolean EditTextisEmpty(EditText nicknameuser) {
+        if (TextUtils.isEmpty(nicknameuser.getText())) {
+            nicknameuser.setError("Nickname non inserito!");
             return true;
         } else {
             return false;
