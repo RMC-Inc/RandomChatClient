@@ -66,7 +66,7 @@ public class PopupChangeNickname {
                 return;
             }
 
-            if(!newNick.isEmpty()){
+            if(!newNick.trim().isEmpty()){
                 curr_nick.setText(newNick);
                 AsyncTask.execute(() -> {
                     try {

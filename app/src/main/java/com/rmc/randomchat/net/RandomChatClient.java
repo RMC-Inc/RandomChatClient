@@ -19,8 +19,8 @@ public class RandomChatClient {
 
     private final String HostName = "2.237.250.35";
     //private final String HostName = "192.168.1.33";
+    //private final String HostName = "35.176.132.11"; // AWS
     private final int port = 8125;
-    //private final int port = 8124;
 
 
 

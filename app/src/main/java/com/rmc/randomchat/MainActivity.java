@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 if (nickname.getBytes().length > 20){
                     NicknameUser.setError("Nickname Troppo lungo");
                     return;
+                } else if(nickname.trim().isEmpty()){
+                    NicknameUser.setError("Inserisci un Nickname");
+                    return;
                 }
                 if(randomChatRepository != null){
                     AsyncTask.execute(() -> {
