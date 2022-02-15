@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1657.8px" preserveAspectRatio="none" style="width:3384px;height:1657px;background:#FFFFFF;" version="1.1" viewBox="0 0 3384 1657" width="3384px" zoomAndPan="magnify"><defs><filter height="300%" id="f1azvo58rzvp3h" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.8"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="3.6" dy="3.6" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[cf161e35ad664001f91aadffcf73630d]
+class AppContainer--><rect codeLine="3" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="55.6523" id="AppContainer" style="stroke:#A80036;stroke-width:1.35;" width="234.9" x="172.359" y="735.75"/><ellipse cx="252.234" cy="750.15" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M254.034,747 Q254.2168,746.55 254.4278,746.325 Q254.6387,746.1 254.8778,746.1 Q255.2996,746.1 255.5668,746.3531 Q255.834,746.6063 255.834,747.1969 L255.834,748.6031 Q255.834,749.1938 255.5809,749.4469 Q255.3278,749.7 254.934,749.7 Q254.5824,749.7 254.3574,749.5453 Q254.1324,749.3906 254.034,748.9828 Q253.9918,748.7016 253.8371,748.5469 Q253.5559,748.2516 253.0496,748.0828 Q252.5434,747.9 252.0371,747.9 Q251.4043,747.9 250.8699,748.1531 Q250.3496,748.4063 249.9418,748.9688 Q249.534,749.5313 249.534,750.3047 L249.534,751.1344 Q249.534,752.0625 250.2934,752.6813 Q251.0528,753.3 252.4028,753.3 Q253.2043,753.3 253.7668,753.1172 Q254.0903,753.0188 254.4559,752.6953 Q254.6949,752.5125 254.8215,752.4563 Q254.9481,752.4 255.1028,752.4 Q255.3981,752.4 255.609,752.6391 Q255.834,752.8641 255.834,753.1875 Q255.834,753.4969 255.5246,753.8625 Q255.0746,754.3969 254.3574,754.6922 Q253.4153,755.1 252.2621,755.1 Q250.9121,755.1 249.8293,754.5656 Q248.9574,754.1438 248.3387,753.2297 Q247.734,752.3156 247.734,751.2328 L247.734,750.2484 Q247.734,749.1234 248.2684,748.1391 Q248.8168,747.1547 249.759,746.6344 Q250.7153,746.1 251.784,746.1 Q252.4309,746.1 252.9934,746.325 Q253.5559,746.55 254.034,747 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="67.5" x="270.684" y="754.5691">AppContainer</text><line style="stroke:#A80036;stroke-width:1.35;" x1="173.259" x2="406.359" y1="764.55" y2="764.55"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="224.1" x="177.759" y="778.4271">final RandomChatRepository randomChatRepository</text><line style="stroke:#A80036;stroke-width:1.35;" x1="173.259" x2="406.359" y1="784.2023" y2="784.2023"/><!--MD5=[b3db53f20b85fed898fb0d848cf36d50]
+class MyApplication--><rect codeLine="7" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="55.6523" id="MyApplication" style="stroke:#A80036;stroke-width:1.35;" width="151.2" x="17.109" y="352.35"/><ellipse cx="55.719" cy="366.75" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M57.519,363.6 Q57.7018,363.15 57.9127,362.925 Q58.1237,362.7 58.3628,362.7 Q58.7846,362.7 59.0518,362.9531 Q59.319,363.2063 59.319,363.7969 L59.319,365.2031 Q59.319,365.7938 59.0659,366.0469 Q58.8128,366.3 58.419,366.3 Q58.0674,366.3 57.8424,366.1453 Q57.6174,365.9906 57.519,365.5828 Q57.4768,365.3016 57.3221,365.1469 Q57.0409,364.8516 56.5346,364.6828 Q56.0284,364.5 55.5221,364.5 Q54.8893,364.5 54.3549,364.7531 Q53.8346,365.0063 53.4268,365.5688 Q53.019,366.1313 53.019,366.9047 L53.019,367.7344 Q53.019,368.6625 53.7784,369.2813 Q54.5377,369.9 55.8878,369.9 Q56.6893,369.9 57.2518,369.7172 Q57.5753,369.6188 57.9409,369.2953 Q58.1799,369.1125 58.3065,369.0563 Q58.4331,369 58.5878,369 Q58.8831,369 59.094,369.2391 Q59.319,369.4641 59.319,369.7875 Q59.319,370.0969 59.0096,370.4625 Q58.5596,370.9969 57.8424,371.2922 Q56.9003,371.7 55.7471,371.7 Q54.3971,371.7 53.3143,371.1656 Q52.4424,370.7438 51.8237,369.8297 Q51.219,368.9156 51.219,367.8328 L51.219,366.8484 Q51.219,365.7234 51.7534,364.7391 Q52.3018,363.7547 53.244,363.2344 Q54.2003,362.7 55.269,362.7 Q55.9159,362.7 56.4784,362.925 Q57.0409,363.15 57.519,363.6 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="66.6" x="73.899" y="371.1691">MyApplication</text><line style="stroke:#A80036;stroke-width:1.35;" x1="18.009" x2="167.409" y1="381.15" y2="381.15"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="140.4" x="22.509" y="395.0271">final AppContainer appContainer</text><line style="stroke:#A80036;stroke-width:1.35;" x1="18.009" x2="167.409" y1="400.8023" y2="400.8023"/><!--MD5=[69572fb95abd67c79d5ad5db921e8728]
+class Messages--><rect codeLine="11" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="192.6281" id="Messages" style="stroke:#A80036;stroke-width:1.35;" width="260.1" x="1397.259" y="6.3"/><ellipse cx="1497.384" cy="20.7" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1499.184,17.55 Q1499.3668,17.1 1499.5778,16.875 Q1499.7887,16.65 1500.0278,16.65 Q1500.4496,16.65 1500.7168,16.9031 Q1500.984,17.1563 1500.984,17.7469 L1500.984,19.1531 Q1500.984,19.7438 1500.7309,19.9969 Q1500.4778,20.25 1500.084,20.25 Q1499.7324,20.25 1499.5074,20.0953 Q1499.2824,19.9406 1499.184,19.5328 Q1499.1418,19.2516 1498.9871,19.0969 Q1498.7059,18.8016 1498.1996,18.6328 Q1497.6934,18.45 1497.1871,18.45 Q1496.5543,18.45 1496.0199,18.7031 Q1495.4996,18.9563 1495.0918,19.5188 Q1494.684,20.0813 1494.684,20.8547 L1494.684,21.6844 Q1494.684,22.6125 1495.4434,23.2313 Q1496.2028,23.85 1497.5528,23.85 Q1498.3543,23.85 1498.9168,23.6672 Q1499.2403,23.5688 1499.6059,23.2453 Q1499.8449,23.0625 1499.9715,23.0063 Q1500.0981,22.95 1500.2528,22.95 Q1500.5481,22.95 1500.759,23.1891 Q1500.984,23.4141 1500.984,23.7375 Q1500.984,24.0469 1500.6746,24.4125 Q1500.2246,24.9469 1499.5074,25.2422 Q1498.5653,25.65 1497.4121,25.65 Q1496.0621,25.65 1494.9793,25.1156 Q1494.1074,24.6938 1493.4887,23.7797 Q1492.884,22.8656 1492.884,21.7828 L1492.884,20.7984 Q1492.884,19.6734 1493.4184,18.6891 Q1493.9668,17.7047 1494.909,17.1844 Q1495.8653,16.65 1496.934,16.65 Q1497.5809,16.65 1498.1434,16.875 Q1498.7059,17.1 1499.184,17.55 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="52.2" x="1515.834" y="25.1191">Messages</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1398.159" x2="1656.459" y1="35.1" y2="35.1"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="99.9" x="1402.659" y="48.9771">private String message</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="108.9" x="1402.659" y="61.4294">private String currenttime</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="96.3" x="1402.659" y="73.8817">private boolean isSent</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="66.6" x="1402.659" y="86.3341">private int color</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1398.159" x2="1656.459" y1="92.1094" y2="92.1094"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="249.3" x="1402.659" y="105.9864">void Messages(String message, int color, boolean isSent)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="71.1" x="1402.659" y="118.4388">boolean isSent()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="122.4" x="1402.659" y="130.8911">void setSend(boolean send)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="100.8" x="1402.659" y="143.3435">String getCurrentTime()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="170.1" x="1402.659" y="155.7958">void setCurrentTime(String currenttime)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="55.8" x="1402.659" y="168.2481">int getColor()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="98.1" x="1402.659" y="180.7005">void setColor(int color)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="148.5" x="1402.659" y="193.1528">void setMessage(String message)</text><!--MD5=[d218c48b946d362ff1ecd879cabebcad]
+class Room--><rect codeLine="27" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="254.8898" id="Room" style="stroke:#A80036;stroke-width:1.35;" width="321.3" x="2514.159" y="252.9"/><ellipse cx="2655.684" cy="267.3" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M2657.484,264.15 Q2657.6668,263.7 2657.8778,263.475 Q2658.0887,263.25 2658.3278,263.25 Q2658.7496,263.25 2659.0168,263.5031 Q2659.284,263.7563 2659.284,264.3469 L2659.284,265.7531 Q2659.284,266.3438 2659.0309,266.5969 Q2658.7778,266.85 2658.384,266.85 Q2658.0324,266.85 2657.8074,266.6953 Q2657.5824,266.5406 2657.484,266.1328 Q2657.4418,265.8516 2657.2871,265.6969 Q2657.0059,265.4016 2656.4996,265.2328 Q2655.9934,265.05 2655.4871,265.05 Q2654.8543,265.05 2654.3199,265.3031 Q2653.7996,265.5563 2653.3918,266.1188 Q2652.984,266.6813 2652.984,267.4547 L2652.984,268.2844 Q2652.984,269.2125 2653.7434,269.8313 Q2654.5028,270.45 2655.8528,270.45 Q2656.6543,270.45 2657.2168,270.2672 Q2657.5403,270.1688 2657.9059,269.8453 Q2658.1449,269.6625 2658.2715,269.6063 Q2658.3981,269.55 2658.5528,269.55 Q2658.8481,269.55 2659.059,269.7891 Q2659.284,270.0141 2659.284,270.3375 Q2659.284,270.6469 2658.9746,271.0125 Q2658.5246,271.5469 2657.8074,271.8422 Q2656.8653,272.25 2655.7121,272.25 Q2654.3621,272.25 2653.2793,271.7156 Q2652.4074,271.2938 2651.7887,270.3797 Q2651.184,269.4656 2651.184,268.3828 L2651.184,267.3984 Q2651.184,266.2734 2651.7184,265.2891 Q2652.2668,264.3047 2653.209,263.7844 Q2654.1653,263.25 2655.234,263.25 Q2655.8809,263.25 2656.4434,263.475 Q2657.0059,263.7 2657.484,264.15 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="30.6" x="2674.134" y="271.7191">Room</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2515.059" x2="2834.559" y1="281.7" y2="281.7"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="83.7" x="2519.559" y="295.5771">private String name</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="60.3" x="2519.559" y="308.0294">private long id</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="62.1" x="2519.559" y="320.4817">private int time</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="103.5" x="2519.559" y="332.9341">private long onlineusers</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="89.1" x="2519.559" y="345.3864">private int roomColor</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2515.059" x2="2834.559" y1="351.1617" y2="351.1617"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="200.7" x="2519.559" y="365.0388">void Room(String name, int time, int roomColor)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="310.5" x="2519.559" y="377.4911">void Room(String name, long id, int time, long onlineusers, int roomColor)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="72.9" x="2519.559" y="389.9435">String getName()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="117" x="2519.559" y="402.3958">void setName(String name)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="48.6" x="2519.559" y="414.8481">long getId()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="76.5" x="2519.559" y="427.3005">void setId(long id)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="53.1" x="2519.559" y="439.7528">int getTime()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="90.9" x="2519.559" y="452.2052">void setTime(int time)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="94.5" x="2519.559" y="464.6575">long getOnlineUsers()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="163.8" x="2519.559" y="477.1099">void setOnLineUser(long onlineusers)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="80.1" x="2519.559" y="489.5622">int getRoomColor()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="122.4" x="2519.559" y="502.0146">void setRoomColor(int color)</text><!--MD5=[a9b35dc26778de89a7e6c80ad985c30b]
+class ChatListener--><rect codeLine="48" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="117.9141" id="ChatListener" style="stroke:#A80036;stroke-width:1.35;" width="166.5" x="1894.959" y="321.3"/><ellipse cx="1942.884" cy="335.7" fill="#B4A7E5" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1943.784,333 L1943.784,338.4 L1945.584,338.4 L1946.0199,338.4 L1946.484,338.9625 L1946.484,339.3 L1946.484,339.6375 L1946.0199,340.2 L1945.584,340.2 L1940.184,340.2 L1939.7481,340.2 L1939.284,339.6375 L1939.284,339.3 L1939.284,338.9625 L1939.7481,338.4 L1940.184,338.4 L1941.984,338.4 L1941.984,333 L1940.184,333 L1939.7481,333 L1939.284,332.4375 L1939.284,332.1 L1939.284,331.7625 L1939.7481,331.2 L1940.184,331.2 L1945.584,331.2 L1946.0199,331.2 L1946.484,331.7625 L1946.484,332.1 L1946.484,332.4375 L1946.0199,333 L1945.584,333 L1943.784,333 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" font-style="italic" lengthAdjust="spacing" textLength="63" x="1961.334" y="340.1191">ChatListener</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1895.859" x2="2060.559" y1="350.1" y2="350.1"/><line style="stroke:#A80036;stroke-width:1.35;" x1="1895.859" x2="2060.559" y1="357.3" y2="357.3"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="132.3" x="1900.359" y="371.1771">void onUserFound(String msg)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="124.2" x="1900.359" y="383.6294">void onMessage(String msg)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="79.2" x="1900.359" y="396.0817">void onNextUser()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="90.9" x="1900.359" y="408.5341">void onTimeExpired()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="54" x="1900.359" y="420.9864">void onExit()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="155.7" x="1900.359" y="433.4388">void onUserCount(long usersCount)</text><!--MD5=[093ed4082292ecbe1c7f4622f4555adf]
+class Commands--><rect codeLine="57" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="167.7234" id="Commands" style="stroke:#A80036;stroke-width:1.35;" width="171" x="1689.309" y="18.9"/><ellipse cx="1741.284" cy="33.3" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1743.084,30.15 Q1743.2668,29.7 1743.4778,29.475 Q1743.6887,29.25 1743.9278,29.25 Q1744.3496,29.25 1744.6168,29.5031 Q1744.884,29.7563 1744.884,30.3469 L1744.884,31.7531 Q1744.884,32.3438 1744.6309,32.5969 Q1744.3778,32.85 1743.984,32.85 Q1743.6324,32.85 1743.4074,32.6953 Q1743.1824,32.5406 1743.084,32.1328 Q1743.0418,31.8516 1742.8871,31.6969 Q1742.6059,31.4016 1742.0996,31.2328 Q1741.5934,31.05 1741.0871,31.05 Q1740.4543,31.05 1739.9199,31.3031 Q1739.3996,31.5563 1738.9918,32.1188 Q1738.584,32.6813 1738.584,33.4547 L1738.584,34.2844 Q1738.584,35.2125 1739.3434,35.8313 Q1740.1028,36.45 1741.4528,36.45 Q1742.2543,36.45 1742.8168,36.2672 Q1743.1403,36.1688 1743.5059,35.8453 Q1743.7449,35.6625 1743.8715,35.6063 Q1743.9981,35.55 1744.1528,35.55 Q1744.4481,35.55 1744.659,35.7891 Q1744.884,36.0141 1744.884,36.3375 Q1744.884,36.6469 1744.5746,37.0125 Q1744.1246,37.5469 1743.4074,37.8422 Q1742.4653,38.25 1741.3121,38.25 Q1739.9621,38.25 1738.8793,37.7156 Q1738.0074,37.2938 1737.3887,36.3797 Q1736.784,35.4656 1736.784,34.3828 L1736.784,33.3984 Q1736.784,32.2734 1737.3184,31.2891 Q1737.8668,30.3047 1738.809,29.7844 Q1739.7653,29.25 1740.834,29.25 Q1741.4809,29.25 1742.0434,29.475 Q1742.6059,29.7 1743.084,30.15 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="59.4" x="1759.734" y="37.7191">Commands</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1690.209" x2="1859.409" y1="47.7" y2="47.7"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="144.9" x="1694.709" y="61.5771">static final char ENTER_IN_ROOM</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="123.3" x="1694.709" y="74.0294">static final char NEW_ROOM</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="121.5" x="1694.709" y="86.4817">static final char ROOM_LIST</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="160.2" x="1694.709" y="98.9341">static final char CHANGE_NICKNAME</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="122.4" x="1694.709" y="111.3864">static final char NEXT_USER</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="119.7" x="1694.709" y="123.8388">static final char SEND_MSG</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="131.4" x="1694.709" y="136.2911">static final char TIME_EXPIRED</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="88.2" x="1694.709" y="148.7435">static final char EXIT</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="153" x="1694.709" y="161.1958">static final char EXIT_FROM_ROOM</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="140.4" x="1694.709" y="173.6481">static final char USER_IN_ROOM</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1690.209" x2="1859.409" y1="179.4234" y2="179.4234"/><!--MD5=[7050bc688f755c93d013d6f6bce23641]
+class RandomChatClient--><rect codeLine="70" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="205.0805" id="RandomChatClient" style="stroke:#A80036;stroke-width:1.35;" width="187.2" x="2278.809" y="277.65"/><ellipse cx="2320.884" cy="292.05" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M2322.684,288.9 Q2322.8668,288.45 2323.0778,288.225 Q2323.2887,288 2323.5278,288 Q2323.9496,288 2324.2168,288.2531 Q2324.484,288.5063 2324.484,289.0969 L2324.484,290.5031 Q2324.484,291.0938 2324.2309,291.3469 Q2323.9778,291.6 2323.584,291.6 Q2323.2324,291.6 2323.0074,291.4453 Q2322.7824,291.2906 2322.684,290.8828 Q2322.6418,290.6016 2322.4871,290.4469 Q2322.2059,290.1516 2321.6996,289.9828 Q2321.1934,289.8 2320.6871,289.8 Q2320.0543,289.8 2319.5199,290.0531 Q2318.9996,290.3063 2318.5918,290.8688 Q2318.184,291.4313 2318.184,292.2047 L2318.184,293.0344 Q2318.184,293.9625 2318.9434,294.5813 Q2319.7028,295.2 2321.0528,295.2 Q2321.8543,295.2 2322.4168,295.0172 Q2322.7403,294.9188 2323.1059,294.5953 Q2323.3449,294.4125 2323.4715,294.3563 Q2323.5981,294.3 2323.7528,294.3 Q2324.0481,294.3 2324.259,294.5391 Q2324.484,294.7641 2324.484,295.0875 Q2324.484,295.3969 2324.1746,295.7625 Q2323.7246,296.2969 2323.0074,296.5922 Q2322.0653,297 2320.9121,297 Q2319.5621,297 2318.4793,296.4656 Q2317.6074,296.0438 2316.9887,295.1297 Q2316.384,294.2156 2316.384,293.1328 L2316.384,292.1484 Q2316.384,291.0234 2316.9184,290.0391 Q2317.4668,289.0547 2318.409,288.5344 Q2319.3653,288 2320.434,288 Q2321.0809,288 2321.6434,288.225 Q2322.2059,288.45 2322.684,288.9 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="95.4" x="2339.334" y="296.4691">RandomChatClient</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2279.709" x2="2465.109" y1="306.45" y2="306.45"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="176.4" x="2284.209" y="320.3271">private static RandomChatClient instance</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="81" x="2284.209" y="332.7794">private Socket soc</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="112.5" x="2284.209" y="345.2317">private BufferedReader in</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="118.8" x="2284.209" y="357.6841">private BufferedReader out</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="125.1" x="2284.209" y="370.1364">private final String HostName</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="82.8" x="2284.209" y="382.5888">private final int port</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2279.709" x2="2465.109" y1="388.3641" y2="388.3641"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="164.7" x="2284.209" y="402.2411">static RandomChatClient getInstance()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="98.1" x="2284.209" y="414.6935">void openConnection()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="99.9" x="2284.209" y="427.1458">void closeConnection()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="74.7" x="2284.209" y="439.5981">boolean isOpen()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="164.7" x="2284.209" y="452.0505">void write(char command, string msg)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="116.1" x="2284.209" y="464.5028">String readLine(int timeout)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="72.9" x="2284.209" y="476.9552">String readLine()</text><!--MD5=[adf81acd27be947692db5fea66e33b1a]
+class RandomChatRepository--><rect codeLine="87" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="192.6281" id="RandomChatRepository" style="stroke:#A80036;stroke-width:1.35;" width="258.3" x="200.259" y="283.95"/><ellipse cx="265.734" cy="298.35" fill="#B4A7E5" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M266.634,295.65 L266.634,301.05 L268.434,301.05 L268.8699,301.05 L269.334,301.6125 L269.334,301.95 L269.334,302.2875 L268.8699,302.85 L268.434,302.85 L263.034,302.85 L262.5981,302.85 L262.134,302.2875 L262.134,301.95 L262.134,301.6125 L262.5981,301.05 L263.034,301.05 L264.834,301.05 L264.834,295.65 L263.034,295.65 L262.5981,295.65 L262.134,295.0875 L262.134,294.75 L262.134,294.4125 L262.5981,293.85 L263.034,293.85 L268.434,293.85 L268.8699,293.85 L269.334,294.4125 L269.334,294.75 L269.334,295.0875 L268.8699,295.65 L268.434,295.65 L266.634,295.65 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" font-style="italic" lengthAdjust="spacing" textLength="119.7" x="284.184" y="302.7691">RandomChatRepository</text><line style="stroke:#A80036;stroke-width:1.35;" x1="201.159" x2="457.659" y1="312.75" y2="312.75"/><line style="stroke:#A80036;stroke-width:1.35;" x1="201.159" x2="457.659" y1="319.95" y2="319.95"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="63" x="205.659" y="333.8271">void connect()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="151.2" x="205.659" y="346.2794">void setNickname(String nickname)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="111.6" x="205.659" y="358.7317">List&lt;Room&gt; getAllrooms()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="162" x="205.659" y="371.1841">List&lt;Room&gt; getRooms(int from, int to)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="190.8" x="205.659" y="383.6364">List&lt;Room&gt; getRoomsByName(String name)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="123.3" x="205.659" y="396.0888">Room addRoom(Room room)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="247.5" x="205.659" y="408.5411">String enterRoom(Room room, ChatListener chatListener)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="135" x="205.659" y="420.9935">void sendMessage(String msg)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="67.5" x="205.659" y="433.4458">void nextUser()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="67.5" x="205.659" y="445.8981">void exitRoom()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="87.3" x="205.659" y="458.3505">void getUserCount()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="43.2" x="205.659" y="470.8028">void exit()</text><!--MD5=[506c3d61df21fb529b5d062bff2e1f4e]
+class RandomChatRepositoryImpl--><rect codeLine="102" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="117.9141" id="RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:1.35;" width="286.2" x="2041.209" y="704.7"/><ellipse cx="2109.834" cy="719.1" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M2111.634,715.95 Q2111.8168,715.5 2112.0278,715.275 Q2112.2387,715.05 2112.4778,715.05 Q2112.8996,715.05 2113.1668,715.3031 Q2113.434,715.5563 2113.434,716.1469 L2113.434,717.5531 Q2113.434,718.1438 2113.1809,718.3969 Q2112.9278,718.65 2112.534,718.65 Q2112.1824,718.65 2111.9574,718.4953 Q2111.7324,718.3406 2111.634,717.9328 Q2111.5918,717.6516 2111.4371,717.4969 Q2111.1559,717.2016 2110.6496,717.0328 Q2110.1434,716.85 2109.6371,716.85 Q2109.0043,716.85 2108.4699,717.1031 Q2107.9496,717.3563 2107.5418,717.9188 Q2107.134,718.4813 2107.134,719.2547 L2107.134,720.0844 Q2107.134,721.0125 2107.8934,721.6313 Q2108.6528,722.25 2110.0028,722.25 Q2110.8043,722.25 2111.3668,722.0672 Q2111.6903,721.9688 2112.0559,721.6453 Q2112.2949,721.4625 2112.4215,721.4063 Q2112.5481,721.35 2112.7028,721.35 Q2112.9981,721.35 2113.209,721.5891 Q2113.434,721.8141 2113.434,722.1375 Q2113.434,722.4469 2113.1246,722.8125 Q2112.6746,723.3469 2111.9574,723.6422 Q2111.0153,724.05 2109.8621,724.05 Q2108.5121,724.05 2107.4293,723.5156 Q2106.5574,723.0938 2105.9387,722.1797 Q2105.334,721.2656 2105.334,720.1828 L2105.334,719.1984 Q2105.334,718.0734 2105.8684,717.0891 Q2106.4168,716.1047 2107.359,715.5844 Q2108.3153,715.05 2109.384,715.05 Q2110.0309,715.05 2110.5934,715.275 Q2111.1559,715.5 2111.634,715.95 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="141.3" x="2128.284" y="723.5191">RandomChatRepositoryImpl</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2042.109" x2="2326.509" y1="733.5" y2="733.5"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="135.9" x="2046.609" y="747.3771">private RandomChatClient client</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="103.5" x="2046.609" y="759.8294">private boolean chatting</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="82.8" x="2046.609" y="772.2817">Thread chatThread</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2042.109" x2="2326.509" y1="778.057" y2="778.057"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="238.5" x="2046.609" y="791.9341">private final Consumer&lt;ChatListener&gt; chatThreadFun()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="251.1" x="2046.609" y="804.3864">private List&lt;Room&gt; getRooms(int from, int to, String name)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="275.4" x="2046.609" y="816.8388">private static String stringInside(String s, String left, String right)</text><!--MD5=[f1c82cf177a2543f667e4484b1bfbd41]
+class RoomNotExistsException--><rect codeLine="112" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="43.2" id="RoomNotExistsException" style="stroke:#A80036;stroke-width:1.35;" width="153.9" x="2092.959" y="358.65"/><ellipse cx="2106.459" cy="373.05" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M2108.259,369.9 Q2108.4418,369.45 2108.6528,369.225 Q2108.8637,369 2109.1028,369 Q2109.5246,369 2109.7918,369.2531 Q2110.059,369.5063 2110.059,370.0969 L2110.059,371.5031 Q2110.059,372.0938 2109.8059,372.3469 Q2109.5528,372.6 2109.159,372.6 Q2108.8074,372.6 2108.5824,372.4453 Q2108.3574,372.2906 2108.259,371.8828 Q2108.2168,371.6016 2108.0621,371.4469 Q2107.7809,371.1516 2107.2746,370.9828 Q2106.7684,370.8 2106.2621,370.8 Q2105.6293,370.8 2105.0949,371.0531 Q2104.5746,371.3063 2104.1668,371.8688 Q2103.759,372.4313 2103.759,373.2047 L2103.759,374.0344 Q2103.759,374.9625 2104.5184,375.5813 Q2105.2778,376.2 2106.6278,376.2 Q2107.4293,376.2 2107.9918,376.0172 Q2108.3153,375.9188 2108.6809,375.5953 Q2108.9199,375.4125 2109.0465,375.3563 Q2109.1731,375.3 2109.3278,375.3 Q2109.6231,375.3 2109.834,375.5391 Q2110.059,375.7641 2110.059,376.0875 Q2110.059,376.3969 2109.7496,376.7625 Q2109.2996,377.2969 2108.5824,377.5922 Q2107.6403,378 2106.4871,378 Q2105.1371,378 2104.0543,377.4656 Q2103.1824,377.0438 2102.5637,376.1297 Q2101.959,375.2156 2101.959,374.1328 L2101.959,373.1484 Q2101.959,372.0234 2102.4934,371.0391 Q2103.0418,370.0547 2103.984,369.5344 Q2104.9403,369 2106.009,369 Q2106.6559,369 2107.2184,369.225 Q2107.7809,369.45 2108.259,369.9 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="125.1" x="2119.059" y="377.4691">RoomNotExistsException</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2093.859" x2="2245.959" y1="387.45" y2="387.45"/><line style="stroke:#A80036;stroke-width:1.35;" x1="2093.859" x2="2245.959" y1="394.65" y2="394.65"/><!--MD5=[9474cd3c3012f1d2a95d86affcfc22d1]
+class ActivityChat--><rect codeLine="116" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="404.318" id="ActivityChat" style="stroke:#A80036;stroke-width:1.35;" width="252.9" x="1293.759" y="561.6"/><ellipse cx="1388.934" cy="576" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1390.734,572.85 Q1390.9168,572.4 1391.1278,572.175 Q1391.3387,571.95 1391.5778,571.95 Q1391.9996,571.95 1392.2668,572.2031 Q1392.534,572.4563 1392.534,573.0469 L1392.534,574.4531 Q1392.534,575.0438 1392.2809,575.2969 Q1392.0278,575.55 1391.634,575.55 Q1391.2824,575.55 1391.0574,575.3953 Q1390.8324,575.2406 1390.734,574.8328 Q1390.6918,574.5516 1390.5371,574.3969 Q1390.2559,574.1016 1389.7496,573.9328 Q1389.2434,573.75 1388.7371,573.75 Q1388.1043,573.75 1387.5699,574.0031 Q1387.0496,574.2563 1386.6418,574.8188 Q1386.234,575.3813 1386.234,576.1547 L1386.234,576.9844 Q1386.234,577.9125 1386.9934,578.5313 Q1387.7528,579.15 1389.1028,579.15 Q1389.9043,579.15 1390.4668,578.9672 Q1390.7903,578.8688 1391.1559,578.5453 Q1391.3949,578.3625 1391.5215,578.3063 Q1391.6481,578.25 1391.8028,578.25 Q1392.0981,578.25 1392.309,578.4891 Q1392.534,578.7141 1392.534,579.0375 Q1392.534,579.3469 1392.2246,579.7125 Q1391.7746,580.2469 1391.0574,580.5422 Q1390.1153,580.95 1388.9621,580.95 Q1387.6121,580.95 1386.5293,580.4156 Q1385.6574,579.9938 1385.0387,579.0797 Q1384.434,578.1656 1384.434,577.0828 L1384.434,576.0984 Q1384.434,574.9734 1384.9684,573.9891 Q1385.5168,573.0047 1386.459,572.4844 Q1387.4153,571.95 1388.484,571.95 Q1389.1309,571.95 1389.6934,572.175 Q1390.2559,572.4 1390.734,572.85 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="54.9" x="1407.384" y="580.4191">ActivityChat</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1294.659" x2="1545.759" y1="590.4" y2="590.4"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="242.1" x="1299.159" y="604.2771">private static final int AUDIO_RECORD_REQUEST_CODE</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="129.6" x="1299.159" y="616.7294">private EditText mgetmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="133.2" x="1299.159" y="629.1817">private String enteredmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="189" x="1299.159" y="641.6341">private CardView msendmessagecardview</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="183.6" x="1299.159" y="654.0864">private ImageButton msendmessagebutton</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="180.9" x="1299.159" y="666.5388">private Toolbar toolbarofspecificchatroom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="163.8" x="1299.159" y="678.9911">private TextView Nameofspecifitroom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="219.6" x="1299.159" y="691.4435">private ImageButton backbuttonofspecificchatroom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="216.9" x="1299.159" y="703.8958">private ArrayList&lt;Messages&gt; messagesArrayList</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="201.6" x="1299.159" y="716.3481">private RecyclerView mmessagerecyclerview</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="234" x="1299.159" y="728.8005">private MessagesRecyclerAdapter messagesAdapter</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="120.6" x="1299.159" y="741.2528">private Room selectedRoom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="107.1" x="1299.159" y="753.7052">private AlertDialog dialog</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="148.5" x="1299.159" y="766.1575">private TextView other_username</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="113.4" x="1299.159" y="778.6099">private TextView time_left</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="142.2" x="1299.159" y="791.0622">private TextView users_in_room</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="235.8" x="1299.159" y="803.5146">private RandomChatRepository randomChatRepository</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="179.1" x="1299.159" y="815.9669">private ExecutorService executorService</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="108.9" x="1299.159" y="828.4192">Thread updateUserCount</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="103.5" x="1299.159" y="840.8716">private boolean chatting</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="75.6" x="1299.159" y="853.3239">private int uCount</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="119.7" x="1299.159" y="865.7763">private Object uCountMutex</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="199.8" x="1299.159" y="878.2286">private SpeechRecognizer speechRecognizer</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1294.659" x2="1545.759" y1="884.0039" y2="884.0039"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="137.7" x="1299.159" y="897.881">private view initRecyclerView()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="192.6" x="1299.159" y="910.3333">private void scrollToBottom(RecyclerView r)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="117" x="1299.159" y="922.7856">private void loadingDialog()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="137.7" x="1299.159" y="935.238">private void countdown(int limit)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="158.4" x="1299.159" y="947.6903">private void checkAudioPermission()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="160.2" x="1299.159" y="960.1427">private void checkForFirstTimeUser()</text><!--MD5=[566be398e838d9b425bdb06af68f43b6]
+class MessagesRecyclerAdapter--><rect codeLine="149" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="105.4617" id="MessagesRecyclerAdapter" style="stroke:#A80036;stroke-width:1.35;" width="415.8" x="1447.209" y="327.6"/><ellipse cx="1585.134" cy="342" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1586.934,338.85 Q1587.1168,338.4 1587.3278,338.175 Q1587.5387,337.95 1587.7778,337.95 Q1588.1996,337.95 1588.4668,338.2031 Q1588.734,338.4563 1588.734,339.0469 L1588.734,340.4531 Q1588.734,341.0438 1588.4809,341.2969 Q1588.2278,341.55 1587.834,341.55 Q1587.4824,341.55 1587.2574,341.3953 Q1587.0324,341.2406 1586.934,340.8328 Q1586.8918,340.5516 1586.7371,340.3969 Q1586.4559,340.1016 1585.9496,339.9328 Q1585.4434,339.75 1584.9371,339.75 Q1584.3043,339.75 1583.7699,340.0031 Q1583.2496,340.2563 1582.8418,340.8188 Q1582.434,341.3813 1582.434,342.1547 L1582.434,342.9844 Q1582.434,343.9125 1583.1934,344.5313 Q1583.9528,345.15 1585.3028,345.15 Q1586.1043,345.15 1586.6668,344.9672 Q1586.9903,344.8688 1587.3559,344.5453 Q1587.5949,344.3625 1587.7215,344.3063 Q1587.8481,344.25 1588.0028,344.25 Q1588.2981,344.25 1588.509,344.4891 Q1588.734,344.7141 1588.734,345.0375 Q1588.734,345.3469 1588.4246,345.7125 Q1587.9746,346.2469 1587.2574,346.5422 Q1586.3153,346.95 1585.1621,346.95 Q1583.8121,346.95 1582.7293,346.4156 Q1581.8574,345.9938 1581.2387,345.0797 Q1580.634,344.1656 1580.634,343.0828 L1580.634,342.0984 Q1580.634,340.9734 1581.1684,339.9891 Q1581.7168,339.0047 1582.659,338.4844 Q1583.6153,337.95 1584.684,337.95 Q1585.3309,337.95 1585.8934,338.175 Q1586.4559,338.4 1586.934,338.85 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="132.3" x="1603.584" y="346.4191">MessagesRecyclerAdapter</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1448.109" x2="1862.109" y1="356.4" y2="356.4"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="68.4" x="1452.609" y="370.2771">Context context</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="184.5" x="1452.609" y="382.7294">ArrayList&lt;Messages&gt; messagesArrayList</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="107.1" x="1452.609" y="395.1817">private int messageSend</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="125.1" x="1452.609" y="407.6341">private int messageReceived</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1448.109" x2="1862.109" y1="413.4094" y2="413.4094"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="405" x="1452.609" y="427.2864">void MessagesRecyclerAdapter(Context context, ArrayList&lt;Messages&gt; messagesArrayList)</text><!--MD5=[e3847101778f61628c0723388b27a922]
+class RecyclerViewHolder--><rect codeLine="158" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="93.0094" id="RecyclerViewHolder" style="stroke:#A80036;stroke-width:1.35;" width="195.3" x="1594.359" y="717.3"/><ellipse cx="1638.684" cy="731.7" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1640.484,728.55 Q1640.6668,728.1 1640.8778,727.875 Q1641.0887,727.65 1641.3278,727.65 Q1641.7496,727.65 1642.0168,727.9031 Q1642.284,728.1563 1642.284,728.7469 L1642.284,730.1531 Q1642.284,730.7438 1642.0309,730.9969 Q1641.7778,731.25 1641.384,731.25 Q1641.0324,731.25 1640.8074,731.0953 Q1640.5824,730.9406 1640.484,730.5328 Q1640.4418,730.2516 1640.2871,730.0969 Q1640.0059,729.8016 1639.4996,729.6328 Q1638.9934,729.45 1638.4871,729.45 Q1637.8543,729.45 1637.3199,729.7031 Q1636.7996,729.9563 1636.3918,730.5188 Q1635.984,731.0813 1635.984,731.8547 L1635.984,732.6844 Q1635.984,733.6125 1636.7434,734.2313 Q1637.5028,734.85 1638.8528,734.85 Q1639.6543,734.85 1640.2168,734.6672 Q1640.5403,734.5688 1640.9059,734.2453 Q1641.1449,734.0625 1641.2715,734.0063 Q1641.3981,733.95 1641.5528,733.95 Q1641.8481,733.95 1642.059,734.1891 Q1642.284,734.4141 1642.284,734.7375 Q1642.284,735.0469 1641.9746,735.4125 Q1641.5246,735.9469 1640.8074,736.2422 Q1639.8653,736.65 1638.7121,736.65 Q1637.3621,736.65 1636.2793,736.1156 Q1635.4074,735.6938 1634.7887,734.7797 Q1634.184,733.8656 1634.184,732.7828 L1634.184,731.7984 Q1634.184,730.6734 1634.7184,729.6891 Q1635.2668,728.7047 1636.209,728.1844 Q1637.1653,727.65 1638.234,727.65 Q1638.8809,727.65 1639.4434,727.875 Q1640.0059,728.1 1640.484,728.55 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="99" x="1657.134" y="736.1191">RecyclerViewHolder</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1595.259" x2="1788.759" y1="746.1" y2="746.1"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="156.6" x="1599.759" y="759.9771">private TextView textViewmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="143.1" x="1599.759" y="772.4294">private TextView timeofmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="160.2" x="1599.759" y="784.8817">private RelativeLayout relativeLayout</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1595.259" x2="1788.759" y1="790.657" y2="790.657"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="184.5" x="1599.759" y="804.5341">void ReceiverViewHolder(View itemView)</text><!--MD5=[1d3238e00f6e851d596de040c499c642]
+class SenderViewHolder--><rect codeLine="166" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="93.0094" id="SenderViewHolder" style="stroke:#A80036;stroke-width:1.35;" width="188.1" x="1821.159" y="717.3"/><ellipse cx="1865.034" cy="731.7" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1866.834,728.55 Q1867.0168,728.1 1867.2278,727.875 Q1867.4387,727.65 1867.6778,727.65 Q1868.0996,727.65 1868.3668,727.9031 Q1868.634,728.1563 1868.634,728.7469 L1868.634,730.1531 Q1868.634,730.7438 1868.3809,730.9969 Q1868.1278,731.25 1867.734,731.25 Q1867.3824,731.25 1867.1574,731.0953 Q1866.9324,730.9406 1866.834,730.5328 Q1866.7918,730.2516 1866.6371,730.0969 Q1866.3559,729.8016 1865.8496,729.6328 Q1865.3434,729.45 1864.8371,729.45 Q1864.2043,729.45 1863.6699,729.7031 Q1863.1496,729.9563 1862.7418,730.5188 Q1862.334,731.0813 1862.334,731.8547 L1862.334,732.6844 Q1862.334,733.6125 1863.0934,734.2313 Q1863.8528,734.85 1865.2028,734.85 Q1866.0043,734.85 1866.5668,734.6672 Q1866.8903,734.5688 1867.2559,734.2453 Q1867.4949,734.0625 1867.6215,734.0063 Q1867.7481,733.95 1867.9028,733.95 Q1868.1981,733.95 1868.409,734.1891 Q1868.634,734.4141 1868.634,734.7375 Q1868.634,735.0469 1868.3246,735.4125 Q1867.8746,735.9469 1867.1574,736.2422 Q1866.2153,736.65 1865.0621,736.65 Q1863.7121,736.65 1862.6293,736.1156 Q1861.7574,735.6938 1861.1387,734.7797 Q1860.534,733.8656 1860.534,732.7828 L1860.534,731.7984 Q1860.534,730.6734 1861.0684,729.6891 Q1861.6168,728.7047 1862.559,728.1844 Q1863.5153,727.65 1864.584,727.65 Q1865.2309,727.65 1865.7934,727.875 Q1866.3559,728.1 1866.834,728.55 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="92.7" x="1883.484" y="736.1191">SenderViewHolder</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1822.059" x2="2008.359" y1="746.1" y2="746.1"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="156.6" x="1826.559" y="759.9771">private TextView textViewmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="143.1" x="1826.559" y="772.4294">private TextView timeofmessage</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="160.2" x="1826.559" y="784.8817">private RelativeLayout relativeLayout</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1822.059" x2="2008.359" y1="790.657" y2="790.657"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="177.3" x="1826.559" y="804.5341">void SenderViewHolder(View itemView)</text><!--MD5=[7e6f00f2e25293dc44f5c3b0ea007d4b]
+class ActivityRoom--><rect codeLine="174" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="354.5086" id="ActivityRoom" style="stroke:#A80036;stroke-width:1.35;" width="246.6" x="1263.609" y="1019.7"/><ellipse cx="1352.034" cy="1034.1" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1353.834,1030.95 Q1354.0168,1030.5 1354.2278,1030.275 Q1354.4387,1030.05 1354.6778,1030.05 Q1355.0996,1030.05 1355.3668,1030.3031 Q1355.634,1030.5563 1355.634,1031.1469 L1355.634,1032.5531 Q1355.634,1033.1438 1355.3809,1033.3969 Q1355.1278,1033.65 1354.734,1033.65 Q1354.3824,1033.65 1354.1574,1033.4953 Q1353.9324,1033.3406 1353.834,1032.9328 Q1353.7918,1032.6516 1353.6371,1032.4969 Q1353.3559,1032.2016 1352.8496,1032.0328 Q1352.3434,1031.85 1351.8371,1031.85 Q1351.2043,1031.85 1350.6699,1032.1031 Q1350.1496,1032.3563 1349.7418,1032.9188 Q1349.334,1033.4813 1349.334,1034.2547 L1349.334,1035.0844 Q1349.334,1036.0125 1350.0934,1036.6313 Q1350.8528,1037.25 1352.2028,1037.25 Q1353.0043,1037.25 1353.5668,1037.0672 Q1353.8903,1036.9688 1354.2559,1036.6453 Q1354.4949,1036.4625 1354.6215,1036.4063 Q1354.7481,1036.35 1354.9028,1036.35 Q1355.1981,1036.35 1355.409,1036.5891 Q1355.634,1036.8141 1355.634,1037.1375 Q1355.634,1037.4469 1355.3246,1037.8125 Q1354.8746,1038.3469 1354.1574,1038.6422 Q1353.2153,1039.05 1352.0621,1039.05 Q1350.7121,1039.05 1349.6293,1038.5156 Q1348.7574,1038.0938 1348.1387,1037.1797 Q1347.534,1036.2656 1347.534,1035.1828 L1347.534,1034.1984 Q1347.534,1033.0734 1348.0684,1032.0891 Q1348.6168,1031.1047 1349.559,1030.5844 Q1350.5153,1030.05 1351.584,1030.05 Q1352.2309,1030.05 1352.7934,1030.275 Q1353.3559,1030.5 1353.834,1030.95 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="62.1" x="1370.484" y="1038.5191">ActivityRoom</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1264.509" x2="1509.309" y1="1048.5" y2="1048.5"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="126.9" x="1269.009" y="1062.3771">private static final String TAG</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="130.5" x="1269.009" y="1074.8294">private RecyclerView rvRoom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="193.5" x="1269.009" y="1087.2817">private LinearLayoutManager layoutManager</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="124.2" x="1269.009" y="1099.7341">private TextView titleToolbar</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="127.8" x="1269.009" y="1112.1864">private RoomAdapter adapter</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="192.6" x="1269.009" y="1124.6388">private FloatingActionButton buttonnewroom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="219.6" x="1269.009" y="1137.0911">private SwipeRefreshLayout swipeRefreshLayout</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="132.3" x="1269.009" y="1149.5435">private TextView emptyView1</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="132.3" x="1269.009" y="1161.9958">private TextView emptyView2</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="138.6" x="1269.009" y="1174.4481">private ImageView emptyView3</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="108" x="1269.009" y="1186.9005">private View emptyView</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="107.1" x="1269.009" y="1199.3528">private AlertDialog dialog</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="119.7" x="1269.009" y="1211.8052">private Builder dialogBuilder</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="112.5" x="1269.009" y="1224.2575">private List&lt;Room&gt; rooms</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="140.4" x="1269.009" y="1236.7099">private List&lt;Room&gt; searchRoom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="117.9" x="1269.009" y="1249.1622">private TextView curr_nick</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="120.6" x="1269.009" y="1261.6146">private SearchView search</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="144.9" x="1269.009" y="1274.0669">private LinearLayout linearLayout</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="100.8" x="1269.009" y="1286.5192">private String nickname</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="235.8" x="1269.009" y="1298.9716">private RandomChatRepository randomChatRepository</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1264.509" x2="1509.309" y1="1304.7469" y2="1304.7469"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="134.1" x="1269.009" y="1318.6239">private void initRecyclerView()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="140.4" x="1269.009" y="1331.0763">void checkRecyclerviewEmpty()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="112.5" x="1269.009" y="1343.5286">private void refreshData()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="118.8" x="1269.009" y="1355.981">List&lt;Room&gt; getListRooms()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="160.2" x="1269.009" y="1368.4333">private void checkForFirstTimeUser()</text><!--MD5=[5db00888549904919e3a09c35d77129e]
+class MainActivity--><rect codeLine="203" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="117.9141" id="MainActivity" style="stroke:#A80036;stroke-width:1.35;" width="242.1" x="658.359" y="1428.3"/><ellipse cx="748.134" cy="1442.7" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M749.934,1439.55 Q750.1168,1439.1 750.3278,1438.875 Q750.5387,1438.65 750.7778,1438.65 Q751.1996,1438.65 751.4668,1438.9031 Q751.734,1439.1563 751.734,1439.7469 L751.734,1441.1531 Q751.734,1441.7438 751.4809,1441.9969 Q751.2278,1442.25 750.834,1442.25 Q750.4824,1442.25 750.2574,1442.0953 Q750.0324,1441.9406 749.934,1441.5328 Q749.8918,1441.2516 749.7371,1441.0969 Q749.4559,1440.8016 748.9496,1440.6328 Q748.4434,1440.45 747.9371,1440.45 Q747.3043,1440.45 746.7699,1440.7031 Q746.2496,1440.9563 745.8418,1441.5188 Q745.434,1442.0813 745.434,1442.8547 L745.434,1443.6844 Q745.434,1444.6125 746.1934,1445.2313 Q746.9528,1445.85 748.3028,1445.85 Q749.1043,1445.85 749.6668,1445.6672 Q749.9903,1445.5688 750.3559,1445.2453 Q750.5949,1445.0625 750.7215,1445.0063 Q750.8481,1444.95 751.0028,1444.95 Q751.2981,1444.95 751.509,1445.1891 Q751.734,1445.4141 751.734,1445.7375 Q751.734,1446.0469 751.4246,1446.4125 Q750.9746,1446.9469 750.2574,1447.2422 Q749.3153,1447.65 748.1621,1447.65 Q746.8121,1447.65 745.7293,1447.1156 Q744.8574,1446.6938 744.2387,1445.7797 Q743.634,1444.8656 743.634,1443.7828 L743.634,1442.7984 Q743.634,1441.6734 744.1684,1440.6891 Q744.7168,1439.7047 745.659,1439.1844 Q746.6153,1438.65 747.684,1438.65 Q748.3309,1438.65 748.8934,1438.875 Q749.4559,1439.1 749.934,1439.55 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="54.9" x="766.584" y="1447.1191">MainActivity</text><line style="stroke:#A80036;stroke-width:1.35;" x1="659.259" x2="899.559" y1="1457.1" y2="1457.1"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="131.4" x="663.759" y="1470.9771">private EditText NicknameUser</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="139.5" x="663.759" y="1483.4294">private Button button_start_chat</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="90" x="663.759" y="1495.8817">CheckBox checkBox</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="203.4" x="663.759" y="1508.3341">RandomChatRepository randomChatRepository</text><line style="stroke:#A80036;stroke-width:1.35;" x1="659.259" x2="899.559" y1="1514.1094" y2="1514.1094"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="114.3" x="663.759" y="1527.9864">private void isConnected()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="231.3" x="663.759" y="1540.4388">public boolean EditTextisEmpty(EditText niknameuser)</text><!--MD5=[18662040187824ef8f2a45dd12c6070c]
+class NetworkErrorFactory--><rect codeLine="213" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="55.6523" id="NetworkErrorFactory" style="stroke:#A80036;stroke-width:1.35;" width="339.3" x="1012.059" y="352.35"/><ellipse cx="1127.934" cy="366.75" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1129.734,363.6 Q1129.9168,363.15 1130.1278,362.925 Q1130.3387,362.7 1130.5778,362.7 Q1130.9996,362.7 1131.2668,362.9531 Q1131.534,363.2063 1131.534,363.7969 L1131.534,365.2031 Q1131.534,365.7938 1131.2809,366.0469 Q1131.0278,366.3 1130.634,366.3 Q1130.2824,366.3 1130.0574,366.1453 Q1129.8324,365.9906 1129.734,365.5828 Q1129.6918,365.3016 1129.5371,365.1469 Q1129.2559,364.8516 1128.7496,364.6828 Q1128.2434,364.5 1127.7371,364.5 Q1127.1043,364.5 1126.5699,364.7531 Q1126.0496,365.0063 1125.6418,365.5688 Q1125.234,366.1313 1125.234,366.9047 L1125.234,367.7344 Q1125.234,368.6625 1125.9934,369.2813 Q1126.7528,369.9 1128.1028,369.9 Q1128.9043,369.9 1129.4668,369.7172 Q1129.7903,369.6188 1130.1559,369.2953 Q1130.3949,369.1125 1130.5215,369.0563 Q1130.6481,369 1130.8028,369 Q1131.0981,369 1131.309,369.2391 Q1131.534,369.4641 1131.534,369.7875 Q1131.534,370.0969 1131.2246,370.4625 Q1130.7746,370.9969 1130.0574,371.2922 Q1129.1153,371.7 1127.9621,371.7 Q1126.6121,371.7 1125.5293,371.1656 Q1124.6574,370.7438 1124.0387,369.8297 Q1123.434,368.9156 1123.434,367.8328 L1123.434,366.8484 Q1123.434,365.7234 1123.9684,364.7391 Q1124.5168,363.7547 1125.459,363.2344 Q1126.4153,362.7 1127.484,362.7 Q1128.1309,362.7 1128.6934,362.925 Q1129.2559,363.15 1129.734,363.6 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="99.9" x="1146.384" y="371.1691">NetworkErrorFactory</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1012.959" x2="1350.459" y1="381.15" y2="381.15"/><line style="stroke:#A80036;stroke-width:1.35;" x1="1012.959" x2="1350.459" y1="388.35" y2="388.35"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="328.5" x="1017.459" y="402.2271">static AlertDialog newNetworkError(Activity activity, String msg, TYPE type)</text><!--MD5=[b3916e831174371448c5924027d086ed]
+class TYPE--><rect codeLine="217" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="80.557" id="TYPE" style="stroke:#A80036;stroke-width:1.35;" width="70.2" x="1891.809" y="62.1"/><ellipse cx="1911.789" cy="76.5" fill="#EB937F" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1910.439,77.4 L1910.439,79.2 L1914.039,79.2 L1914.039,78.3 L1914.039,77.8641 L1914.6015,77.4 L1914.939,77.4 L1915.2765,77.4 L1915.839,77.8641 L1915.839,78.3 L1915.839,81 L1908.639,81 L1908.2031,81 L1907.739,80.4375 L1907.739,80.1 L1907.739,79.7625 L1908.2031,79.2 L1908.639,79.2 L1908.639,79.2 L1908.639,73.8 L1908.639,73.8 L1908.2031,73.8 L1907.739,73.2375 L1907.739,72.9 L1907.739,72.5625 L1908.2031,72 L1908.639,72 L1915.839,72 L1915.839,74.7 L1915.839,75.1359 L1915.2765,75.6 L1914.939,75.6 L1914.6015,75.6 L1914.039,75.1359 L1914.039,74.7 L1914.039,73.8 L1910.439,73.8 L1910.439,75.6 L1911.339,75.6 L1911.339,75.1641 L1911.339,75.1641 L1911.9015,74.7 L1912.239,74.7 L1912.5765,74.7 L1913.139,75.1641 L1913.139,75.6 L1913.139,77.4 L1913.139,77.8359 L1912.5765,78.3 L1912.5765,78.3 L1912.239,78.3 L1911.9015,78.3 L1911.339,77.8359 L1911.339,77.8359 L1911.339,77.4 L1910.439,77.4 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="27" x="1925.829" y="80.9191">TYPE</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1892.709" x2="1961.109" y1="90.9" y2="90.9"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="50.4" x="1897.209" y="104.7771">TERMINATE</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="43.2" x="1897.209" y="117.2294">CONNECT</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="59.4" x="1897.209" y="129.6817">DO_NOTHING</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1892.709" x2="1961.109" y1="135.457" y2="135.457"/><!--MD5=[434612c98ed939e139e5b64a3c517443]
+class PopupChangeNickname--><rect codeLine="223" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="80.557" id="PopupChangeNickname" style="stroke:#A80036;stroke-width:1.35;" width="566.1" x="567.459" y="723.15"/><ellipse cx="785.484" cy="737.55" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M787.284,734.4 Q787.4668,733.95 787.6778,733.725 Q787.8887,733.5 788.1278,733.5 Q788.5496,733.5 788.8168,733.7531 Q789.084,734.0063 789.084,734.5969 L789.084,736.0031 Q789.084,736.5938 788.8309,736.8469 Q788.5778,737.1 788.184,737.1 Q787.8324,737.1 787.6074,736.9453 Q787.3824,736.7906 787.284,736.3828 Q787.2418,736.1016 787.0871,735.9469 Q786.8059,735.6516 786.2996,735.4828 Q785.7934,735.3 785.2871,735.3 Q784.6543,735.3 784.1199,735.5531 Q783.5996,735.8063 783.1918,736.3688 Q782.784,736.9313 782.784,737.7047 L782.784,738.5344 Q782.784,739.4625 783.5434,740.0813 Q784.3028,740.7 785.6528,740.7 Q786.4543,740.7 787.0168,740.5172 Q787.3403,740.4188 787.7059,740.0953 Q787.9449,739.9125 788.0715,739.8563 Q788.1981,739.8 788.3528,739.8 Q788.6481,739.8 788.859,740.0391 Q789.084,740.2641 789.084,740.5875 Q789.084,740.8969 788.7746,741.2625 Q788.3246,741.7969 787.6074,742.0922 Q786.6653,742.5 785.5121,742.5 Q784.1621,742.5 783.0793,741.9656 Q782.2074,741.5438 781.5887,740.6297 Q780.984,739.7156 780.984,738.6328 L780.984,737.6484 Q780.984,736.5234 781.5184,735.5391 Q782.0668,734.5547 783.009,734.0344 Q783.9653,733.5 785.034,733.5 Q785.6809,733.5 786.2434,733.725 Q786.8059,733.95 787.284,734.4 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="122.4" x="803.934" y="741.9691">PopupChangeNickname</text><line style="stroke:#A80036;stroke-width:1.35;" x1="568.359" x2="1132.659" y1="751.95" y2="751.95"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="128.7" x="572.859" y="765.8271">private Button confirmChange</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="111.6" x="572.859" y="778.2794">private EditText stringNick</text><line style="stroke:#A80036;stroke-width:1.35;" x1="568.359" x2="1132.659" y1="784.0547" y2="784.0547"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="555.3" x="572.859" y="797.9317">void showPopupWindow(final View view, TextView curr_nick, Activity activity, RandomChatRepository randomChatRepository)</text><!--MD5=[0ddd3b06a569f7add20291688a40cff9]
+class PopupEnterInRoom--><rect codeLine="230" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="105.4617" id="PopupEnterInRoom" style="stroke:#A80036;stroke-width:1.35;" width="318.6" x="1272.609" y="1434.6"/><ellipse cx="1379.034" cy="1449" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M1380.834,1445.85 Q1381.0168,1445.4 1381.2278,1445.175 Q1381.4387,1444.95 1381.6778,1444.95 Q1382.0996,1444.95 1382.3668,1445.2031 Q1382.634,1445.4563 1382.634,1446.0469 L1382.634,1447.4531 Q1382.634,1448.0438 1382.3809,1448.2969 Q1382.1278,1448.55 1381.734,1448.55 Q1381.3824,1448.55 1381.1574,1448.3953 Q1380.9324,1448.2406 1380.834,1447.8328 Q1380.7918,1447.5516 1380.6371,1447.3969 Q1380.3559,1447.1016 1379.8496,1446.9328 Q1379.3434,1446.75 1378.8371,1446.75 Q1378.2043,1446.75 1377.6699,1447.0031 Q1377.1496,1447.2563 1376.7418,1447.8188 Q1376.334,1448.3813 1376.334,1449.1547 L1376.334,1449.9844 Q1376.334,1450.9125 1377.0934,1451.5313 Q1377.8528,1452.15 1379.2028,1452.15 Q1380.0043,1452.15 1380.5668,1451.9672 Q1380.8903,1451.8688 1381.2559,1451.5453 Q1381.4949,1451.3625 1381.6215,1451.3063 Q1381.7481,1451.25 1381.9028,1451.25 Q1382.1981,1451.25 1382.409,1451.4891 Q1382.634,1451.7141 1382.634,1452.0375 Q1382.634,1452.3469 1382.3246,1452.7125 Q1381.8746,1453.2469 1381.1574,1453.5422 Q1380.2153,1453.95 1379.0621,1453.95 Q1377.7121,1453.95 1376.6293,1453.4156 Q1375.7574,1452.9938 1375.1387,1452.0797 Q1374.534,1451.1656 1374.534,1450.0828 L1374.534,1449.0984 Q1374.534,1447.9734 1375.0684,1446.9891 Q1375.6168,1446.0047 1376.559,1445.4844 Q1377.5153,1444.95 1378.584,1444.95 Q1379.2309,1444.95 1379.7934,1445.175 Q1380.3559,1445.4 1380.834,1445.85 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="98.1" x="1397.484" y="1453.4191">PopupEnterInRoom</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1273.509" x2="1590.309" y1="1463.4" y2="1463.4"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="117.9" x="1278.009" y="1477.2771">private Button confirmEnter</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="126" x="1278.009" y="1489.7294">private EditText stringRoomID</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="52.2" x="1278.009" y="1502.1817">private int id</text><line style="stroke:#A80036;stroke-width:1.35;" x1="1273.509" x2="1590.309" y1="1507.957" y2="1507.957"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="307.8" x="1278.009" y="1521.8341">public void showPopupWindow(final View view, ActivityRoom activity)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="198.9" x="1278.009" y="1534.2864">Room findRoomById(int id, List&lt;Room&gt; rooms)</text><!--MD5=[edfd2e00463e9d7bf884bd5bb1d5b46d]
+class PopupNewRoom--><rect codeLine="239" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="130.3664" id="PopupNewRoom" style="stroke:#A80036;stroke-width:1.35;" width="374.4" x="2422.809" y="698.4"/><ellipse cx="2563.434" cy="712.8" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M2565.234,709.65 Q2565.4168,709.2 2565.6278,708.975 Q2565.8387,708.75 2566.0778,708.75 Q2566.4996,708.75 2566.7668,709.0031 Q2567.034,709.2563 2567.034,709.8469 L2567.034,711.2531 Q2567.034,711.8438 2566.7809,712.0969 Q2566.5278,712.35 2566.134,712.35 Q2565.7824,712.35 2565.5574,712.1953 Q2565.3324,712.0406 2565.234,711.6328 Q2565.1918,711.3516 2565.0371,711.1969 Q2564.7559,710.9016 2564.2496,710.7328 Q2563.7434,710.55 2563.2371,710.55 Q2562.6043,710.55 2562.0699,710.8031 Q2561.5496,711.0563 2561.1418,711.6188 Q2560.734,712.1813 2560.734,712.9547 L2560.734,713.7844 Q2560.734,714.7125 2561.4934,715.3313 Q2562.2528,715.95 2563.6028,715.95 Q2564.4043,715.95 2564.9668,715.7672 Q2565.2903,715.6688 2565.6559,715.3453 Q2565.8949,715.1625 2566.0215,715.1063 Q2566.1481,715.05 2566.3028,715.05 Q2566.5981,715.05 2566.809,715.2891 Q2567.034,715.5141 2567.034,715.8375 Q2567.034,716.1469 2566.7246,716.5125 Q2566.2746,717.0469 2565.5574,717.3422 Q2564.6153,717.75 2563.4621,717.75 Q2562.1121,717.75 2561.0293,717.2156 Q2560.1574,716.7938 2559.5387,715.8797 Q2558.934,714.9656 2558.934,713.8828 L2558.934,712.8984 Q2558.934,711.7734 2559.4684,710.7891 Q2560.0168,709.8047 2560.959,709.2844 Q2561.9153,708.75 2562.984,708.75 Q2563.6309,708.75 2564.1934,708.975 Q2564.7559,709.2 2565.234,709.65 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="85.5" x="2581.884" y="717.2191">PopupNewRoom</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2423.709" x2="2796.309" y1="727.2" y2="727.2"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="132.3" x="2428.209" y="741.0771">private Button createnewroom</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="120.6" x="2428.209" y="753.5294">private EditText timeEditText</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="111.6" x="2428.209" y="765.9817">private Button buttoncolor</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="119.7" x="2428.209" y="778.4341">private EditText room_name</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="66.6" x="2428.209" y="790.8864">private int color</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2423.709" x2="2796.309" y1="796.6617" y2="796.6617"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="363.6" x="2428.209" y="810.5388">public void showPopupWindow(final View view, Consumer&lt;Room&gt; onCreateRoom)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="126" x="2428.209" y="822.9911">private void setLayoutColor()</text><!--MD5=[866efc22335fdeae31e2fdc2800af1e4]
+class RoomAdapter--><rect codeLine="250" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="105.4617" id="RoomAdapter" style="stroke:#A80036;stroke-width:1.35;" width="315" x="2892.609" y="711"/><ellipse cx="3012.084" cy="725.4" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M3013.884,722.25 Q3014.0668,721.8 3014.2778,721.575 Q3014.4887,721.35 3014.7278,721.35 Q3015.1496,721.35 3015.4168,721.6031 Q3015.684,721.8563 3015.684,722.4469 L3015.684,723.8531 Q3015.684,724.4438 3015.4309,724.6969 Q3015.1778,724.95 3014.784,724.95 Q3014.4324,724.95 3014.2074,724.7953 Q3013.9824,724.6406 3013.884,724.2328 Q3013.8418,723.9516 3013.6871,723.7969 Q3013.4059,723.5016 3012.8996,723.3328 Q3012.3934,723.15 3011.8871,723.15 Q3011.2543,723.15 3010.7199,723.4031 Q3010.1996,723.6563 3009.7918,724.2188 Q3009.384,724.7813 3009.384,725.5547 L3009.384,726.3844 Q3009.384,727.3125 3010.1434,727.9313 Q3010.9028,728.55 3012.2528,728.55 Q3013.0543,728.55 3013.6168,728.3672 Q3013.9403,728.2688 3014.3059,727.9453 Q3014.5449,727.7625 3014.6715,727.7063 Q3014.7981,727.65 3014.9528,727.65 Q3015.2481,727.65 3015.459,727.8891 Q3015.684,728.1141 3015.684,728.4375 Q3015.684,728.7469 3015.3746,729.1125 Q3014.9246,729.6469 3014.2074,729.9422 Q3013.2653,730.35 3012.1121,730.35 Q3010.7621,730.35 3009.6793,729.8156 Q3008.8074,729.3938 3008.1887,728.4797 Q3007.584,727.5656 3007.584,726.4828 L3007.584,725.4984 Q3007.584,724.3734 3008.1184,723.3891 Q3008.6668,722.4047 3009.609,721.8844 Q3010.5653,721.35 3011.634,721.35 Q3012.2809,721.35 3012.8434,721.575 Q3013.4059,721.8 3013.884,722.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="68.4" x="3030.534" y="729.8191">RoomAdapter</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2893.509" x2="3206.709" y1="739.8" y2="739.8"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="112.5" x="2898.009" y="753.6771">private List&lt;Room&gt; rooms</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="184.5" x="2898.009" y="766.1294">private OnRoomListener nOnRoomListener</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2893.509" x2="3206.709" y1="771.9047" y2="771.9047"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="304.2" x="2898.009" y="785.7817">RoomAdapter(List&lt;Room&gt; rooms, OnRoomListener nOnRoomListener)</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="93.6" x="2898.009" y="798.2341">List&lt;Room&gt; getData()</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="141.3" x="2898.009" y="810.6864">void setData(List&lt;Room&gt; rooms)</text><!--MD5=[e4103b47a8d107a0c944a3220c131a73]
+class OnRoomListener--><rect codeLine="259" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="55.6523" id="OnRoomListener" style="stroke:#A80036;stroke-width:1.35;" width="141.3" x="3090.159" y="352.35"/><ellipse cx="3116.214" cy="366.75" fill="#B4A7E5" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M3117.114,364.05 L3117.114,369.45 L3118.914,369.45 L3119.3499,369.45 L3119.814,370.0125 L3119.814,370.35 L3119.814,370.6875 L3119.3499,371.25 L3118.914,371.25 L3113.514,371.25 L3113.0781,371.25 L3112.614,370.6875 L3112.614,370.35 L3112.614,370.0125 L3113.0781,369.45 L3113.514,369.45 L3115.314,369.45 L3115.314,364.05 L3113.514,364.05 L3113.0781,364.05 L3112.614,363.4875 L3112.614,363.15 L3112.614,362.8125 L3113.0781,362.25 L3113.514,362.25 L3118.914,362.25 L3119.3499,362.25 L3119.814,362.8125 L3119.814,363.15 L3119.814,363.4875 L3119.3499,364.05 L3118.914,364.05 L3117.114,364.05 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" font-style="italic" lengthAdjust="spacing" textLength="84.6" x="3131.604" y="371.1691">OnRoomListener</text><line style="stroke:#A80036;stroke-width:1.35;" x1="3091.059" x2="3230.559" y1="381.15" y2="381.15"/><line style="stroke:#A80036;stroke-width:1.35;" x1="3091.059" x2="3230.559" y1="388.35" y2="388.35"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="130.5" x="3095.559" y="402.2271">void OnRoomClick(int position)</text><!--MD5=[90ddb6c12d06a822c536927a69202fcf]
+class ViewHolder--><rect codeLine="263" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="130.3664" id="ViewHolder" style="stroke:#A80036;stroke-width:1.35;" width="286.2" x="2907.009" y="1131.75"/><ellipse cx="3017.934" cy="1146.15" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M3019.734,1143 Q3019.9168,1142.55 3020.1278,1142.325 Q3020.3387,1142.1 3020.5778,1142.1 Q3020.9996,1142.1 3021.2668,1142.3531 Q3021.534,1142.6063 3021.534,1143.1969 L3021.534,1144.6031 Q3021.534,1145.1938 3021.2809,1145.4469 Q3021.0278,1145.7 3020.634,1145.7 Q3020.2824,1145.7 3020.0574,1145.5453 Q3019.8324,1145.3906 3019.734,1144.9828 Q3019.6918,1144.7016 3019.5371,1144.5469 Q3019.2559,1144.2516 3018.7496,1144.0828 Q3018.2434,1143.9 3017.7371,1143.9 Q3017.1043,1143.9 3016.5699,1144.1531 Q3016.0496,1144.4063 3015.6418,1144.9688 Q3015.234,1145.5313 3015.234,1146.3047 L3015.234,1147.1344 Q3015.234,1148.0625 3015.9934,1148.6813 Q3016.7528,1149.3 3018.1028,1149.3 Q3018.9043,1149.3 3019.4668,1149.1172 Q3019.7903,1149.0188 3020.1559,1148.6953 Q3020.3949,1148.5125 3020.5215,1148.4563 Q3020.6481,1148.4 3020.8028,1148.4 Q3021.0981,1148.4 3021.309,1148.6391 Q3021.534,1148.8641 3021.534,1149.1875 Q3021.534,1149.4969 3021.2246,1149.8625 Q3020.7746,1150.3969 3020.0574,1150.6922 Q3019.1153,1151.1 3017.9621,1151.1 Q3016.6121,1151.1 3015.5293,1150.5656 Q3014.6574,1150.1438 3014.0387,1149.2297 Q3013.434,1148.3156 3013.434,1147.2328 L3013.434,1146.2484 Q3013.434,1145.1234 3013.9684,1144.1391 Q3014.5168,1143.1547 3015.459,1142.6344 Q3016.4153,1142.1 3017.484,1142.1 Q3018.1309,1142.1 3018.6934,1142.325 Q3019.2559,1142.55 3019.734,1143 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="56.7" x="3036.384" y="1150.5691">ViewHolder</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2907.909" x2="3192.309" y1="1160.55" y2="1160.55"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="123.3" x="2912.409" y="1174.4271">private TextView roomName</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="106.2" x="2912.409" y="1186.8794">private TextView roomid</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="94.5" x="2912.409" y="1199.3317">private TextView time</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="122.4" x="2912.409" y="1211.7841">private TextView onlineuser</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="122.4" x="2912.409" y="1224.2364">private CardView cardView</text><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="177.3" x="2912.409" y="1236.6888">private OnRoomListener onRoomListener</text><line style="stroke:#A80036;stroke-width:1.35;" x1="2907.909" x2="3192.309" y1="1242.4641" y2="1242.4641"/><text fill="#000000" font-family="sans-serif" font-size="9.9" lengthAdjust="spacing" textLength="275.4" x="2912.409" y="1256.3411">ViewHolder(View itemView, OnRoomListener onRoomListener)</text><!--MD5=[6d6c0cc7fd3f1c2723ab41e08c288e8a]
+class Splashscreen--><rect codeLine="274" fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="43.2" id="Splashscreen" style="stroke:#A80036;stroke-width:1.35;" width="98.1" x="730.359" y="1600.2"/><ellipse cx="743.859" cy="1614.6" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M745.659,1611.45 Q745.8418,1611 746.0528,1610.775 Q746.2637,1610.55 746.5028,1610.55 Q746.9246,1610.55 747.1918,1610.8031 Q747.459,1611.0563 747.459,1611.6469 L747.459,1613.0531 Q747.459,1613.6438 747.2059,1613.8969 Q746.9528,1614.15 746.559,1614.15 Q746.2074,1614.15 745.9824,1613.9953 Q745.7574,1613.8406 745.659,1613.4328 Q745.6168,1613.1516 745.4621,1612.9969 Q745.1809,1612.7016 744.6746,1612.5328 Q744.1684,1612.35 743.6621,1612.35 Q743.0293,1612.35 742.4949,1612.6031 Q741.9746,1612.8563 741.5668,1613.4188 Q741.159,1613.9813 741.159,1614.7547 L741.159,1615.5844 Q741.159,1616.5125 741.9184,1617.1313 Q742.6778,1617.75 744.0278,1617.75 Q744.8293,1617.75 745.3918,1617.5672 Q745.7153,1617.4688 746.0809,1617.1453 Q746.3199,1616.9625 746.4465,1616.9063 Q746.5731,1616.85 746.7278,1616.85 Q747.0231,1616.85 747.234,1617.0891 Q747.459,1617.3141 747.459,1617.6375 Q747.459,1617.9469 747.1496,1618.3125 Q746.6996,1618.8469 745.9824,1619.1422 Q745.0403,1619.55 743.8871,1619.55 Q742.5371,1619.55 741.4543,1619.0156 Q740.5824,1618.5938 739.9637,1617.6797 Q739.359,1616.7656 739.359,1615.6828 L739.359,1614.6984 Q739.359,1613.5734 739.8934,1612.5891 Q740.4418,1611.6047 741.384,1611.0844 Q742.3403,1610.55 743.409,1610.55 Q744.0559,1610.55 744.6184,1610.775 Q745.1809,1611 745.659,1611.45 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="69.3" x="756.459" y="1619.0191">Splashscreen</text><line style="stroke:#A80036;stroke-width:1.35;" x1="731.259" x2="827.559" y1="1629" y2="1629"/><line style="stroke:#A80036;stroke-width:1.35;" x1="731.259" x2="827.559" y1="1636.2" y2="1636.2"/><!--MD5=[cd7ba789e611af187bd95ee1d923e272]
+class randomChatRepository--><rect fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="43.2" id="randomChatRepository" style="stroke:#A80036;stroke-width:1.35;" width="144" x="650.709" y="358.65"/><ellipse cx="664.209" cy="373.05" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M666.009,369.9 Q666.1918,369.45 666.4028,369.225 Q666.6137,369 666.8528,369 Q667.2746,369 667.5418,369.2531 Q667.809,369.5063 667.809,370.0969 L667.809,371.5031 Q667.809,372.0938 667.5559,372.3469 Q667.3028,372.6 666.909,372.6 Q666.5574,372.6 666.3324,372.4453 Q666.1074,372.2906 666.009,371.8828 Q665.9668,371.6016 665.8121,371.4469 Q665.5309,371.1516 665.0246,370.9828 Q664.5184,370.8 664.0121,370.8 Q663.3793,370.8 662.8449,371.0531 Q662.3246,371.3063 661.9168,371.8688 Q661.509,372.4313 661.509,373.2047 L661.509,374.0344 Q661.509,374.9625 662.2684,375.5813 Q663.0278,376.2 664.3778,376.2 Q665.1793,376.2 665.7418,376.0172 Q666.0653,375.9188 666.4309,375.5953 Q666.6699,375.4125 666.7965,375.3563 Q666.9231,375.3 667.0778,375.3 Q667.3731,375.3 667.584,375.5391 Q667.809,375.7641 667.809,376.0875 Q667.809,376.3969 667.4996,376.7625 Q667.0496,377.2969 666.3324,377.5922 Q665.3903,378 664.2371,378 Q662.8871,378 661.8043,377.4656 Q660.9324,377.0438 660.3137,376.1297 Q659.709,375.2156 659.709,374.1328 L659.709,373.1484 Q659.709,372.0234 660.2434,371.0391 Q660.7918,370.0547 661.734,369.5344 Q662.6903,369 663.759,369 Q664.4059,369 664.9684,369.225 Q665.5309,369.45 666.009,369.9 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="115.2" x="676.809" y="377.4691">randomChatRepository</text><line style="stroke:#A80036;stroke-width:1.35;" x1="651.609" x2="793.809" y1="387.45" y2="387.45"/><line style="stroke:#A80036;stroke-width:1.35;" x1="651.609" x2="793.809" y1="394.65" y2="394.65"/><!--MD5=[c9632ab5bcd495ff0e48e79ffbc147be]
+class appContainer--><rect fill="#FEFECE" filter="url(#f1azvo58rzvp3h)" height="43.2" id="appContainer" style="stroke:#A80036;stroke-width:1.35;" width="96.3" x="44.559" y="81"/><ellipse cx="58.059" cy="95.4" fill="#ADD1B2" rx="9.9" ry="9.9" style="stroke:#A80036;stroke-width:0.9;"/><path d="M59.859,92.25 Q60.0418,91.8 60.2527,91.575 Q60.4637,91.35 60.7027,91.35 Q61.1246,91.35 61.3918,91.6031 Q61.659,91.8563 61.659,92.4469 L61.659,93.8531 Q61.659,94.4438 61.4059,94.6969 Q61.1527,94.95 60.759,94.95 Q60.4074,94.95 60.1824,94.7953 Q59.9574,94.6406 59.859,94.2328 Q59.8168,93.9516 59.6621,93.7969 Q59.3809,93.5016 58.8746,93.3328 Q58.3684,93.15 57.8621,93.15 Q57.2293,93.15 56.6949,93.4031 Q56.1746,93.6563 55.7668,94.2188 Q55.359,94.7813 55.359,95.5547 L55.359,96.3844 Q55.359,97.3125 56.1184,97.9313 Q56.8777,98.55 58.2277,98.55 Q59.0293,98.55 59.5918,98.3672 Q59.9152,98.2688 60.2809,97.9453 Q60.5199,97.7625 60.6465,97.7063 Q60.7731,97.65 60.9277,97.65 Q61.2231,97.65 61.434,97.8891 Q61.659,98.1141 61.659,98.4375 Q61.659,98.7469 61.3496,99.1125 Q60.8996,99.6469 60.1824,99.9422 Q59.2402,100.35 58.0871,100.35 Q56.7371,100.35 55.6543,99.8156 Q54.7824,99.3938 54.1637,98.4797 Q53.559,97.5656 53.559,96.4828 L53.559,95.4984 Q53.559,94.3734 54.0934,93.3891 Q54.6418,92.4047 55.584,91.8844 Q56.5402,91.35 57.609,91.35 Q58.2559,91.35 58.8184,91.575 Q59.3809,91.8 59.859,92.25 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="10.8" lengthAdjust="spacing" textLength="67.5" x="70.659" y="99.8191">appContainer</text><line style="stroke:#A80036;stroke-width:1.35;" x1="45.459" x2="139.959" y1="109.8" y2="109.8"/><line style="stroke:#A80036;stroke-width:1.35;" x1="45.459" x2="139.959" y1="117" y2="117"/><!--MD5=[9f7f36ba3693818079aed4c69770e646]
+reverse link OnRoomListener to RoomAdapter--><path codeLine="278" d="M3147.912,425.619 C3127.293,496.692 3087.018,635.508 3065.139,710.946 " fill="none" id="OnRoomListener-backto-RoomAdapter" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="3141.873,423.819,3152.934,408.285,3153.969,427.329,3141.873,423.819" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[c8d8428ed091d075f1df9fa5d2110fc4]
+reverse link RoomAdapter to ViewHolder--><path codeLine="279" d="M3050.109,830.187 C3050.109,911.853 3050.109,1050.417 3050.109,1131.561 " fill="none" id="RoomAdapter-backto-ViewHolder" style="stroke:#A80036;stroke-width:0.9;"/><ellipse cx="3050.109" cy="823.806" fill="#FFFFFF" rx="7.2" ry="7.2" style="stroke:#A80036;stroke-width:0.9;"/><line style="stroke:#A80036;stroke-width:0.9;" x1="3050.109" x2="3050.109" y1="831.006" y2="816.606"/><line style="stroke:#A80036;stroke-width:0.9;" x1="3042.909" x2="3057.309" y1="823.806" y2="823.806"/><!--MD5=[b6ad3cf5ce690ece36da80e1e2f8f1ee]
+reverse link OnRoomListener to ActivityRoom--><path codeLine="280" d="M3186.306,424.152 C3245.769,530.595 3378.402,809.037 3240.009,965.7 C3225.555,982.062 1922.292,1134.144 1510.29,1181.853 " fill="none" id="OnRoomListener-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="3180.717,427.068,3177.288,408.312,3191.67,420.831,3180.717,427.068" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[195b0d69ae999b4dbd036c6928c01d26]
+reverse link ChatListener to ActivityChat--><path codeLine="281" d="M1935.495,453.96 C1920.204,474.246 1901.214,494.343 1879.209,507.6 C1762.938,577.638 1694.979,491.724 1578.609,561.6 C1567.557,568.233 1556.973,575.946 1546.902,584.406 " fill="none" id="ChatListener-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1930.401,450.252,1945.971,439.245,1940.67,457.56,1930.401,450.252" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[b4fa20b48ef4fb535ad06c90275da4ed]
+reverse link ChatListener to RandomChatRepositoryImpl--><path codeLine="282" d="M2018.304,455.391 C2057.679,528.282 2116.917,637.965 2152.953,704.691 " fill="none" id="ChatListener-backto-RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2012.742,458.352,2009.736,439.524,2023.83,452.367,2012.742,458.352" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[1e718fecbb532be405eac331e730fcaf]
+reverse link randomChatRepository to AppContainer--><path codeLine="283" d="M661.608,409.905 C599.193,441.252 501.822,495.846 432.009,561.6 C375.345,614.961 327.384,694.116 304.38,735.417 " fill="none" id="randomChatRepository-backto-AppContainer" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="658.908,404.208,677.844,401.877,664.497,415.503,658.908,404.208" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[2ded1693727aa75abdee6699d06a632f]
+reverse link randomChatRepository to ActivityChat--><path codeLine="284" d="M780.732,409.887 C835.641,436.626 920.691,476.856 996.309,507.6 C1063.107,534.753 1085.652,527.724 1149.309,561.6 C1199.079,588.087 1249.722,623.088 1293.543,656.46 " fill="none" id="randomChatRepository-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="777.753,415.449,764.352,401.877,783.297,404.127,777.753,415.449" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[833059b9bfb7bcdad265c9041065a8d4]
+reverse link randomChatRepository to ActivityRoom--><path codeLine="285" d="M677.178,412.875 C635.571,444.906 576.828,498.573 551.709,561.6 C485.217,728.433 442.899,822.807 551.709,965.7 C637.884,1078.857 1052.568,1150.569 1263.339,1180.314 " fill="none" id="randomChatRepository-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="673.443,407.799,691.641,402.075,680.985,417.897,673.443,407.799" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[f669d5316b0796222e97214555476fb5]
+reverse link randomChatRepository to PopupChangeNickname--><path codeLine="286" d="M735.462,419.229 C759.753,491.76 812.439,649.071 837.171,722.934 " fill="none" id="randomChatRepository-backto-PopupChangeNickname" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="729.414,421.002,729.675,401.931,741.357,417.006,729.414,421.002" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[56d460e214eb192572b37d48fb2da70d]
+reverse link randomChatRepository to RandomChatRepositoryImpl--><path codeLine="287" d="M772.236,411.102 C825.48,441.567 913.626,487.125 996.309,507.6 C1218.519,562.608 1821.618,456.561 2025.009,561.6 C2084.778,592.461 2129.463,656.901 2156.058,704.565 " fill="none" id="randomChatRepository-backto-RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="768.951,416.475,756.558,401.976,775.287,405.585,768.951,416.475" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[56af8c8816c57b739ac3394e241033e2]
+reverse link randomChatRepository to MainActivity--><path codeLine="288" d="M654.723,409.617 C595.872,438.372 514.611,488.952 477.909,561.6 C396.927,721.899 431.316,792.252 477.909,965.7 C527.436,1150.047 659.898,1336.518 731.646,1428.138 " fill="none" id="randomChatRepository-backto-MainActivity" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="652.077,403.893,671.049,401.913,657.459,415.287,652.077,403.893" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[d71b0f8af65dea918a3dd283b0e191d7]
+reverse link appContainer to MyApplication--><path codeLine="289" d="M92.709,142.452 C92.709,199.08 92.709,302.724 92.709,351.972 " fill="none" id="appContainer-backto-MyApplication" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="86.409,142.227,92.709,124.227,99.009,142.227,86.409,142.227" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[35243f3c8465aa9c8625e04f7622a033]
+reverse link MyApplication to ActivityChat--><path codeLine="290" d="M111.843,424.701 C127.062,453.627 151.317,489.492 184.509,507.6 C373.023,610.434 947.394,488.511 1149.309,561.6 C1200.807,580.239 1250.829,612.099 1293.579,645.03 " fill="none" id="MyApplication-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="106.038,427.167,103.734,408.231,117.342,421.596,106.038,427.167" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[d02b94d7b0857f80cfc4b8783276f4f7]
+reverse link MyApplication to ActivityRoom--><path codeLine="291" d="M90.999,426.627 C87.372,550.143 84.402,887.76 156.609,965.7 C305.406,1126.296 982.188,1176.822 1263.6,1191.051 " fill="none" id="MyApplication-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="84.717,426.186,91.593,408.393,97.308,426.591,84.717,426.186" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[68b699bba1935a82b88b5259e1437f88]
+reverse link MyApplication to MainActivity--><path codeLine="292" d="M80.424,425.727 C55.053,526.545 5.4,777.924 82.809,965.7 C180.378,1202.346 274.356,1234.377 488.709,1374.3 C540.459,1408.077 603.918,1434.024 658.323,1452.402 " fill="none" id="MyApplication-backto-MainActivity" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="74.367,423.999,84.987,408.168,86.562,427.176,74.367,423.999" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[9b364e66f470ea09946c8dabde69d164]
+reverse link Messages to ActivityChat--><path codeLine="293" d="M1446.507,214.929 C1440.297,227.295 1434.933,240.075 1431.009,252.9 C1400.841,351.531 1395.891,465.975 1399.455,561.42 " fill="none" id="Messages-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1441.035,211.797,1455.093,198.918,1452.132,217.755,1441.035,211.797" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[8c0eb87eb344b2aedb9dd8acd4204ff2]
+reverse link Messages to MessagesRecyclerAdapter--><path codeLine="294" d="M1579.248,215.613 C1597.221,254.403 1616.499,296.01 1631.124,327.573 " fill="none" id="Messages-backto-MessagesRecyclerAdapter" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1573.497,218.187,1571.652,199.206,1584.936,212.886,1573.497,218.187" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[f82e2aae10bd242210d494310cbbd097]
+reverse link Room to ActivityChat--><path codeLine="295" d="M2496.861,506.961 C2276.892,570.321 1755.324,469.332 1578.609,561.6 C1567.476,567.405 1556.874,574.389 1546.821,582.201 " fill="none" id="Room-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2494.989,500.949,2514.06,501.444,2498.841,512.946,2494.989,500.949" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[b697b2a0cce2a3f49b769cabf1200b56]
+reverse link Room to PopupEnterInRoom--><path codeLine="296" d="M2796.741,523.755 C2803.329,536.049 2809.035,548.721 2813.409,561.6 C2871.18,731.655 2915.586,817.992 2813.409,965.7 C2532.249,1372.122 1890.927,1461.681 1591.47,1481.13 " fill="none" id="Room-backto-PopupEnterInRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2791.089,526.572,2787.588,507.825,2802.015,520.299,2791.089,526.572" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[be7807a49168fee60064584f1ed7dfef]
+reverse link Room to ActivityRoom--><path codeLine="297" d="M2498.886,507.285 C2498.733,507.384 2498.571,507.492 2498.409,507.6 C2459.079,533.313 2433.879,522.702 2407.509,561.6 C2305.467,712.098 2466.972,832.113 2343.609,965.7 C2231.505,1087.092 1742.58,1156.581 1510.308,1183.293 " fill="none" id="Room-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2495.448,502.002,2513.934,497.322,2502.405,512.514,2495.448,502.002" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[05962a062c5718d6d96d2a23e9f78a63]
+reverse link Room to PopupNewRoom--><path codeLine="298" d="M2650.293,525.528 C2640.177,585.117 2628.963,651.132 2620.944,698.355 " fill="none" id="Room-backto-PopupNewRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2644.101,524.376,2653.326,507.681,2656.521,526.482,2644.101,524.376" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[0b68399fb6c91886f53eaa52028866e8]
+reverse link Room to RoomAdapter--><path codeLine="299" d="M2826.495,520.263 C2840.787,534.069 2854.926,548.001 2868.309,561.6 C2916.693,610.74 2969.235,669.51 3005.334,710.793 " fill="none" id="Room-backto-RoomAdapter" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2821.968,524.646,2813.346,507.636,2830.698,515.556,2821.968,524.646" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[5e633314eb24bbb1a024e570d28d3266]
+reverse link Room to RandomChatRepositoryImpl--><path codeLine="300" d="M2497.581,507.24 C2432.628,537.696 2404.251,524.502 2351.709,561.6 C2297.43,599.922 2250.531,660.105 2220.3,704.664 " fill="none" id="Room-backto-RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2495.025,501.471,2513.934,499.023,2500.677,512.73,2495.025,501.471" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[15203445345eeec62af1fb6cde9510fd]
+reverse link RandomChatClient to RandomChatClient--><path codeLine="301" d="M2481.93,339.444 C2491.515,348.066 2497.509,361.665 2497.509,380.25 C2497.509,407.592 2484.531,424.143 2466.243,429.912 " fill="none" id="RandomChatClient-backto-RandomChatClient" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2478.816,344.925,2466.243,330.588,2485.017,333.954,2478.816,344.925" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[5ff69fa624b6dc6f00d343fe725ddf39]
+reverse link RandomChatClient to RandomChatRepositoryImpl--><path codeLine="302" d="M2314.098,499.446 C2280.501,567.603 2239.758,650.259 2212.992,704.565 " fill="none" id="RandomChatClient-backto-RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2308.644,496.269,2322.252,482.904,2319.939,501.84,2308.644,496.269" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[5a8791269b707b4b2fa69742b7cccbb9]
+reverse link RandomChatRepository to AppContainer--><path codeLine="303" d="M317.619,494.721 C308.934,578.466 297.765,686.097 292.626,735.615 " fill="none" id="RandomChatRepository-backto-AppContainer" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="311.373,493.956,319.491,476.703,323.901,495.261,311.373,493.956" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[5e61bd10d9b71ad55f8f8f077876375b]
+reverse link RoomNotExistsException to ActivityChat--><path codeLine="304" d="M2153.259,418.374 C2137.959,447.858 2112.327,487.35 2077.209,507.6 C1884.114,618.939 1773.594,453.6 1578.609,561.6 C1567.53,567.738 1556.946,575.001 1546.902,583.065 " fill="none" id="RoomNotExistsException-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2147.697,415.395,2161.251,401.976,2159.028,420.921,2147.697,415.395" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[e57244e6a466bc27e7befff4b766c881]
+reverse link RoomNotExistsException to RandomChatRepositoryImpl--><path codeLine="305" d="M2171.376,420.021 C2173.914,487.323 2179.143,625.86 2182.113,704.637 " fill="none" id="RoomNotExistsException-backto-RandomChatRepositoryImpl" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2165.076,420.156,2170.692,401.931,2177.667,419.688,2165.076,420.156" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[a6127da9f9618b8e2de2fc5ef3b5d07c]
+reverse link ActivityChat to ActivityChat--><path codeLine="306" d="M1561.077,709.956 C1571.661,721.935 1578.159,739.827 1578.159,763.65 C1578.159,796.779 1565.577,818.46 1546.929,828.693 " fill="none" id="ActivityChat-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1557.036,714.78,1546.929,698.607,1564.911,704.952,1557.036,714.78" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[8175f4fdb5836a8e5bf0c89cf0ac7c77]
+reverse link ActivityChat to PopupEnterInRoom--><path codeLine="307" d="M1531.71,983.187 C1535.589,995.364 1538.973,1007.577 1541.709,1019.7 C1576.44,1173.42 1601.28,1228.392 1541.709,1374.3 C1532.493,1396.863 1516.302,1417.347 1499.139,1434.447 " fill="none" id="ActivityChat-backto-PopupEnterInRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1525.698,985.086,1525.914,966.015,1537.641,981.054,1525.698,985.086" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[5de6e16b1f5436a3ca3d451d971d1f31]
+reverse link ActivityChat to ActivityRoom--><path codeLine="308" d="M1403.289,983.871 C1402.362,995.787 1401.444,1007.685 1400.544,1019.421 " fill="none" id="ActivityChat-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1397.016,983.259,1404.684,965.79,1409.58,984.222,1397.016,983.259" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[da683434ca718d1383702dee37fb84bd]
+reverse link MessagesRecyclerAdapter to SenderViewHolder--><path codeLine="309" d="M1711.98,443.241 C1741.536,476.991 1777.257,520.191 1805.409,561.6 C1839.969,612.432 1872.81,675.171 1893.411,716.931 " fill="none" id="MessagesRecyclerAdapter-backto-SenderViewHolder" style="stroke:#A80036;stroke-width:0.9;"/><ellipse cx="1707.7819" cy="438.4768" fill="#FFFFFF" rx="7.2" ry="7.2" style="stroke:#A80036;stroke-width:0.9;"/><line style="stroke:#A80036;stroke-width:0.9;" x1="1712.5479" x2="1703.016" y1="443.8737" y2="433.08"/><line style="stroke:#A80036;stroke-width:0.9;" x1="1702.3851" x2="1713.1788" y1="443.2428" y2="433.7109"/><!--MD5=[50dbb5e759b007fcc4cb1b634dc0fe7a]
+reverse link MessagesRecyclerAdapter to RecyclerViewHolder--><path codeLine="310" d="M1661.436,446.589 C1668.897,523.764 1681.11,650.016 1687.608,717.255 " fill="none" id="MessagesRecyclerAdapter-backto-RecyclerViewHolder" style="stroke:#A80036;stroke-width:0.9;"/><ellipse cx="1660.8147" cy="440.1746" fill="#FFFFFF" rx="7.2" ry="7.2" style="stroke:#A80036;stroke-width:0.9;"/><line style="stroke:#A80036;stroke-width:0.9;" x1="1661.5073" x2="1660.122" y1="447.3412" y2="433.008"/><line style="stroke:#A80036;stroke-width:0.9;" x1="1653.6481" x2="1667.9813" y1="440.8673" y2="439.4819"/><!--MD5=[9db3f1d1fc74d96553324bcc753da0d0]
+reverse link MessagesRecyclerAdapter to ActivityChat--><path codeLine="311" d="M1613.655,448.488 C1593.972,480.465 1569.294,520.551 1544.22,561.294 " fill="none" id="MessagesRecyclerAdapter-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1608.381,445.032,1623.186,433.008,1619.118,451.638,1608.381,445.032" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[ba53631ad1c75d96e7473cbcd6dee452]
+reverse link ActivityRoom to ActivityRoom--><path codeLine="312" d="M1525.977,1157.31 C1535.751,1166.355 1541.709,1179.585 1541.709,1197 C1541.709,1222.326 1529.091,1238.805 1510.479,1246.419 " fill="none" id="ActivityRoom-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1522.368,1162.485,1510.479,1147.572,1529.073,1151.82,1522.368,1162.485" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[d864112595569654db0f35eac7951359]
+reverse link ActivityRoom to MainActivity--><path codeLine="313" d="M1249.488,1344.465 C1235.214,1355.526 1220.337,1365.705 1205.109,1374.3 C1110.357,1427.778 989.325,1456.434 900.549,1471.329 " fill="none" id="ActivityRoom-backto-MainActivity" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1245.582,1339.524,1263.546,1333.134,1253.484,1349.334,1245.582,1339.524" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[df7306642905cb1c2e12ab4b5093753f]
+reverse link ActivityRoom to PopupEnterInRoom--><path codeLine="314" d="M1406.394,1392.228 C1409.166,1407.42 1411.992,1421.757 1414.755,1434.456 " fill="none" id="ActivityRoom-backto-PopupEnterInRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1400.166,1393.236,1403.235,1374.408,1412.577,1391.04,1400.166,1393.236" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[be137ca4774593890a81a7b8c24ba914]
+reverse link PopupEnterInRoom to ActivityRoom--><path codeLine="322" d="M1431.585,1416.447 C1430.154,1403.343 1428.363,1389.114 1426.32,1374.408 " fill="none" id="PopupEnterInRoom-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1437.867,1415.916,1433.403,1434.456,1425.33,1417.176,1437.867,1415.916" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[631171fc2d07aff4162f4ee2b3485385]
+reverse link MainActivity to MainActivity--><path codeLine="315" d="M918.081,1469.745 C926.739,1473.876 931.959,1479.708 931.959,1487.25 C931.959,1499.022 919.251,1506.627 900.567,1510.083 " fill="none" id="MainActivity-backto-MainActivity" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="915.957,1475.685,900.567,1464.417,919.62,1463.634,915.957,1475.685" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[3249eb323d41a69b3f8ec778e12082cf]
+reverse link MainActivity to Splashscreen--><path codeLine="316" d="M779.409,1564.785 C779.409,1577.709 779.409,1590.102 779.409,1599.93 " fill="none" id="MainActivity-backto-Splashscreen" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="773.109,1564.371,779.409,1546.371,785.709,1564.371,773.109,1564.371" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[75eaa9619c291dd3c63fab91b22e2433]
+reverse link NetworkErrorFactory to ActivityChat--><path codeLine="317" d="M1208.349,423.774 C1229.868,458.199 1261.836,509.355 1294.461,561.555 " fill="none" id="NetworkErrorFactory-backto-ActivityChat" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1202.868,426.888,1198.674,408.285,1213.551,420.21,1202.868,426.888" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[0c7292151db6c455281db317f7c490c8]
+reverse link NetworkErrorFactory to ActivityRoom--><path codeLine="318" d="M1187.46,426.069 C1202.922,544.671 1246.311,864.09 1278.009,965.7 C1283.544,983.439 1290.195,1001.556 1297.44,1019.457 " fill="none" id="NetworkErrorFactory-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1181.214,426.861,1185.147,408.195,1193.706,425.241,1181.214,426.861" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[91596cafb59ab621228093e98aa7b3f2]
+reverse link NetworkErrorFactory to MainActivity--><path codeLine="319" d="M1187.505,426.456 C1198.593,526.914 1216.179,774.567 1149.309,965.7 C1082.853,1155.654 924.696,1337.967 838.269,1427.994 " fill="none" id="NetworkErrorFactory-backto-MainActivity" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1181.223,426.996,1185.399,408.384,1193.742,425.538,1181.223,426.996" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[3917512097f3c7295cf9e73402d99592]
+reverse link NetworkErrorFactory to PopupChangeNickname--><path codeLine="320" d="M1146.348,421.893 C1082.403,495.567 948.348,650.025 885.033,722.97 " fill="none" id="NetworkErrorFactory-backto-PopupChangeNickname" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="1141.596,417.753,1158.156,408.285,1151.118,426.006,1141.596,417.753" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[1faaf7e7c263014ddfbde6121edc8de0]
+reverse link PopupChangeNickname to ActivityRoom--><path codeLine="321" d="M913.932,815.58 C999.657,884.547 1154.304,1008.963 1263.384,1096.713 " fill="none" id="PopupChangeNickname-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="909.846,820.377,899.775,804.177,917.748,810.558,909.846,820.377" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[98129dcf5daffb0cf000c5a724c8e8e9]
+reverse link PopupNewRoom to ActivityRoom--><path codeLine="323" d="M2546.847,842.454 C2508.282,885.015 2455.533,935.127 2398.509,965.7 C2105.226,1122.939 1708.389,1173.222 1510.218,1189.026 " fill="none" id="PopupNewRoom-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2542.185,838.215,2558.853,828.936,2551.608,846.576,2542.185,838.215" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[0e9c03cc72a0a5929fd80386e6af6dd1]
+reverse link RoomAdapter to RoomAdapter--><path codeLine="324" d="M3120.552,702.432 C3178.656,676.854 3239.109,697.257 3239.109,763.65 C3239.109,836.28 3166.749,853.875 3104.28,816.426 " fill="none" id="RoomAdapter-backto-RoomAdapter" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="3123.162,708.183,3104.28,710.874,3117.366,696.996,3123.162,708.183" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[7e25900218c3b42a091874743ff7ef81]
+reverse link RoomAdapter to ActivityRoom--><path codeLine="325" d="M2992.446,829.62 C2948.148,875.25 2882.934,933.624 2813.409,965.7 C2580.921,1072.962 1812.231,1155.654 1510.254,1184.76 " fill="none" id="RoomAdapter-backto-ActivityRoom" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="2987.964,825.192,3004.938,816.516,2997.081,833.886,2987.964,825.192" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[25c80a5c5150a6a0da6e9f319697848b]
+reverse link Splashscreen to Splashscreen--><path codeLine="326" d="M828.198,1596.843 C845.694,1596.321 859.959,1604.637 859.959,1621.8 C859.959,1644.561 834.867,1651.761 810.405,1643.409 " fill="none" id="Splashscreen-backto-Splashscreen" style="stroke:#A80036;stroke-width:0.9;"/><polygon fill="none" points="829.26,1603.053,810.405,1600.191,826.938,1590.669,829.26,1603.053" style="stroke:#A80036;stroke-width:0.9;"/><!--MD5=[660136cb46d6a27f4d8562682ec3e203]
+@startuml
+'https://plantuml.com/class-diagram
+
+class AppContainer{
+final RandomChatRepository randomChatRepository
+}
+
+class MyApplication{
+final AppContainer appContainer
+}
+
+class Messages{
+private String message
+private String currenttime
+private boolean isSent
+private int color
+
+void Messages(String message, int color, boolean isSent)
+boolean isSent()
+void setSend(boolean send)
+String getCurrentTime()
+void setCurrentTime(String currenttime)
+int getColor()
+void setColor(int color)
+void setMessage(String message)
+}
+
+class Room{
+private String name
+private long id
+private int time
+private long onlineusers
+private int roomColor
+
+void Room(String name, int time, int roomColor)
+void Room(String name, long id, int time, long onlineusers, int roomColor)
+String getName()
+void setName(String name)
+long getId()
+void setId(long id)
+int getTime()
+void setTime(int time)
+long getOnlineUsers()
+void setOnLineUser(long onlineusers)
+int getRoomColor()
+void setRoomColor(int color)
+}
+
+interface ChatListener{
+void onUserFound(String msg)
+void onMessage(String msg)
+void onNextUser()
+void onTimeExpired()
+void onExit()
+void onUserCount(long usersCount)
+}
+
+class Commands{
+static final char ENTER_IN_ROOM
+static final char NEW_ROOM
+static final char ROOM_LIST
+static final char CHANGE_NICKNAME
+static final char NEXT_USER
+static final char SEND_MSG
+static final char TIME_EXPIRED
+static final char EXIT
+static final char EXIT_FROM_ROOM
+static final char USER_IN_ROOM
+}
+
+class RandomChatClient{
+private static RandomChatClient instance
+private Socket soc
+private BufferedReader in
+private BufferedReader out
+private final String HostName
+private final int port
+
+static RandomChatClient getInstance()
+void openConnection()
+void closeConnection()
+boolean isOpen()
+void write(char command, string msg)
+String readLine(int timeout)
+String readLine()
+}
+
+interface RandomChatRepository{
+void connect()
+void setNickname(String nickname)
+List<Room> getAllrooms()
+List<Room> getRooms(int from, int to)
+List<Room> getRoomsByName(String name)
+Room addRoom(Room room)
+String enterRoom(Room room, ChatListener chatListener)
+void sendMessage(String msg)
+void nextUser()
+void exitRoom()
+void getUserCount()
+void exit()
+}
+
+class RandomChatRepositoryImpl{
+private RandomChatClient client
+private boolean chatting
+Thread chatThread
+
+private final Consumer<ChatListener> chatThreadFun()
+private List<Room> getRooms(int from, int to, String name)
+private static String stringInside(String s, String left, String right)
+}
+
+class RoomNotExistsException{
+
+}
+
+class ActivityChat{
+private static final int AUDIO_RECORD_REQUEST_CODE
+private EditText mgetmessage
+private String enteredmessage
+private CardView msendmessagecardview
+private ImageButton msendmessagebutton
+private Toolbar toolbarofspecificchatroom
+private TextView Nameofspecifitroom
+private ImageButton backbuttonofspecificchatroom
+private ArrayList<Messages> messagesArrayList
+private RecyclerView mmessagerecyclerview
+private MessagesRecyclerAdapter messagesAdapter
+private Room selectedRoom
+private AlertDialog dialog
+private TextView other_username
+private TextView time_left
+private TextView users_in_room
+private RandomChatRepository randomChatRepository
+private ExecutorService executorService
+Thread updateUserCount
+private boolean chatting
+private int uCount
+private Object uCountMutex
+private SpeechRecognizer speechRecognizer
+
+private view initRecyclerView()
+private void scrollToBottom(RecyclerView r)
+private void loadingDialog()
+private void countdown(int limit)
+private void checkAudioPermission()
+private void checkForFirstTimeUser()
+}
+
+class MessagesRecyclerAdapter{
+Context context
+ArrayList<Messages> messagesArrayList
+private int messageSend
+private int messageReceived
+
+void MessagesRecyclerAdapter(Context context, ArrayList<Messages> messagesArrayList)
+}
+
+class RecyclerViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void ReceiverViewHolder(View itemView)
+}
+
+class SenderViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void SenderViewHolder(View itemView)
+}
+
+class ActivityRoom{
+private static final String TAG
+private RecyclerView rvRoom
+private LinearLayoutManager layoutManager
+private TextView titleToolbar
+private RoomAdapter adapter
+private FloatingActionButton buttonnewroom
+private SwipeRefreshLayout swipeRefreshLayout
+private TextView emptyView1
+private TextView emptyView2
+private ImageView emptyView3
+private View emptyView
+private AlertDialog dialog
+private Builder dialogBuilder
+private List<Room> rooms
+private List<Room> searchRoom
+private TextView curr_nick
+private SearchView search
+private LinearLayout linearLayout
+private String nickname
+private RandomChatRepository randomChatRepository
+
+private void initRecyclerView()
+void checkRecyclerviewEmpty()
+private void refreshData()
+List<Room> getListRooms()
+private void checkForFirstTimeUser()
+}
+
+class MainActivity{
+private EditText NicknameUser
+private Button button_start_chat
+CheckBox checkBox
+RandomChatRepository randomChatRepository
+
+private void isConnected()
+public boolean EditTextisEmpty(EditText niknameuser)
+}
+
+class NetworkErrorFactory{
+static AlertDialog newNetworkError(Activity activity, String msg, TYPE type)
+}
+
+enum TYPE{
+TERMINATE
+CONNECT
+DO_NOTHING
+}
+
+class PopupChangeNickname{
+private Button confirmChange
+private EditText stringNick
+
+void showPopupWindow(final View view, TextView curr_nick, Activity activity, RandomChatRepository randomChatRepository)
+}
+
+class PopupEnterInRoom{
+private Button confirmEnter
+private EditText stringRoomID
+private int id
+
+public void showPopupWindow(final View view, ActivityRoom activity)
+Room findRoomById(int id, List<Room> rooms)
+}
+
+class PopupNewRoom{
+private Button createnewroom
+private EditText timeEditText
+private Button buttoncolor
+private EditText room_name
+private int color
+
+public void showPopupWindow(final View view, Consumer<Room> onCreateRoom)
+private void setLayoutColor()
+}
+
+class RoomAdapter{
+private List<Room> rooms
+private OnRoomListener nOnRoomListener
+
+RoomAdapter(List<Room> rooms, OnRoomListener nOnRoomListener)
+List<Room> getData()
+void setData(List<Room> rooms)
+}
+
+interface OnRoomListener{
+void OnRoomClick(int position)
+}
+
+class ViewHolder{
+private TextView roomName
+private TextView roomid
+private TextView time
+private TextView onlineuser
+private CardView cardView
+private OnRoomListener onRoomListener
+
+ViewHolder(View itemView, OnRoomListener onRoomListener)
+}
+
+class Splashscreen{
+
+}
+
+OnRoomListener <|- - RoomAdapter
+RoomAdapter +- - ViewHolder
+OnRoomListener <|- - ActivityRoom
+ChatListener <|- - ActivityChat
+ChatListener <|- - RandomChatRepositoryImpl
+randomChatRepository <|- - AppContainer
+randomChatRepository <|- - ActivityChat
+randomChatRepository <|- - ActivityRoom
+randomChatRepository <|- - PopupChangeNickname
+randomChatRepository <|- - RandomChatRepositoryImpl
+randomChatRepository <|- - MainActivity
+appContainer <|- - MyApplication
+MyApplication <|- - ActivityChat
+MyApplication <|- - ActivityRoom
+MyApplication <|- - MainActivity
+Messages <|- - ActivityChat
+Messages <|- - MessagesRecyclerAdapter
+Room <|- - ActivityChat
+Room <|- - PopupEnterInRoom
+Room <|- - ActivityRoom
+Room <|- - PopupNewRoom
+Room <|- - RoomAdapter
+Room <|- - RandomChatRepositoryImpl
+RandomChatClient <|- - RandomChatClient
+RandomChatClient <|- - RandomChatRepositoryImpl
+RandomChatRepository <|- - AppContainer
+RoomNotExistsException <|- - ActivityChat
+RoomNotExistsException <|- - RandomChatRepositoryImpl
+ActivityChat <|- - ActivityChat
+ActivityChat <|- - PopupEnterInRoom
+ActivityChat <|- - ActivityRoom
+MessagesRecyclerAdapter +- - SenderViewHolder
+MessagesRecyclerAdapter +- - RecyclerViewHolder
+MessagesRecyclerAdapter <|- - ActivityChat
+ActivityRoom <|- - ActivityRoom
+ActivityRoom <|- - MainActivity
+ActivityRoom <|- - PopupEnterInRoom
+MainActivity <|- - MainActivity
+MainActivity <|- - Splashscreen
+NetworkErrorFactory <|- - ActivityChat
+NetworkErrorFactory <|- - ActivityRoom
+NetworkErrorFactory <|- - MainActivity
+NetworkErrorFactory <|- - PopupChangeNickname
+PopupChangeNickname <|- - ActivityRoom
+PopupEnterInRoom <|- - ActivityRoom
+PopupNewRoom <|- - ActivityRoom
+RoomAdapter <|- - RoomAdapter
+RoomAdapter <|- - ActivityRoom
+Splashscreen <|- - Splashscreen
+@enduml
+
+@startuml
+
+class AppContainer{
+final RandomChatRepository randomChatRepository
+}
+
+class MyApplication{
+final AppContainer appContainer
+}
+
+class Messages{
+private String message
+private String currenttime
+private boolean isSent
+private int color
+
+void Messages(String message, int color, boolean isSent)
+boolean isSent()
+void setSend(boolean send)
+String getCurrentTime()
+void setCurrentTime(String currenttime)
+int getColor()
+void setColor(int color)
+void setMessage(String message)
+}
+
+class Room{
+private String name
+private long id
+private int time
+private long onlineusers
+private int roomColor
+
+void Room(String name, int time, int roomColor)
+void Room(String name, long id, int time, long onlineusers, int roomColor)
+String getName()
+void setName(String name)
+long getId()
+void setId(long id)
+int getTime()
+void setTime(int time)
+long getOnlineUsers()
+void setOnLineUser(long onlineusers)
+int getRoomColor()
+void setRoomColor(int color)
+}
+
+interface ChatListener{
+void onUserFound(String msg)
+void onMessage(String msg)
+void onNextUser()
+void onTimeExpired()
+void onExit()
+void onUserCount(long usersCount)
+}
+
+class Commands{
+static final char ENTER_IN_ROOM
+static final char NEW_ROOM
+static final char ROOM_LIST
+static final char CHANGE_NICKNAME
+static final char NEXT_USER
+static final char SEND_MSG
+static final char TIME_EXPIRED
+static final char EXIT
+static final char EXIT_FROM_ROOM
+static final char USER_IN_ROOM
+}
+
+class RandomChatClient{
+private static RandomChatClient instance
+private Socket soc
+private BufferedReader in
+private BufferedReader out
+private final String HostName
+private final int port
+
+static RandomChatClient getInstance()
+void openConnection()
+void closeConnection()
+boolean isOpen()
+void write(char command, string msg)
+String readLine(int timeout)
+String readLine()
+}
+
+interface RandomChatRepository{
+void connect()
+void setNickname(String nickname)
+List<Room> getAllrooms()
+List<Room> getRooms(int from, int to)
+List<Room> getRoomsByName(String name)
+Room addRoom(Room room)
+String enterRoom(Room room, ChatListener chatListener)
+void sendMessage(String msg)
+void nextUser()
+void exitRoom()
+void getUserCount()
+void exit()
+}
+
+class RandomChatRepositoryImpl{
+private RandomChatClient client
+private boolean chatting
+Thread chatThread
+
+private final Consumer<ChatListener> chatThreadFun()
+private List<Room> getRooms(int from, int to, String name)
+private static String stringInside(String s, String left, String right)
+}
+
+class RoomNotExistsException{
+
+}
+
+class ActivityChat{
+private static final int AUDIO_RECORD_REQUEST_CODE
+private EditText mgetmessage
+private String enteredmessage
+private CardView msendmessagecardview
+private ImageButton msendmessagebutton
+private Toolbar toolbarofspecificchatroom
+private TextView Nameofspecifitroom
+private ImageButton backbuttonofspecificchatroom
+private ArrayList<Messages> messagesArrayList
+private RecyclerView mmessagerecyclerview
+private MessagesRecyclerAdapter messagesAdapter
+private Room selectedRoom
+private AlertDialog dialog
+private TextView other_username
+private TextView time_left
+private TextView users_in_room
+private RandomChatRepository randomChatRepository
+private ExecutorService executorService
+Thread updateUserCount
+private boolean chatting
+private int uCount
+private Object uCountMutex
+private SpeechRecognizer speechRecognizer
+
+private view initRecyclerView()
+private void scrollToBottom(RecyclerView r)
+private void loadingDialog()
+private void countdown(int limit)
+private void checkAudioPermission()
+private void checkForFirstTimeUser()
+}
+
+class MessagesRecyclerAdapter{
+Context context
+ArrayList<Messages> messagesArrayList
+private int messageSend
+private int messageReceived
+
+void MessagesRecyclerAdapter(Context context, ArrayList<Messages> messagesArrayList)
+}
+
+class RecyclerViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void ReceiverViewHolder(View itemView)
+}
+
+class SenderViewHolder{
+private TextView textViewmessage
+private TextView timeofmessage
+private RelativeLayout relativeLayout
+
+void SenderViewHolder(View itemView)
+}
+
+class ActivityRoom{
+private static final String TAG
+private RecyclerView rvRoom
+private LinearLayoutManager layoutManager
+private TextView titleToolbar
+private RoomAdapter adapter
+private FloatingActionButton buttonnewroom
+private SwipeRefreshLayout swipeRefreshLayout
+private TextView emptyView1
+private TextView emptyView2
+private ImageView emptyView3
+private View emptyView
+private AlertDialog dialog
+private Builder dialogBuilder
+private List<Room> rooms
+private List<Room> searchRoom
+private TextView curr_nick
+private SearchView search
+private LinearLayout linearLayout
+private String nickname
+private RandomChatRepository randomChatRepository
+
+private void initRecyclerView()
+void checkRecyclerviewEmpty()
+private void refreshData()
+List<Room> getListRooms()
+private void checkForFirstTimeUser()
+}
+
+class MainActivity{
+private EditText NicknameUser
+private Button button_start_chat
+CheckBox checkBox
+RandomChatRepository randomChatRepository
+
+private void isConnected()
+public boolean EditTextisEmpty(EditText niknameuser)
+}
+
+class NetworkErrorFactory{
+static AlertDialog newNetworkError(Activity activity, String msg, TYPE type)
+}
+
+enum TYPE{
+TERMINATE
+CONNECT
+DO_NOTHING
+}
+
+class PopupChangeNickname{
+private Button confirmChange
+private EditText stringNick
+
+void showPopupWindow(final View view, TextView curr_nick, Activity activity, RandomChatRepository randomChatRepository)
+}
+
+class PopupEnterInRoom{
+private Button confirmEnter
+private EditText stringRoomID
+private int id
+
+public void showPopupWindow(final View view, ActivityRoom activity)
+Room findRoomById(int id, List<Room> rooms)
+}
+
+class PopupNewRoom{
+private Button createnewroom
+private EditText timeEditText
+private Button buttoncolor
+private EditText room_name
+private int color
+
+public void showPopupWindow(final View view, Consumer<Room> onCreateRoom)
+private void setLayoutColor()
+}
+
+class RoomAdapter{
+private List<Room> rooms
+private OnRoomListener nOnRoomListener
+
+RoomAdapter(List<Room> rooms, OnRoomListener nOnRoomListener)
+List<Room> getData()
+void setData(List<Room> rooms)
+}
+
+interface OnRoomListener{
+void OnRoomClick(int position)
+}
+
+class ViewHolder{
+private TextView roomName
+private TextView roomid
+private TextView time
+private TextView onlineuser
+private CardView cardView
+private OnRoomListener onRoomListener
+
+ViewHolder(View itemView, OnRoomListener onRoomListener)
+}
+
+class Splashscreen{
+
+}
+
+OnRoomListener <|- - RoomAdapter
+RoomAdapter +- - ViewHolder
+OnRoomListener <|- - ActivityRoom
+ChatListener <|- - ActivityChat
+ChatListener <|- - RandomChatRepositoryImpl
+randomChatRepository <|- - AppContainer
+randomChatRepository <|- - ActivityChat
+randomChatRepository <|- - ActivityRoom
+randomChatRepository <|- - PopupChangeNickname
+randomChatRepository <|- - RandomChatRepositoryImpl
+randomChatRepository <|- - MainActivity
+appContainer <|- - MyApplication
+MyApplication <|- - ActivityChat
+MyApplication <|- - ActivityRoom
+MyApplication <|- - MainActivity
+Messages <|- - ActivityChat
+Messages <|- - MessagesRecyclerAdapter
+Room <|- - ActivityChat
+Room <|- - PopupEnterInRoom
+Room <|- - ActivityRoom
+Room <|- - PopupNewRoom
+Room <|- - RoomAdapter
+Room <|- - RandomChatRepositoryImpl
+RandomChatClient <|- - RandomChatClient
+RandomChatClient <|- - RandomChatRepositoryImpl
+RandomChatRepository <|- - AppContainer
+RoomNotExistsException <|- - ActivityChat
+RoomNotExistsException <|- - RandomChatRepositoryImpl
+ActivityChat <|- - ActivityChat
+ActivityChat <|- - PopupEnterInRoom
+ActivityChat <|- - ActivityRoom
+MessagesRecyclerAdapter +- - SenderViewHolder
+MessagesRecyclerAdapter +- - RecyclerViewHolder
+MessagesRecyclerAdapter <|- - ActivityChat
+ActivityRoom <|- - ActivityRoom
+ActivityRoom <|- - MainActivity
+ActivityRoom <|- - PopupEnterInRoom
+MainActivity <|- - MainActivity
+MainActivity <|- - Splashscreen
+NetworkErrorFactory <|- - ActivityChat
+NetworkErrorFactory <|- - ActivityRoom
+NetworkErrorFactory <|- - MainActivity
+NetworkErrorFactory <|- - PopupChangeNickname
+PopupChangeNickname <|- - ActivityRoom
+PopupEnterInRoom <|- - ActivityRoom
+PopupNewRoom <|- - ActivityRoom
+RoomAdapter <|- - RoomAdapter
+RoomAdapter <|- - ActivityRoom
+Splashscreen <|- - Splashscreen
+@enduml
+
+PlantUML version 1.2022.1(Tue Feb 01 19:19:58 CET 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: it
+Country: IT
+--></g></svg>
